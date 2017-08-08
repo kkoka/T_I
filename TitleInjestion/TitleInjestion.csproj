@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{978B9515-BB3F-4802-BF39-AC5C4AC58ED8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TitleInjestion</RootNamespace>
+    <AssemblyName>TitleInjestion</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonFunctions\CommonFuncCalls.cs" />
+    <Compile Include="CommonFunctions\ImpersonateUser.cs" />
+    <Compile Include="CommonFunctions\Onix_CleanUP.cs" />
+    <Compile Include="CommonFunctions\ReadOnix.cs" />
+    <Compile Include="CommonFunctions\SQLBackup.cs" />
+    <Compile Include="CommonFunctions\SQLData.cs" />
+    <Compile Include="CommonFunctions\SQLFunction.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\FileInfo.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Header.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\ONIXMessage.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Audience.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_AudienceRange.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Contributor.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Contributor_ProfessionalAffiliation.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Illustrations.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Imprint.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Language.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_MainSubject.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_MarketRepresentation.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_MarketRepresentation_MarketDate.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Measure.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_MediaFile.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_OtherText.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Prize.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_ProductClassification.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_ProductIdentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_ProductWebsite.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Publisher.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Publisher_Website.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_RelatedProduct.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_RelatedProduct_ProductIdentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_SalesRestriction.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_SalesRights.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Series.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Series_SeriesIdentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Set.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Subject.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_SupplyDetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_SupplyDetail_Price.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_SupplyDetail_Price_DiscountCoded.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_SupplyDetail_Stock.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_SupplyDetail_Stock_LocationIdentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Title.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Website.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_WorkIdentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\FileInfo.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\header.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\ONIXmessage.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_audience.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_audiencerange.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_complexity.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_containeditem.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_containeditem_productidentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_contributor.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_contributor_personnameidentifier.cs.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_contributor_professionalaffiliation.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_contributor_website.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_copyrightstatement.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_copyrightstatement_copyrightowner.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_extent.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_illustrations.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_imprint.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_language.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_mainsubject.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_marketrepresentation.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_measure.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_mediafile.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_notforsale.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_notforsale_productidentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_othertext.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_personassubject.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_prize.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_productclassification.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_productformfeature.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_productidentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_productwebsite.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_publisher.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_publisher_website.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_relatedproduct.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_relatedproduct_productidentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_relatedproduct_publisher.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_relatedproduct_publisher_website.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_religioustext.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_religioustext_bible.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_salesrestriction.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_salesrestriction_salesoutlet.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_salesrestriction_salesoutlet_salesoutletidentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_salesrights.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_series.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_series_seriesidentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_series_title.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_subject.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_supplydetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_supplydetail_price.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_supplydetail_price_discountcoded.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_supplydetail_supplieridentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_supplydetail_website.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_title.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_website.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_workidentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\header.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\ONIXmessage.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_collateraldetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_collateraldetail_supportingresource.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_collateraldetail_supportingresource_resourceversion.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_collateraldetail_supportingresource_resourceversion_contentdate.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_collateraldetail_supportingresource_resourceversion_resourceversionfeature.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_collateraldetail_textcontent.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_audience.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_audiencerange.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_audience_audiencerange.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_collection.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_collection_collectionsequence.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_collection_titledetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_collection_titledetail_titleelement.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_contributor.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_epubusageconstraint.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_epubusageconstraint_epubusagelimit.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_extent.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_language.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_subject.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_titledetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_descriptivedetail_titledetail_titleelement.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_productidentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_productsupply.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_productsupply_supplydetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_productsupply_supplydetail_price.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_productsupply_supplydetail_price_territory.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_productsupply_supplydetail_supplier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_productsupply_supplydetail_supplydate.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail_copyrightstatement.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail_copyrightstatement_copyrightowner.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail_imprint.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail_publisher.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail_publishingdate.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail_salesrights.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail_salesrights_territory.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\sender.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_CleanUP.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Blackstone\Blackstone_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\eChristian\eChristian_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\GalaxyPress\GalaxyPress_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Hachette\Hachette_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\HarperCollins\HarperCollins_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\HighBridge\HighBridge_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Macmillan\Macmillan_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\MYBooks\MYBooks_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Oasis\Oasis_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\RandomHouse\RandomHouse_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Scholastic\Scholastic_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\SimonSchuster\SimonSchuster_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Tantor\Tantor_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\ThomasNelson\ThomasNelson_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Zondervan\Zondervan_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Abrams\Abrams_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Akashic\Akashic_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Baker\Baker_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Barbour\Barbour_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\BloomsburyUSA\Bloomsbury_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\ChronicleBooks\ChronicleBooks_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\DKPublishing\DKPublishing_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\ECWPress\ECW Press_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\GalaxyPress\GalaxyPress_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\GroundwoodBooks\GroundwoodBooks_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Hachette\Hachette_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Harlequin\Harlequin_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\HarperAU\HarperAU_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\HarperCollinsUK\HarperCollinsUK_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\HarperCollins\HarperCollins_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\HMH\HMH_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Macmillan\Macmillan_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\OpenRoad\OpenRoad_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\OrcaBookPublishers\OrcaBookPublishers_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Penquin\Penquin_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\PerseusDistribution\PerseusDistribution_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Perseus\Perseus_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\PoisonedPenPress\PoisonedPenPress_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\RandomHouseDistributed\RandomHouseDistributed_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\RandomHouse\RandomHouse_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\SimonSchuster\SimonSchuster_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Sourcebooks\Sourcebooks_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\ThomasNelson\ThomasNelson_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Wiley\Wiley_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Workman\Workman_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Zondervan\Zondervan_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\ReadOnix.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\HarperCollins_UK\HarperUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\AccentPress\AccentPressUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\BlackBooks_UK\BlackBooks_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Bloomsbury_UK\Bloomsbury_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Canongate\CanongateUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\CreativeContent\CreativeContentUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\FaberAndFaber\FaberAndFaber_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Faber_Factory\FaberFactory_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\HarperCollins_AU\HarperAU_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Macmillan_AU\MacmillanAU_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Macmillan_UK\MacmillanUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Michael_OMara\Michael_OMara_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\MyBooks\MyBooksUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Penguin_UK\PenguinUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Pottermore\PottermoreUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Pottermore\PottermoreUK_ShortTag_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\RandomHouse_UK\RandomHouseUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\ScribePublications\ScribePublicationsUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\SevernHouse\SevernHouseUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Vearsa\Vearsa_Extraction.cs.cs" />
+    <Compile Include="DeleteIds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteIds.Designer.cs">
+      <DependentUpon>DeleteIds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorLogScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorLogScreen.Designer.cs">
+      <DependentUpon>ErrorLogScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogIn_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogIn_Form.Designer.cs">
+      <DependentUpon>LogIn_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MetaData\MetaData_Info.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\HarperCollins_UK\HarperUK_Extraction.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MetaData\MetaDataFileAvailability.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Header.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\ONIXMessage.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Audience.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_AudienceRange.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Contributor.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Contributor_ProfessionalAffiliation.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Illustrations.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Imprint.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Language.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_MainSubject.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_MarketRepresentation.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Measure.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_MediaFile.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_OtherText.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Prize.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_ProductClassification.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_ProductIdentifier.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_ProductWebsite.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Publisher.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Publisher_Website.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_RelatedProduct.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_RelatedProduct_ProductIdentifier.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_SalesRestriction.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_SalesRights.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Series.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Series_SeriesIdentifier.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Set.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Subject.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_SupplyDetail.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_SupplyDetail_Price.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_SupplyDetail_Price_DiscountCoded.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_SupplyDetail_Stock.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_SupplyDetail_Stock_LocationIdentifier.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Title.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_Website.cs" />
+    <Compile Include="Onix_2_Reference_Definiton\Product_WorkIdentifier.cs" />
+    <Compile Include="Onix_2_Short_Definition\FileInfo.cs" />
+    <Compile Include="Onix_2_Short_Definition\header.cs" />
+    <Compile Include="Onix_2_Short_Definition\ONIXmessage.cs" />
+    <Compile Include="Onix_2_Short_Definition\product.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_audience.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_audiencerange.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_complexity.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_containeditem.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_containeditem_productidentifier.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_contributor.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_contributor_personnameidentifier.cs.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_contributor_professionalaffiliation.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_contributor_website.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_copyrightstatement.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_copyrightstatement_copyrightowner.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_extent.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_illustrations.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_imprint.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_language.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_mainsubject.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_marketrepresentation.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_measure.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_mediafile.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_notforsale.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_notforsale_productidentifier.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_othertext.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_personassubject.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_prize.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_productclassification.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_productformfeature.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_productidentifier.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_productwebsite.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_publisher.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_publisher_website.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_relatedproduct.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_relatedproduct_productidentifier.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_relatedproduct_publisher.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_relatedproduct_publisher_website.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_religioustext.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_religioustext_bible.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_salesrestriction.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_salesrestriction_salesoutlet.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_salesrestriction_salesoutlet_salesoutletidentifier.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_salesrights.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_series.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_series_seriesidentifier.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_series_title.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_subject.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_supplydetail.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_supplydetail_price.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_supplydetail_price_discountcoded.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_supplydetail_supplieridentifier.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_supplydetail_website.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_title.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_website.cs" />
+    <Compile Include="Onix_2_Short_Definition\product_workidentifier.cs" />
+    <Compile Include="Onix_2_Short_Definition\ReadXML_ONIX.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProgressNotification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressNotification.Designer.cs">
+      <DependentUpon>ProgressNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stage2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stage2.Designer.cs">
+      <DependentUpon>Stage2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stage1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stage1.Designer.cs">
+      <DependentUpon>Stage1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DeleteIds.resx">
+      <DependentUpon>DeleteIds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorLogScreen.resx">
+      <DependentUpon>ErrorLogScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogIn_Form.resx">
+      <DependentUpon>LogIn_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressNotification.resx">
+      <DependentUpon>ProgressNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Stage2.resx">
+      <DependentUpon>Stage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stage1.resx">
+      <DependentUpon>Stage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="bin\Debug\TitleInjestion.exe.config" />
+    <None Include="bin\Release\TitleInjestion.exe.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Company\RecordedBooks\Publisher\EBook\Pottermore\" />
+    <Folder Include="Company\RecordedBooks\Publisher\EBook\Tyndale\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RightArrow1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RightArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\TitleInjestion.exe" />
+    <Content Include="bin\Debug\TitleInjestion.pdb" />
+    <Content Include="bin\Release\TitleInjestion.exe" />
+    <Content Include="bin\Release\TitleInjestion.pdb" />
+    <Content Include="Images\loader.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
