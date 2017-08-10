@@ -11,8 +11,7 @@ using System.Windows.Forms;
 
 using System.Threading;
 
-using TitleInjestion.Onix_2_Short_Definition;
-using TitleInjestion.Onix_2_Reference_Definiton;
+
 
 using TitleInjestion.MetaData;
 using TitleInjestion.CommonFunctions;
@@ -524,7 +523,7 @@ namespace TitleInjestion
             { 
                 if(str_Company == "WFH")
                 { 
-                    WFH_Ingestion_Stages( str_Company, PubID, PublisherName, MediaType, FileLocation, FileName, OnixVersion, TagType);
+                    WFH_Ingestion_Stages( str_Company, PubID, PublisherName, MediaType, FileType, FileLocation, FileName, OnixVersion, TagType);
                 }
 
                 else if(str_Company == "RB")
@@ -1627,28 +1626,27 @@ namespace TitleInjestion
 
             // return result;
         }
-        private void WFH_Ingestion_Stages(string Company, int PubID, string PublisherName, string MediaType, string FileLocation, string FileName, string OnixVersion, string TagType)
+        private void WFH_Ingestion_Stages(string Company, int PubID, string PublisherName, string MediaType, string FileType, string FileLocation,  string FileName, string OnixVersion, string TagType)
         {
             bool result = true;
 
             #region 'Stage 1 : Clean Up and Read ONIX'
 
             
-            ReadOnix read_Onix = new ReadOnix();
+           TitleInjestion.Company.WFHowes.ReadOnix read_Onix = new TitleInjestion.Company.WFHowes.ReadOnix();
 
-            ONIXmessage fileinfo_2short = new ONIXmessage();
+           TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.ONIXmessage fileinfo_2short = new TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.ONIXmessage();
 
-            ONIXMessage fileinfo_2reference = new ONIXMessage();
+           TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.ONIXMessage  fileinfo_2reference = new TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.ONIXMessage();
 
-
+            string filePath = FileLocation + "\\" + FileName;
 
             if (result)
             {
 
                 try
                 {
-                    string filePath = FileLocation + "\\" + FileName;
-
+                   
                     // filePath = @"C:\Users\kkoka\Desktop\wfh\harpercollins\Metadata_Only_Random_House_UK_Metadata_20160926050922.xml";
                     // filePath = @"C:\Users\kkoka\Desktop\wfh\harpercollins\HCUK_ONIX_full_20141107.xml";
                     if (OnixVersion == "2.1" && TagType == "short")
@@ -2102,6 +2100,28 @@ namespace TitleInjestion
                         #endregion
                     }
 
+
+                    if (str_Company == "WFH" && PubID == 19 && MediaType.ToLower() == "ebook" &&  FileType.ToLower() == "excel" )
+                    {
+                        #region 'CreativeContent_Books'
+                        TitleInjestion.Company.WFHowes.Publisher.Ebook.CreativeContent.CreativeContentUK_Extraction CreativeContent_UK = new Company.WFHowes.Publisher.Ebook.CreativeContent.CreativeContentUK_Extraction();
+                        result = CreativeContent_UK.CreativeContent_UK_Extraction( PubID, filePath, FileName, MediaType, lbl_CleanUp, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_CreativeContent
+                            result = CreativeContent_UK.Process_CreativeContentUK(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
 
 
                 }
