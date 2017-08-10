@@ -7,7 +7,7 @@ using System.Data;
 using System.Configuration;
 
 
-using TitleInjestion.Onix_2_Short_Definition;
+//using TitleInjestion.Onix_2_Short_Definition;
 
 using TitleInjestion.CommonFunctions;
 
@@ -19,7 +19,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
     {
         public List<string> d101_productID = new List<string>();
 
-        public bool MichaelOMara_Extraction(TitleInjestion.Onix_2_Reference_Definiton.ONIXMessage fileinfo_1, int pubid, string FileName, string MediaType,
+        public bool MichaelOMara_Extraction(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.ONIXMessage fileinfo_1, int pubid, string FileName, string MediaType,
             System.Windows.Forms.Label lbl_Extraction,
             System.Windows.Forms.Label lbl_Insert,
             System.Windows.Forms.Label lbl_Message)
@@ -931,7 +931,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
         //}
 
-        public DataTable ISBN(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_ISBN, int MetaDataID, int productCount)
+        public DataTable ISBN(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_ISBN, int MetaDataID, int productCount)
         {
 
 
@@ -966,7 +966,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable TitleSubtitle(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Title_Subtitle, int MetaDataID, int productCount)
+        public DataTable TitleSubtitle(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Title_Subtitle, int MetaDataID, int productCount)
         {
 
 
@@ -1002,7 +1002,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable Publisher(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Publisher, int MetaDataID, int productCount)
+        public DataTable Publisher(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Publisher, int MetaDataID, int productCount)
         {
 
 
@@ -1030,7 +1030,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable Imprint(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Imprint, int MetaDataID, int productCount)
+        public DataTable Imprint(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Imprint, int MetaDataID, int productCount)
         {
 
 
@@ -1066,7 +1066,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable UnAbridged(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_UnAbridged, int MetaDataID, int productCount)
+        public DataTable UnAbridged(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_UnAbridged, int MetaDataID, int productCount)
         {
 
 
@@ -1094,7 +1094,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable Language(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Language, int MetaDataID, int productCount)
+        public DataTable Language(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Language, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1122,7 +1122,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable Price(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Price, int MetaDataID, int productCount)
+        public DataTable Price(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Price, int MetaDataID, int productCount)
         {
 
 
@@ -1308,7 +1308,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
         }
 
-        //public DataTable Description_d101(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Description_d101, int MetaDataID, int productCount)
+        //public DataTable Description_d101(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Description_d101, int MetaDataID, int productCount)
         //{
 
 
@@ -1361,7 +1361,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
         //}
 
-        public DataTable Description(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Description, int MetaDataID, int productCount)
+        public DataTable Description(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Description, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1417,7 +1417,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable Contributor(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_contributor, int MetaDataID, int productCount)
+        public DataTable Contributor(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_contributor, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1455,7 +1455,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable DigitalFormat_b333(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_DigitalFormat_b333, int MetaDataID, int productCount)
+        public DataTable DigitalFormat_b333(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_DigitalFormat_b333, int MetaDataID, int productCount)
         {
 
 
@@ -1544,7 +1544,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable MainBisacBic(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_MainBisacBic, int MetaDataID, int productCount)
+        public DataTable MainBisacBic(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_MainBisacBic, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1571,7 +1571,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
             return dt_RH_MainBisacBic;
         }
 
-        public DataTable BisacBic_b064_b065(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_BisacBic_b064_b065, int MetaDataID, int productCount)
+        public DataTable BisacBic_b064_b065(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_BisacBic_b064_b065, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1615,7 +1615,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable Audience(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Audience, int MetaDataID, int productCount)
+        public DataTable Audience(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Audience, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1675,7 +1675,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable MinAge(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_MinAge, int MetaDataID, int productCount)
+        public DataTable MinAge(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_MinAge, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1734,7 +1734,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
             return dt_RH_MinAge;
         }
-        public DataTable Series(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Series, int MetaDataID, int productCount)
+        public DataTable Series(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Series, int MetaDataID, int productCount)
         {
 
             //check if your using b203 or not
@@ -1790,7 +1790,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable Status_b394(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Status_b394, int MetaDataID, int productCount)
+        public DataTable Status_b394(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Status_b394, int MetaDataID, int productCount)
         {
 
 
@@ -1823,7 +1823,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable Status_j141(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Status_j141, int MetaDataID, int productCount)
+        public DataTable Status_j141(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_Status_j141, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1854,7 +1854,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable SalesRights(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_SalesRights, int MetaDataID, int productCount)
+        public DataTable SalesRights(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_SalesRights, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1886,7 +1886,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
         }
 
-        //public DataTable SalesRights_NotForSale(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_SalesRights_NotForSale, int MetaDataID, int productCount)
+        //public DataTable SalesRights_NotForSale(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_SalesRights_NotForSale, int MetaDataID, int productCount)
         //{
 
         //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1916,7 +1916,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         //}
-        //public DataTable SalesRestriction(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_SalesRestriction, int MetaDataID, int productCount)
+        //public DataTable SalesRestriction(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_SalesRestriction, int MetaDataID, int productCount)
         //{
 
 
@@ -1945,7 +1945,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         //}
-        public DataTable PageCount(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_SalesRights, int MetaDataID, int productCount)
+        public DataTable PageCount(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_SalesRights, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1973,7 +1973,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable ReleaseDate_b003(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_ReleaseDate_b003, int MetaDataID, int productCount)
+        public DataTable ReleaseDate_b003(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_ReleaseDate_b003, int MetaDataID, int productCount)
         {
 
 
@@ -2003,7 +2003,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable ReleaseDate_j143(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_ReleaseDate_j143, int MetaDataID, int productCount)
+        public DataTable ReleaseDate_j143(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_ReleaseDate_j143, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -2031,7 +2031,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable EditionNumber_b057(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_EditionNumber_b057, int MetaDataID, int productCount)
+        public DataTable EditionNumber_b057(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_EditionNumber_b057, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -2059,7 +2059,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Michael_OMara
 
 
         }
-        public DataTable ProductFormCode_b012(TitleInjestion.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_ProductFormCode_b012, int MetaDataID, int productCount)
+        public DataTable ProductFormCode_b012(TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton.Product product, DataTable dt_RH_ProductFormCode_b012, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;

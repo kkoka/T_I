@@ -7,7 +7,7 @@ using System.Data;
 using System.Configuration;
 
 
-using TitleInjestion.Onix_2_Short_Definition;
+using TitleInjestion.Company.WFHowes.Onix_2_Short_Definition;
 
 using TitleInjestion.CommonFunctions;
 
@@ -18,7 +18,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
     {
         public List<string> d101_productID = new List<string>();
 
-        public bool AccentPress_UK_Extraction(TitleInjestion.Onix_2_Short_Definition.ONIXmessage fileinfo_1, int pubid, string FileName, string MediaType,
+        public bool AccentPress_UK_Extraction(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.ONIXmessage fileinfo_1, int pubid, string FileName, string MediaType,
             System.Windows.Forms.Label lbl_Extraction,
             System.Windows.Forms.Label lbl_Insert,
             System.Windows.Forms.Label lbl_Message)
@@ -909,7 +909,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
         #region 'Approved and Confirmed Extraction Rules'
 
-        public DataTable b213(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_b213, int MetaDataID, int productCount)
+        public DataTable b213(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_b213, int MetaDataID, int productCount)
         {
             DataRow dr = dt_b213.NewRow();
 
@@ -939,7 +939,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
         }
 
-        public DataTable ISBN(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_ISBN, int MetaDataID, int productCount)
+        public DataTable ISBN(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_ISBN, int MetaDataID, int productCount)
         {
 
 
@@ -974,7 +974,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable TitleSubtitle(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Title_Subtitle, int MetaDataID, int productCount)
+        public DataTable TitleSubtitle(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Title_Subtitle, int MetaDataID, int productCount)
         {
 
 
@@ -1010,7 +1010,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Publisher(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Publisher, int MetaDataID, int productCount)
+        public DataTable Publisher(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Publisher, int MetaDataID, int productCount)
         {
 
 
@@ -1038,7 +1038,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Imprint(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Imprint, int MetaDataID, int productCount)
+        public DataTable Imprint(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Imprint, int MetaDataID, int productCount)
         {
 
 
@@ -1077,7 +1077,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable UnAbridged(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_UnAbridged, int MetaDataID, int productCount)
+        public DataTable UnAbridged(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_UnAbridged, int MetaDataID, int productCount)
         {
 
 
@@ -1105,7 +1105,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Language(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Language, int MetaDataID, int productCount)
+        public DataTable Language(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Language, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1133,7 +1133,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Price(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Price, int MetaDataID, int productCount)
+        public DataTable Price(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Price, int MetaDataID, int productCount)
         {
 
 
@@ -1278,7 +1278,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Description_d101(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Description_d101, int MetaDataID, int productCount)
+        public DataTable Description_d101(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Description_d101, int MetaDataID, int productCount)
         {
 
 
@@ -1330,7 +1330,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Description(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Description, int MetaDataID, int productCount)
+        public DataTable Description(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Description, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1384,7 +1384,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Contributor(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_contributor, int MetaDataID, int productCount)
+        public DataTable Contributor(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_contributor, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1422,7 +1422,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable DigitalFormat_b333(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_DigitalFormat_b333, int MetaDataID, int productCount)
+        public DataTable DigitalFormat_b333(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_DigitalFormat_b333, int MetaDataID, int productCount)
         {
 
 
@@ -1511,7 +1511,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable MainBisacBic(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_MainBisacBic, int MetaDataID, int productCount)
+        public DataTable MainBisacBic(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_MainBisacBic, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1543,7 +1543,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Bisac(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Bisac, int MetaDataID, int productCount)
+        public DataTable Bisac(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Bisac, int MetaDataID, int productCount)
         {
 
 
@@ -1574,7 +1574,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
             #endregion
 
         }
-        public DataTable BisacBic_b064_b065(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_BisacBic_b064_b065, int MetaDataID, int productCount)
+        public DataTable BisacBic_b064_b065(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_BisacBic_b064_b065, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1618,7 +1618,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Audience(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Audience, int MetaDataID, int productCount)
+        public DataTable Audience(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Audience, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1678,7 +1678,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable MinAge(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_MinAge, int MetaDataID, int productCount)
+        public DataTable MinAge(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_MinAge, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1736,7 +1736,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
             return dt_MinAge;
         }
-        public DataTable Series(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Series, int MetaDataID, int productCount)
+        public DataTable Series(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Series, int MetaDataID, int productCount)
         {
 
             //check if your using b203 or not
@@ -1797,7 +1797,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Status_b394(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Status_b394, int MetaDataID, int productCount)
+        public DataTable Status_b394(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Status_b394, int MetaDataID, int productCount)
         {
 
 
@@ -1830,7 +1830,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable Status_j141(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_Status_j141, int MetaDataID, int productCount)
+        public DataTable Status_j141(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Status_j141, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1861,7 +1861,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable SalesRights(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_SalesRights, int MetaDataID, int productCount)
+        public DataTable SalesRights(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_SalesRights, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1892,7 +1892,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable SalesRights_NotForSale(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_SalesRights_NotForSale, int MetaDataID, int productCount)
+        public DataTable SalesRights_NotForSale(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_SalesRights_NotForSale, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1922,7 +1922,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable PageCount(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_SalesRights, int MetaDataID, int productCount)
+        public DataTable PageCount(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_SalesRights, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1950,7 +1950,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable SalesRestriction(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_SalesRestriction, int MetaDataID, int productCount)
+        public DataTable SalesRestriction(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_SalesRestriction, int MetaDataID, int productCount)
         {
 
 
@@ -1979,7 +1979,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable ReleaseDate_b003(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_ReleaseDate_b003, int MetaDataID, int productCount)
+        public DataTable ReleaseDate_b003(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_ReleaseDate_b003, int MetaDataID, int productCount)
         {
 
 
@@ -2009,7 +2009,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable ReleaseDate_j143(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_ReleaseDate_j143, int MetaDataID, int productCount)
+        public DataTable ReleaseDate_j143(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_ReleaseDate_j143, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -2037,7 +2037,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable EditionNumber_b057(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_EditionNumber_b057, int MetaDataID, int productCount)
+        public DataTable EditionNumber_b057(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_EditionNumber_b057, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -2065,7 +2065,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.AccentPress
 
 
         }
-        public DataTable ProductFormCode_b012(TitleInjestion.Onix_2_Short_Definition.product product, DataTable dt_ProductFormCode_b012, int MetaDataID, int productCount)
+        public DataTable ProductFormCode_b012(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_ProductFormCode_b012, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
