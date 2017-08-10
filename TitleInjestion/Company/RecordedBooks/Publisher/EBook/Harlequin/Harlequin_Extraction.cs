@@ -23,12 +23,13 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Harlequin
             System.Windows.Forms.Label lbl_Message)
         {
             bool result = true;
-            string Step = "";
+            string Step ="";
             try
             {
                 lbl_Extraction.BackColor = System.Drawing.Color.Yellow;
                 lbl_Extraction.Refresh();
                 System.Windows.Forms.Application.DoEvents();
+
 
                 #region 'DataTable Creation'
 
