@@ -95,15 +95,15 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Harlequin
 
                 //#endregion
 
-                DataTable dt_Imprint = new DataTable("Imprint");
-                #region 'Columns Declaration'
+                //DataTable dt_Imprint = new DataTable("Imprint");
+                //#region 'Columns Declaration'
 
-                dt_Imprint.Columns.Add("MetaDataID", typeof(int));
-                dt_Imprint.Columns.Add("ProductID", typeof(int));
-                dt_Imprint.Columns.Add("RowCnt", typeof(int));
-                dt_Imprint.Columns.Add("Imprint_b079", typeof(string));
+                //dt_Imprint.Columns.Add("MetaDataID", typeof(int));
+                //dt_Imprint.Columns.Add("ProductID", typeof(int));
+                //dt_Imprint.Columns.Add("RowCnt", typeof(int));
+                //dt_Imprint.Columns.Add("Imprint_b079", typeof(string));
 
-                #endregion
+                //#endregion
 
                 //DataTable dt_DigitalFormat_b333 = new DataTable("DigitalFormat");
                 //#region 'Columns Declaration'
@@ -457,10 +457,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Harlequin
                         //dt_Publisher2 = Publisher2(fileinfo_1.obj_product_List[i], dt_Publisher2, MetaDataID, (i + 1));
                         //#endregion
 
-                        #region 'Imprint'
-                        Step = "Imprint";
-                        dt_Imprint = Imprint(fileinfo_1.obj_product_List[i], dt_Imprint, MetaDataID, (i + 1));
-                        #endregion
+                        //#region 'Imprint'
+                        //Step = "Imprint";
+                        //dt_Imprint = Imprint(fileinfo_1.obj_product_List[i], dt_Imprint, MetaDataID, (i + 1));
+                        //#endregion
 
                         #region 'UnAbridged'
                         Step = "UnAbridged";
@@ -633,7 +633,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Harlequin
 
                     #region 'Insert the Data into the SQL Table'
 
-                    int count = 24;
+                    int count = 23;
 
                     result = InsertRecords(dt_ISBN, "RB");
                     Insertion_Label(lbl_Insert, count);
@@ -659,12 +659,12 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Harlequin
 
                     //InsertRecords(dt_Publisher2);
 
-                    if (result)
-                    {
-                        result = InsertRecords(dt_Imprint, "RB");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
+                    //if (result)
+                    //{
+                    //    result = InsertRecords(dt_Imprint, "RB");
+                    //    Insertion_Label(lbl_Insert, count);
+                    //}
+                    //count--;
 
                     if (result)
                     {
@@ -1076,7 +1076,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Harlequin
                 dr["MetaDataID"] = MetaDataID;
                 dr["ProductID"] = productCount;
                 dr["RowCnt"] = (a + 1);
-                dr["Publisher_b081"] = product.obj_product_publisher_List[a].b081_product_publisher;
+                dr["Publisher_b081"] = "Harlequin"; //product.obj_product_publisher_List[a].b081_product_publisher;
 
                 dt_Publisher.Rows.Add(dr);
             }
