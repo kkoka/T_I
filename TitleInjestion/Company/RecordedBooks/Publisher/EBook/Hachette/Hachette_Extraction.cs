@@ -1510,7 +1510,16 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Hachette
 
                     //string asdf = product.obj_product_othertext_List[a].d104_product_othertext.Substring(0, 3500);
 
-                    if (product.obj_b333_List[a].ToString().ToLower() == "e201")
+                    if (product.obj_b333_List[a].ToString().ToLower() == "e201"
+                        || product.obj_b333_List[a].ToString().ToLower() == "e202"
+                        || product.obj_b333_List[a].ToString().ToLower() == "e210"
+                        || product.obj_b333_List[a].ToString().ToLower() == "e211"
+                        || product.obj_b333_List[a].ToString().ToLower() == "e221"
+                        || product.obj_b333_List[a].ToString().ToLower() == "e222"
+                        || product.obj_b333_List[a].ToString().ToLower() == "e223"
+                        || product.obj_b333_List[a].ToString().ToLower() == "e224"
+                        || product.obj_b333_List[a].ToString().ToLower() == "e225"
+                        )
                     {
                         //string asdf = product.obj_product_othertext_List[a].d104_product_othertext.Substring(0, 3500);
                         // dr["DigitalFormat_b333"] = product.obj_b333_List[a]; 
