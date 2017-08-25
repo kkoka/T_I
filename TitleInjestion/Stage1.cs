@@ -1608,6 +1608,28 @@ namespace TitleInjestion
                         #endregion
                     }
 
+                    if (str_Company == "RB" && PubID == 39 && MediaType.ToLower() == "ebook" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Lerner'
+                        TitleInjestion.Company.RecordedBooks.Publisher.EBook.Lerner.Lerner_Extraction Lerner = new Company.RecordedBooks.Publisher.EBook.Lerner.Lerner_Extraction();
+                        result = Lerner.RB_Lerner_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_LernerEbook
+                            result = Lerner.Process_Lerner(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+
 
 
                 }
