@@ -240,6 +240,7 @@
     <Compile Include="Company\RecordedBooks\Publisher\EBook\HarperCollinsUK\HarperCollinsUK_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\HarperCollins\HarperCollins_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\HMH\HMH_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Lerner\Lerner_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Macmillan\Macmillan_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\NorthStar\NorthStar_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\OpenRoad\OpenRoad_Extraction.cs" />
@@ -456,6 +457,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stage1.resx">
       <DependentUpon>Stage1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="bin\Debug\TitleInjestion.exe.config" />
     <None Include="bin\Release\TitleInjestion.exe.config" />
