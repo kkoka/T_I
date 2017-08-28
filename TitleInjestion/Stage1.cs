@@ -81,16 +81,16 @@ namespace TitleInjestion
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            BeginIngestion(mfa_1);
+            //BeginIngestion(mfa_1);
 
-            //if (!backgroundWorker1.IsBusy)
-            //{
-            //    backgroundWorker1.RunWorkerAsync();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("A job is currently running....Please wait.");
-            //}
+            if (!backgroundWorker1.IsBusy)
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show("A job is currently running....Please wait.");
+            }
         }
 
 
@@ -523,7 +523,7 @@ namespace TitleInjestion
             { 
                 if(str_Company == "WFH")
                 { 
-                    WFH_Ingestion_Stages( str_Company, PubID, PublisherName, MediaType, FileType, FileLocation, FileName, OnixVersion, TagType);
+                    WFH_Ingestion_Stages( str_Company, PubID, PublisherName, MediaType, FileType, FileLocation, FileName, OnixVersion, TagType, XML_Encoding);
                 }
 
                 else if(str_Company == "RB")
@@ -706,12 +706,12 @@ namespace TitleInjestion
                             {
                                 //  MoveFileToProcessedFolder(FileLocation, FileName);
 
-                                if (!File.Exists(FileLocation + "\\" + FileName))
+                                if (File.Exists(FileLocation + "\\" + FileName))
                                 {
-                                    File.Copy(FileLocation + "\\" + FileName, @"\\rbencode02\incoming\TitleManagement\Custom_Extract\Hachette\" + FileName);
+                                    File.Copy(FileLocation + "\\" + FileName, @"\\Rbencode02\incoming\TitleManagement\CustomExtract_Source\Hachette\" + FileName);
                                 }
 
-                            }
+                                }
                             if (result)
                             {
                                 MoveFileToProcessedFolder(FileLocation, FileName);
@@ -1309,9 +1309,9 @@ namespace TitleInjestion
                             {
                               //  MoveFileToProcessedFolder(FileLocation, FileName);
 
-                                if (!File.Exists(FileLocation+"\\"+ FileName))
+                                if (File.Exists(FileLocation+"\\"+ FileName))
                                 {
-                                    File.Copy(FileLocation+"\\"+ FileName, @"\\rbencode02\incoming\TitleManagement\Custom_Extract\SimonandSchuster\" + FileName);
+                                    File.Copy(FileLocation+"\\"+ FileName, @"\\Rbencode02\incoming\TitleManagement\CustomExtract_Source\SimonandSchuster\" + FileName);
                                 }
 
                             }
@@ -1590,12 +1590,35 @@ namespace TitleInjestion
                         TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Blackstone.Blackstone_Extraction Blackstone = new Company.RecordedBooks.Publisher.EAudio.Blackstone.Blackstone_Extraction();
                         result = Blackstone.RB_Blackstone_Extraction(fileinfo_3short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
 
-                        
+
                         if (result)
                         {
                             #region'Stage 4: Processing'
                             //Process_WileyEbook
                             result = Blackstone.Process_Blackstone_EAudio(str_Company, lbl_Processing);
+
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+                    if (str_Company == "RB" && PubID == 38 && MediaType.ToLower() == "ebook" && OnixVersion == "3.0" && TagType == "short")
+                    {
+                        #region 'NorthStar'
+                        TitleInjestion.Company.RecordedBooks.Publisher.EBook.NorthStar.NorthStar_Extraction NorthStar = new Company.RecordedBooks.Publisher.EBook.NorthStar.NorthStar_Extraction();
+                        result = NorthStar.RB_NorthStar_Extraction(fileinfo_3short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_NorthStarEbook
+                            result = NorthStar.Process_NorthStar_EBook(str_Company, lbl_Processing);
 
 
                             if (result)
@@ -1626,7 +1649,7 @@ namespace TitleInjestion
 
             // return result;
         }
-        private void WFH_Ingestion_Stages(string Company, int PubID, string PublisherName, string MediaType, string FileType, string FileLocation,  string FileName, string OnixVersion, string TagType)
+        private void WFH_Ingestion_Stages(string Company, int PubID, string PublisherName, string MediaType, string FileType, string FileLocation,  string FileName, string OnixVersion, string TagType, string XML_Encoding)
         {
             bool result = true;
 
@@ -1651,11 +1674,11 @@ namespace TitleInjestion
                     // filePath = @"C:\Users\kkoka\Desktop\wfh\harpercollins\HCUK_ONIX_full_20141107.xml";
                     if (OnixVersion == "2.1" && TagType == "short")
                     {
-                        fileinfo_2short = read_Onix.Work_With_Onix2shortTags(filePath, lbl_Message, lbl_CleanUp, str_Company, MediaType, FileName, PublisherName, OnixVersion, TagType);
+                        fileinfo_2short = read_Onix.Work_With_Onix2shortTags(filePath, lbl_Message, lbl_CleanUp, str_Company, MediaType, FileName, PublisherName, OnixVersion, TagType, XML_Encoding );
                     }
                     if (OnixVersion == "2.1" && TagType == "reference")
                     {
-                        fileinfo_2reference = read_Onix.Work_With_Onix2referenceTags(filePath, lbl_Message, lbl_CleanUp, str_Company, MediaType, FileName, PublisherName, OnixVersion, TagType);
+                        fileinfo_2reference = read_Onix.Work_With_Onix2referenceTags(filePath, lbl_Message, lbl_CleanUp, str_Company, MediaType, FileName, PublisherName, OnixVersion, TagType, XML_Encoding);
                     }
 
                 }
