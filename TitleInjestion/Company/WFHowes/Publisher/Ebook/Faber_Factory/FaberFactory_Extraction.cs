@@ -1709,6 +1709,18 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Faber_Factory
                             {
                                 if (Convert.ToInt32(product.obj_productaudiencerange_List[a].b075_product[i].ToString()) == 3)
                                 {
+                                    string b076 = "";
+
+                                    if (CheckIfNumber(product.obj_productaudiencerange_List[a].b076_product[i].ToString()))
+                                    {
+                                        b076 = product.obj_productaudiencerange_List[a].b076_product[i].ToString();
+                                    }
+                                    else
+                                    {
+                                        b076 = ConvertToNumber(product.obj_productaudiencerange_List[a].b076_product[i].ToString());
+                                    }
+                                    //b076 = product.obj_productaudiencerange_List[a].b076_product[i].ToString();
+
                                     DataRow dr = dt_MinAge.NewRow();
 
                                     dr["MetaDataID"] = MetaDataID;
@@ -1716,7 +1728,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Faber_Factory
                                     dr["RowCnt"] = (a + 1);
                                     // dr["b074"] = Audience;
                                     dr["b075"] = product.obj_productaudiencerange_List[a].b075_product[i].ToString();
-                                    dr["b076"] = product.obj_productaudiencerange_List[a].b076_product[i].ToString();
+                                    dr["b076"] = b076;
 
                                     dt_MinAge.Rows.Add(dr);
 
@@ -1725,13 +1737,27 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Faber_Factory
                                 }
                                 else if (Convert.ToInt32(product.obj_productaudiencerange_List[a].b075_product[i].ToString()) == 4)
                                 {
+
+                                    string b076 = "";
+
+                                    if (CheckIfNumber(product.obj_productaudiencerange_List[a].b076_product[i].ToString()))
+                                    {
+                                        b076 = product.obj_productaudiencerange_List[a].b076_product[i].ToString();
+                                    }
+                                    else
+                                    {
+                                        b076 = ConvertToNumber(product.obj_productaudiencerange_List[a].b076_product[i].ToString());
+                                    }
+                                    //b076 = product.obj_productaudiencerange_List[a].b076_product[i].ToString();
+
+
                                     DataRow dr = dt_MinAge.NewRow();
 
                                     dr["ProductID"] = productCount;
                                     dr["RowCnt"] = (a + 1);
                                     // dr["b074"] = Audience;
                                     dr["b075"] = product.obj_productaudiencerange_List[a].b075_product[i].ToString();
-                                    dr["b076"] = product.obj_productaudiencerange_List[a].b076_product[i].ToString(); ;
+                                    dr["b076"] = b076;
 
                                     dt_MinAge.Rows.Add(dr);
                                 }
@@ -2111,6 +2137,105 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Faber_Factory
 
         #endregion
 
+
+        public bool CheckIfNumber(string b076)
+        {
+            bool result = false;
+
+            int number;
+            result = int.TryParse(b076, out number);
+
+            return result;
+        }
+
+        public string ConvertToNumber(string writtenNumber)      
+        {
+            string result = ""; 
+
+            if (writtenNumber.ToLower() == "zero")
+            {
+                result = "0";
+            }
+            else if (writtenNumber.ToLower() == "one")
+            {
+                result = "1";
+            }
+            else if (writtenNumber.ToLower() == "two")
+            {
+                result = "2";
+            }
+            else if (writtenNumber.ToLower() == "three")
+            {
+                result = "3";
+            }
+            else if (writtenNumber.ToLower() == "four")
+            {
+                result = "4";
+            }
+            else if (writtenNumber.ToLower() == "five")
+            {
+                result = "5";
+            }
+            else if (writtenNumber.ToLower() == "six")
+            {
+                result = "6";
+            }
+            else if (writtenNumber.ToLower() == "seven")
+            {
+                result = "7";
+            }
+            else if (writtenNumber.ToLower() == "eight")
+            {
+                result = "8";
+            }
+            else if (writtenNumber.ToLower() == "nine")
+            {
+                result = "9";
+            }
+            else if (writtenNumber.ToLower() == "ten")
+            {
+                result = "10";
+            }
+            else if (writtenNumber.ToLower() == "eleven")
+            {
+                result = "11";
+            }
+            else if (writtenNumber.ToLower() == "twelve")
+            {
+                result = "12";
+            }
+            else if (writtenNumber.ToLower() == "thirteen")
+            {
+                result = "13";
+            }
+            else if (writtenNumber.ToLower() == "fourteen")
+            {
+                result = "14";
+            }
+            else if (writtenNumber.ToLower() == "fifteen")
+            {
+                result = "15";
+            }
+            else if (writtenNumber.ToLower() == "sixteen")
+            {
+                result = "16";
+            }
+            else if (writtenNumber.ToLower() == "seveneteen")
+            {
+                result = "17";
+            }
+            else if (writtenNumber.ToLower() == "eighteen")
+            {
+                result = "18";
+            }
+            else
+            {
+                result = "19";
+            }
+
+
+            return result;
+        }
 
         //public DataTable Publisher2(TitleInjestion.Onix_Definition.product product, DataTable dt_Publisher2, int productCount)
         //{

@@ -20,7 +20,7 @@ namespace TitleInjestion.Company.WFHowes
 {
     class ReadOnix
     {
-        public ONIXmessage Work_With_Onix2shortTags(string filelocation, System.Windows.Forms.Label lbl_Message, System.Windows.Forms.Label lbl_CleanUp, string Company, string MediaType, string FileName, string PublisherName, string OnixVersion, string TagType)
+        public ONIXmessage Work_With_Onix2shortTags(string filelocation, System.Windows.Forms.Label lbl_Message, System.Windows.Forms.Label lbl_CleanUp, string Company, string MediaType, string FileName, string PublisherName, string OnixVersion, string TagType, string XML_Encoding)
         {
 
             lbl_CleanUp.BackColor = System.Drawing.Color.Yellow;
@@ -53,7 +53,7 @@ namespace TitleInjestion.Company.WFHowes
                 // Create an instance of stream writer.
 
                 //     TextReader txtReader = new StreamReader(filelocation);
-                TextReader txtReader = new StreamReader(CleanedFile_WithName);
+                TextReader txtReader = new StreamReader(CleanedFile_WithName, Encoding.GetEncoding(XML_Encoding));
 
 
                 // Create and instance of XmlSerializer class.
@@ -96,7 +96,7 @@ namespace TitleInjestion.Company.WFHowes
 
 
         }
-        public ONIXMessage Work_With_Onix2referenceTags(string filelocation, System.Windows.Forms.Label lbl_Message, System.Windows.Forms.Label lbl_CleanUp, string Company, string MediaType, string FileName, string PublisherName, string OnixVersion, string TagType)
+        public ONIXMessage Work_With_Onix2referenceTags(string filelocation, System.Windows.Forms.Label lbl_Message, System.Windows.Forms.Label lbl_CleanUp, string Company, string MediaType, string FileName, string PublisherName, string OnixVersion, string TagType, string XML_Encoding)
         {
 
             lbl_CleanUp.BackColor = System.Drawing.Color.Yellow;
@@ -129,7 +129,7 @@ namespace TitleInjestion.Company.WFHowes
                 // Create an instance of stream writer.
 
                 //     TextReader txtReader = new StreamReader(filelocation);
-                TextReader txtReader = new StreamReader(CleanedFile_WithName);
+                TextReader txtReader = new StreamReader(CleanedFile_WithName, Encoding.GetEncoding(XML_Encoding));
 
 
                 // Create and instance of XmlSerializer class.

@@ -695,7 +695,7 @@ namespace TitleInjestion.CommonFunctions
             return result;
         }
 
-         public bool DisplayTitleCount(string Company, System.Windows.Forms.Button btn_Control)
+        public bool DisplayTitleCount(string Company, System.Windows.Forms.Button btn_Control)
         {
             bool result = true;
             string query = "select count(*) From Processed_Titles";
@@ -1266,9 +1266,140 @@ namespace TitleInjestion.CommonFunctions
             return table;
         }
 
+        public DataTable ReadExcel(string Company, string filePath )
+        {
+            ImpersonateUser iU = new ImpersonateUser();
+
+            if (Company =="WFH")
+            {
+            iU.Undo();
+            }
+
+            //    string strConn = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1;TypeGuessRows=0;ImportMixedTypes=Text\"", filePath);
+            DataTable table = new DataTable();
+            DataTable dtSchema = new DataTable();
+            string step = "";
+            try
+            {
+                int i1 = 0;
 
 
-      
+                //  ArrayList SheetName = new ArrayList();
+
+                string strConn = "";
+
+                if (filePath.ToLower().EndsWith("xls"))
+                {
+                    strConn = "Provider=Microsoft.Jet.Oledb.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34 + "';";
+                }
+                else if (filePath.ToLower().EndsWith("xlsx"))
+                {
+                    //     strConn_working = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=" + (char)34 + "Excel 12.0 XML;IMEX=1;HDR=YES" + (char)34;
+                    strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=" + (char)34 + "Excel 12.0 XML;IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34;
+                    //      strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=" + (char)34 + "Excel14.0;HDR=YES;IMEX=1;" + (char)34; 
+                }
+
+                using (OleDbConnection dbConnection = new OleDbConnection(strConn))
+                {
+                    dbConnection.Open();
+                    dtSchema = dbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "TABLE" });
+
+                    //      string filep = "\\\\rbencode02\\incoming\\titlemanagement\\metadata\\highbridge\\Library_HighBridge_091912.xls"
+
+                    string[] worksheet_names = new string[dtSchema.Rows.Count];
+                    string SheetName = "";
+
+                    string[] SheetName_1 = filePath.Split('\\');
+
+                    //if (SheetName_1[5].ToString().ToLower() == "highbridgeaudio")
+                    //{
+                    //    SheetName = "Metadata$";
+                    //}
+                    //else if(SheetName_1[6].ToString().ToLower() == "audiogo" && SheetName_1[7].ToLower().EndsWith(".xlsx"))
+                    //{                         
+                    //    for (int i = 0; i < dtSchema.Rows.Count; i++)
+                    //    {
+                    //        worksheet_names[i] = dtSchema.Rows[i]["TABLE_NAME"].ToString();
+                    //    }
+                    //}
+                    //else
+                    //{
+
+                    SheetName = dtSchema.Rows[0]["TABLE_NAME"].ToString();
+                    for (int ii = 0; ii < dtSchema.Rows.Count; ii++)
+                    {
+                        string sheeetname = dtSchema.Rows[ii]["TABLE_NAME"].ToString();
+                        if (sheeetname != "_xlnm#_FilterDatabase")
+                        {
+                            SheetName = sheeetname;
+                            break;
+                        }
+                    }
+                    //}
+
+                    #region 'Load Excel Data in Result Dataset'
+
+                    #region 'comment'
+                    //if (SheetName_1[6].ToString().ToLower() == "audiogo" && SheetName_1[7].ToLower().EndsWith(".xlsx"))
+                    //{
+                    //    for (int i = 0; i < dtSchema.Rows.Count; i++)
+                    //    {
+                    //        using (OleDbDataAdapter dbAdapter = new OleDbDataAdapter("SELECT * FROM [" + worksheet_names[i] + "]", dbConnection)) //rename sheet if required!
+
+                    //        dbAdapter.Fill(result,worksheet_names[i].ToString());
+                    //        //result.Tables.Add(table);
+                    //        //int rows = table.Rows.Count;
+                    //    }
+                    //}
+                    #endregion
+
+
+                    using (OleDbDataAdapter dbAdapter = new OleDbDataAdapter("SELECT * FROM [" + SheetName + "]", dbConnection)) //rename sheet if required!
+                        dbAdapter.Fill(table);
+
+
+                    table = table.Rows.Cast<DataRow>().Where(row => !row.ItemArray.All(field => field is System.DBNull || string.Compare((field as string).Trim(), string.Empty) == 0)).CopyToDataTable();
+
+
+                    //for( int r=0; r< table.Rows.Count; r++)
+                    //{
+                    //    for( int i=0; i< table.Columns.Count; i++)
+                    //    {
+                    //        Console.WriteLine(i + ": " + table.Rows[r][i].ToString());
+                    //    }
+                    //     Console.WriteLine(r + " New row ----------------------------- "); 
+
+
+                    //}
+                    //result.Tables.Add(table);
+                    int rows = table.Rows.Count;
+
+                    #endregion
+
+                    dbConnection.Close();
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                SQLFunction sqlfnction = new SQLFunction();
+                sqlfnction.Insert_ErrorLog(sqlfnction.GetConnectionString(Company), "Error at ReadExcel : " + ex.ToString());
+            }
+            finally
+            {
+                if (Company == "WFH")
+                {
+                    iU.Impersonate();
+                }
+            }
+
+
+            return table;
+        }
+
+
+
         public bool UploadFile_RBMetaData(string Company, string FilePathName)
         {
             bool result = true;

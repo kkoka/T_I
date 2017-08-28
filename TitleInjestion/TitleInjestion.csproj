@@ -241,6 +241,7 @@
     <Compile Include="Company\RecordedBooks\Publisher\EBook\HarperCollins\HarperCollins_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\HMH\HMH_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Macmillan\Macmillan_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\NorthStar\NorthStar_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\OpenRoad\OpenRoad_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\OrcaBookPublishers\OrcaBookPublishers_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Penquin\Penquin_Extraction.cs" />
