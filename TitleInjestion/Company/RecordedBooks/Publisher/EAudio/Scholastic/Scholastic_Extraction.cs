@@ -25,7 +25,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
     {
         public List<string> d101_productID = new List<string>();
 
-        public bool CreativeContent_UK_Extraction(int pubid, string FileName_Path, string FileName, string MediaType,
+        public bool RB_Scholastic_Extraction(int pubid, string FileName_Path, string FileName, string MediaType,
             System.Windows.Forms.Label lbl_CleanUp,
             System.Windows.Forms.Label lbl_Extraction,
             System.Windows.Forms.Label lbl_Insert,
@@ -58,7 +58,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                 {
                     if (result)
                     {
-                        dt_TitleCollection = ReadExcel(FileName_Path);
+                        SQLFunction sqlfunction = new SQLFunction();
+                        //dt_TitleCollection = ReadExcel(FileName_Path);
+                        dt_TitleCollection = sqlfunction.ReadExcel("RB", FileName_Path);
+
                     }
 
                 }
@@ -68,7 +71,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
                                                         
 
-                bool Publisher_1 = false;
+                //bool Publisher_1 = false;
                 bool ISBN_1 = false;
                 bool Title = false;
                 bool Subtitle = false;
@@ -79,7 +82,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                 bool Unabridged_1 = false;
                 bool Language_1 = false;
                 bool BISAC_Code = false;
-                bool Publish_Date = false;
+            //    bool Publish_Date = false;
                 bool Release_Date = false;
                 bool DRM_Flag = false;
                 bool Library_Price = false;
@@ -89,16 +92,16 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                 bool Series_Name = false;
                 bool SeriesPositionNumber  = false;
                 //bool Abstract = false;
-                //bool Age_Range = false;
+                bool Age_Range = false;
 
                 #region ''
                 foreach (DataColumn column in dt_TitleCollection.Columns)
                 {
-                    if (column.ColumnName == "Publisher")
-                    {
-                        Publisher_1 = true;
-                    }
-                    else if (column.ColumnName == "ISBN")
+                    //if (column.ColumnName == "Publisher")
+                    //{
+                    //    Publisher_1 = true;
+                    //}
+                     if (column.ColumnName == "ISBN")
                     {
                         ISBN_1 = true;
                     }
@@ -126,10 +129,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                     {
                         BISAC_Code = true;
                     }
-                    else if (column.ColumnName == "Publish Date")
-                    {
-                        Publish_Date = true;
-                    }
+                    //else if (column.ColumnName == "Publish Date")
+                    //{
+                    //    Publish_Date = true;
+                    //}
                     else if (column.ColumnName == "Release Date")
                     {
                         Release_Date = true;
@@ -178,10 +181,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                     //{
                     //    Abstract = true;
                     //}
-                    //else if (column.ColumnName == "Age Range")
-                    //{
-                    //    Age_Range = true;
-                    //}
+                    else if (column.ColumnName == "Age Range")
+                    {
+                        Age_Range = true;
+                    }
                     else { }
                 }
 
@@ -190,11 +193,11 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                 Step = "Column Mapping check";
 
               
-                if (Publisher_1 && ISBN_1 && Title && Subtitle && Authors && Narrators && Unabridged_1 &&
-                BISAC_Code && Publish_Date && Release_Date && TotalRunTime_1 && DRM_Flag &&
+                if ( ISBN_1 && Title && Subtitle && Authors && Narrators && Unabridged_1 &&
+                BISAC_Code && Release_Date && TotalRunTime_1 && DRM_Flag &&
                 Library_Price && Currency_Type && Description && Language_1 &&
-                Series_Name && SeriesPositionNumber && DistributionRightsTerritories
-                //&& Abstract && Age_Range && Product_Type
+                Series_Name && SeriesPositionNumber && DistributionRightsTerritories && Age_Range
+                //&& Abstract && Product_Type && Publish_Date && Publisher_1
                 )
                 {
                     #region 'main code'
@@ -523,27 +526,27 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
                     #endregion
 
-                    DataTable dt_ReleaseDate_j143 = new DataTable("ReleaseDate_j143");
-                    #region 'Columns Declaration'
-
-                    dt_ReleaseDate_j143.Columns.Add("MetaDataID", typeof(int));
-                    dt_ReleaseDate_j143.Columns.Add("ProductID", typeof(int));
-                    dt_ReleaseDate_j143.Columns.Add("RowCnt", typeof(int));
-                    dt_ReleaseDate_j143.Columns.Add("ReleaseDate_j143", typeof(string));
-
-                    #endregion
-
-
-                    //DataTable dt_MinAge = new DataTable("MinAge");
+                    //DataTable dt_ReleaseDate_j143 = new DataTable("ReleaseDate_j143");
                     //#region 'Columns Declaration'
 
-                    //dt_MinAge.Columns.Add("MetaDataID", typeof(int));
-                    //dt_MinAge.Columns.Add("ProductID", typeof(int));
-                    //dt_MinAge.Columns.Add("RowCnt", typeof(int));
-                    //dt_MinAge.Columns.Add("b075", typeof(string));
-                    //dt_MinAge.Columns.Add("b076", typeof(string));
+                    //dt_ReleaseDate_j143.Columns.Add("MetaDataID", typeof(int));
+                    //dt_ReleaseDate_j143.Columns.Add("ProductID", typeof(int));
+                    //dt_ReleaseDate_j143.Columns.Add("RowCnt", typeof(int));
+                    //dt_ReleaseDate_j143.Columns.Add("ReleaseDate_j143", typeof(string));
 
                     //#endregion
+
+
+                    DataTable dt_MinAge = new DataTable("MinAge");
+                    #region 'Columns Declaration'
+
+                    dt_MinAge.Columns.Add("MetaDataID", typeof(int));
+                    dt_MinAge.Columns.Add("ProductID", typeof(int));
+                    dt_MinAge.Columns.Add("RowCnt", typeof(int));
+                    dt_MinAge.Columns.Add("b075", typeof(string));
+                    dt_MinAge.Columns.Add("b076", typeof(string));
+
+                    #endregion
 
                     //DataTable dt_b211 = new DataTable("b211");
                     //#region 'Columns Declaration'
@@ -689,9 +692,9 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                             ////Step = "dt_RH_Bisac";
                             ////dt_RH_Bisac = Bisac(fileinfo_1.obj_product_List[i], dt_RH_Bisac, (i + 1));
 
-                            //Step = "dt_RH_MinAge";
-                            //dt_MinAge = MinAge(fileinfo_1.obj_product_List[i], dt_MinAge, MetaDataID, (i + 1));
-                            //Step = "dt_RH_MinAge";
+                            Step = "dt_RH_MinAge";
+                            dt_MinAge = MinAge(dt_TitleCollection, i, dt_MinAge, MetaDataID, (i + 1));
+                            Step = "dt_RH_MinAge";
 
 
 
@@ -749,8 +752,8 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                             Step = "ReleaseDate";
                             dt_ReleaseDate_b003 = ReleaseDate_b003(dt_TitleCollection, i, dt_ReleaseDate_b003, MetaDataID, (i + 1));
 
-                            Step = "Page Count";
-                            dt_ReleaseDate_j143 = ReleaseDate_j143(dt_TitleCollection, i, dt_ReleaseDate_j143, MetaDataID, (i + 1));
+                            //Step = "Page Count";
+                            //dt_ReleaseDate_j143 = ReleaseDate_j143(dt_TitleCollection, i, dt_ReleaseDate_j143, MetaDataID, (i + 1));
                             #endregion
 
                             ////#region 'b211'
@@ -794,24 +797,24 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
                         int count = 12;
 
-                        result = InsertRecords(dt_ISBN, "WFH");
+                        result = InsertRecords(dt_ISBN, "RB");
                         Insertion_Label(lbl_Insert, count);
 
-                        //result = InsertRecords(dt_RH_b213, "WFH");
+                        //result = InsertRecords(dt_RH_b213, "RB");
                         //Insertion_Label(lbl_Insert, count);
 
                         count--;
 
                         if (result)
                         {
-                            result = InsertRecords(dt_Title_Subtitle, "WFH");
+                            result = InsertRecords(dt_Title_Subtitle, "RB");
                             Insertion_Label(lbl_Insert, count);
                         }
                         count--;
 
                         if (result)
                         {
-                            result = InsertRecords(dt_Publisher, "WFH");
+                            result = InsertRecords(dt_Publisher, "RB");
                             Insertion_Label(lbl_Insert, count);
                         }
                         count--;
@@ -820,184 +823,184 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
                         //if (result)
                         //{
-                        //    result = InsertRecords(dt_Imprint, "WFH");
-                        //    Insertion_Label(lbl_Insert, count);
-                        //}
-                        //count--;
-
-                        //if (result)
-                        //{
-                        //    result = InsertRecords(dt_UnAbridged, "WFH");
+                        //    result = InsertRecords(dt_Imprint, "RB");
                         //    Insertion_Label(lbl_Insert, count);
                         //}
                         //count--;
 
                         if (result)
                         {
-                            result = InsertRecords(dt_Language, "WFH");
+                            result = InsertRecords(dt_UnAbridged, "RB");
                             Insertion_Label(lbl_Insert, count);
                         }
                         count--;
 
                         if (result)
                         {
-                            result = InsertRecords(dt_Price, "WFH");
-                            Insertion_Label(lbl_Insert, count);
-                        }
-                        count--;
-
-                        //if (result)
-                        //{
-                        //    result = InsertRecords(dt_Description, "WFH");
-                        //    Insertion_Label(lbl_Insert, count);
-                        //}
-                        //count--;
-
-                        if (result)
-                        {
-                            result = InsertRecords(dt_Description_d101, "WFH");
-                            Insertion_Label(lbl_Insert, count);
-                        }
-                        count--;
-
-                        //if (result)
-                        //{
-                        //    result = InsertRecords(dt_DigitalFormat_b333, "WFH");
-                        //    Insertion_Label(lbl_Insert, count);
-                        //}
-                        //count--;
-
-                        //if (result)
-                        //{
-                        //    result = InsertRecords(dt_Bisac, "WFH");
-                        //    Insertion_Label(lbl_Insert, count);
-                        //}
-                        //count--;
-
-
-                        //if (result)
-                        //{
-                        //    result = InsertRecords(dt_MainBisacBic, "WFH");
-                        //    Insertion_Label(lbl_Insert, count);
-                        //}
-                        //count--;
-
-                        if (result)
-                        {
-                            result = InsertRecords(dt_BisacBic_b064_b065, "WFH");
-                            Insertion_Label(lbl_Insert, count);
-                        }
-                        count--;
-
-                        //if (result)
-                        //{
-                        //    result = InsertRecords(dt_Audience, "WFH");
-                        //    Insertion_Label(lbl_Insert, count);
-                        //}
-                        //count--;
-
-                        //if (result)
-                        //{
-                        //    result = InsertRecords(dt_MinAge, "WFH");
-                        //    Insertion_Label(lbl_Insert, count);
-                        //}
-                        //count--;
-
-
-                        //if (result)
-                        //{
-                        //    result = InsertRecords(dt_Bisac2, "WFH");
-                        //    Insertion_Label(lbl_Insert, count);
-                        //}
-                        //count--;
-
-                        if (result)
-                        {
-                            result = InsertRecords(dt_contributor, "WFH");
+                            result = InsertRecords(dt_Language, "RB");
                             Insertion_Label(lbl_Insert, count);
                         }
                         count--;
 
                         if (result)
                         {
-                            result = InsertRecords(dt_Series, "WFH");
+                            result = InsertRecords(dt_Price, "RB");
                             Insertion_Label(lbl_Insert, count);
                         }
                         count--;
 
                         //if (result)
                         //{
-                        //    result = InsertRecords(dt_Status_b394, "WFH");
-                        //    Insertion_Label(lbl_Insert, count);
-                        //}
-                        //count--;
-
-                        //if (result)
-                        //{
-                        //    result = InsertRecords(dt_Status_j141, "WFH");
+                        //    result = InsertRecords(dt_Description, "RB");
                         //    Insertion_Label(lbl_Insert, count);
                         //}
                         //count--;
 
                         if (result)
                         {
-                            result = InsertRecords(dt_SalesRights, "WFH");
+                            result = InsertRecords(dt_Description_d101, "RB");
                             Insertion_Label(lbl_Insert, count);
                         }
                         count--;
 
                         //if (result)
                         //{
-                        //    result = InsertRecords(dt_SalesRights_NotForSale, "WFH");
+                        //    result = InsertRecords(dt_DigitalFormat_b333, "RB");
                         //    Insertion_Label(lbl_Insert, count);
                         //}
                         //count--;
 
                         //if (result)
                         //{
-                        //    result = InsertRecords(dt_PageCount, "WFH");
+                        //    result = InsertRecords(dt_Bisac, "RB");
+                        //    Insertion_Label(lbl_Insert, count);
+                        //}
+                        //count--;
+
+
+                        //if (result)
+                        //{
+                        //    result = InsertRecords(dt_MainBisacBic, "RB");
+                        //    Insertion_Label(lbl_Insert, count);
+                        //}
+                        //count--;
+
+                        if (result)
+                        {
+                            result = InsertRecords(dt_BisacBic_b064_b065, "RB");
+                            Insertion_Label(lbl_Insert, count);
+                        }
+                        count--;
+
+                        //if (result)
+                        //{
+                        //    result = InsertRecords(dt_Audience, "RB");
+                        //    Insertion_Label(lbl_Insert, count);
+                        //}
+                        //count--;
+
+                        if (result)
+                        {
+                            result = InsertRecords(dt_MinAge, "RB");
+                            Insertion_Label(lbl_Insert, count);
+                        }
+                        count--;
+
+
+                        //if (result)
+                        //{
+                        //    result = InsertRecords(dt_Bisac2, "RB");
+                        //    Insertion_Label(lbl_Insert, count);
+                        //}
+                        //count--;
+
+                        if (result)
+                        {
+                            result = InsertRecords(dt_contributor, "RB");
+                            Insertion_Label(lbl_Insert, count);
+                        }
+                        count--;
+
+                        if (result)
+                        {
+                            result = InsertRecords(dt_Series, "RB");
+                            Insertion_Label(lbl_Insert, count);
+                        }
+                        count--;
+
+                        //if (result)
+                        //{
+                        //    result = InsertRecords(dt_Status_b394, "RB");
                         //    Insertion_Label(lbl_Insert, count);
                         //}
                         //count--;
 
                         //if (result)
                         //{
-                        //    result = InsertRecords(dt_SalesRestriction, "WFH");
+                        //    result = InsertRecords(dt_Status_j141, "RB");
+                        //    Insertion_Label(lbl_Insert, count);
+                        //}
+                        //count--;
+
+                        if (result)
+                        {
+                            result = InsertRecords(dt_SalesRights, "RB");
+                            Insertion_Label(lbl_Insert, count);
+                        }
+                        count--;
+
+                        //if (result)
+                        //{
+                        //    result = InsertRecords(dt_SalesRights_NotForSale, "RB");
+                        //    Insertion_Label(lbl_Insert, count);
+                        //}
+                        //count--;
+
+                        //if (result)
+                        //{
+                        //    result = InsertRecords(dt_PageCount, "RB");
+                        //    Insertion_Label(lbl_Insert, count);
+                        //}
+                        //count--;
+
+                        //if (result)
+                        //{
+                        //    result = InsertRecords(dt_SalesRestriction, "RB");
                         //    Insertion_Label(lbl_Insert, count);
                         //}
                         // count--;
 
                         if (result)
                         {
-                            result = InsertRecords(dt_ReleaseDate_b003, "WFH");
+                            result = InsertRecords(dt_ReleaseDate_b003, "RB");
                             Insertion_Label(lbl_Insert, count);
                         }
                         count--;
 
                         //if (result)
                         //{
-                        //    result = InsertRecords(dt_ReleaseDate_j143, "WFH");
+                        //    result = InsertRecords(dt_ReleaseDate_j143, "RB");
                         //    Insertion_Label(lbl_Insert, count);
                         //}
                         //count--;
 
                         //if (result)
                         //{
-                        //    result = InsertRecords(dt_RH_b211, "WFH");
+                        //    result = InsertRecords(dt_RH_b211, "RB");
                         //    Insertion_Label(lbl_Insert, count);
                         //}
                         //count--;
 
                         //if (result)
                         //{
-                        //    result = InsertRecords(dt_EditionNumber_b057, "WFH");
+                        //    result = InsertRecords(dt_EditionNumber_b057, "RB");
                         //    Insertion_Label(lbl_Insert, count);
                         //}
                         //count--;
 
                         //if (result)
                         //{
-                        //    result = InsertRecords(dt_ProductFormCode_b012, "WFH");
+                        //    result = InsertRecords(dt_ProductFormCode_b012, "RB");
                         //    Insertion_Label(lbl_Insert, count);
                         //}
 
@@ -1027,10 +1030,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
                     string false_values = "";
                            
-                    if (!Publisher_1)
-                    {
-                        false_values = false_values + "Publisher";
-                    }
+                    //if (!Publisher_1)
+                    //{
+                    //    false_values = false_values + "Publisher";
+                    //}
                     if (!ISBN_1)
                     {
                         false_values = false_values + ", ISBN";
@@ -1059,10 +1062,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                     {
                         false_values = false_values + ", BISAC Code";
                     }
-                    if (!Publish_Date)
-                    {
-                        false_values = false_values + ", Publish Date";
-                    }
+                    //if (!Publish_Date)
+                    //{
+                    //    false_values = false_values + ", Publish Date";
+                    //}
                     //if (!SHORT_DESCRIPTION)
                     //{
                     //    false_values = false_values + ", SHORT_DESCRIPTION";
@@ -1112,7 +1115,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
                     result = false;
                     SQLFunction sqlfnction = new SQLFunction();
-                    sqlfnction.Insert_ErrorLog("WFH", "Error at " + Step + " : The following required columns are missing:  " + false_values);
+                    sqlfnction.Insert_ErrorLog(sqlfnction.GetConnectionString("RB"), "Error at " + Step + " : The following required columns are missing:  " + false_values);
 
                 }
 
@@ -1122,7 +1125,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
             {
                 result = false;
                 SQLFunction sqlfnction = new SQLFunction();
-                sqlfnction.Insert_ErrorLog("WFH", "Error at " + Step + " : " + ex.ToString());
+                sqlfnction.Insert_ErrorLog(sqlfnction.GetConnectionString("RB"), "Error at " + Step + " : " + ex.ToString());
             }
 
             return result;
@@ -1133,127 +1136,127 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
 
 
-        private DataTable ReadExcel(string filePath)
-        {
+        //private DataTable ReadExcel(string filePath)
+        //{
 
 
-            int i1 = 0;
+        //    int i1 = 0;
 
-            #region 'Clear Dataset tables'
-            //foreach (DataTable table1 in result.Tables)
-            //{
-            //    dataset_tables[i1] = table1.TableName;
-            //    i1++;
-            //}
+        //    #region 'Clear Dataset tables'
+        //    //foreach (DataTable table1 in result.Tables)
+        //    //{
+        //    //    dataset_tables[i1] = table1.TableName;
+        //    //    i1++;
+        //    //}
 
-            //for (int i = 0; i < dataset_tables.Length; i++)
-            //{
-            //    result.Tables.Remove(dataset_tables[i].ToString());
-            //}
-
-
-            #endregion
-
-            //    string strConn = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1;TypeGuessRows=0;ImportMixedTypes=Text\"", filePath);
-            DataTable table = new DataTable();
-            DataTable dtSchema = new DataTable();
+        //    //for (int i = 0; i < dataset_tables.Length; i++)
+        //    //{
+        //    //    result.Tables.Remove(dataset_tables[i].ToString());
+        //    //}
 
 
-            //  ArrayList SheetName = new ArrayList();
+        //    #endregion
 
-            string strConn = "";
-
-            if (filePath.ToLower().EndsWith("xls"))
-            {
-                strConn = "Provider=Microsoft.Jet.Oledb.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34 + "';";
-            }
-            else if (filePath.ToLower().EndsWith("xlsx"))
-            {
-                //     strConn_working = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=" + (char)34 + "Excel 12.0 XML;IMEX=1;HDR=YES" + (char)34;
-                strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=" + (char)34 + "Excel 12.0 XML;IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34;
-                //      strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=" + (char)34 + "Excel14.0;HDR=YES;IMEX=1;" + (char)34; 
-            }
-
-            using (OleDbConnection dbConnection = new OleDbConnection(strConn))
-            {
-                dbConnection.Open();
-
-                dtSchema = dbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "TABLE" });
+        //    //    string strConn = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1;TypeGuessRows=0;ImportMixedTypes=Text\"", filePath);
+        //    DataTable table = new DataTable();
+        //    DataTable dtSchema = new DataTable();
 
 
-                //      string filep = "\\\\rbencode02\\incoming\\titlemanagement\\metadata\\highbridge\\Library_HighBridge_091912.xls"
+        //    //  ArrayList SheetName = new ArrayList();
 
-                string[] worksheet_names = new string[dtSchema.Rows.Count];
-                string SheetName = "";
+        //    string strConn = "";
 
-                string[] SheetName_1 = filePath.Split('\\');
+        //    if (filePath.ToLower().EndsWith("xls"))
+        //    {
+        //        strConn = "Provider=Microsoft.Jet.Oledb.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34 + "';";
+        //    }
+        //    else if (filePath.ToLower().EndsWith("xlsx"))
+        //    {
+        //        //     strConn_working = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=" + (char)34 + "Excel 12.0 XML;IMEX=1;HDR=YES" + (char)34;
+        //        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=" + (char)34 + "Excel 12.0 XML;IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34;
+        //        //      strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=" + (char)34 + "Excel14.0;HDR=YES;IMEX=1;" + (char)34; 
+        //    }
 
-                //if (SheetName_1[5].ToString().ToLower() == "highbridgeaudio")
-                //{
-                //    SheetName = "Metadata$";
-                //}
-                //else if(SheetName_1[6].ToString().ToLower() == "audiogo" && SheetName_1[7].ToLower().EndsWith(".xlsx"))
-                //{                         
-                //    for (int i = 0; i < dtSchema.Rows.Count; i++)
-                //    {
-                //        worksheet_names[i] = dtSchema.Rows[i]["TABLE_NAME"].ToString();
-                //    }
-                //}
-                //else
-                //{
-                SheetName = dtSchema.Rows[0]["TABLE_NAME"].ToString();
-                for (int ii = 0; ii < dtSchema.Rows.Count; ii++)
-                {
-                    string sheeetname = dtSchema.Rows[ii]["TABLE_NAME"].ToString();
-                    if (sheeetname != "_xlnm#_FilterDatabase")
-                    {
-                        SheetName = sheeetname;
-                        break;
-                    }
-                }
-                //}
+        //    using (OleDbConnection dbConnection = new OleDbConnection(strConn))
+        //    {
+        //        dbConnection.Open();
 
-                #region 'Load Excel Data in Result Dataset'
-
-                #region 'comment'
-                //if (SheetName_1[6].ToString().ToLower() == "audiogo" && SheetName_1[7].ToLower().EndsWith(".xlsx"))
-                //{
-                //    for (int i = 0; i < dtSchema.Rows.Count; i++)
-                //    {
-                //        using (OleDbDataAdapter dbAdapter = new OleDbDataAdapter("SELECT * FROM [" + worksheet_names[i] + "]", dbConnection)) //rename sheet if required!
-
-                //        dbAdapter.Fill(result,worksheet_names[i].ToString());
-                //        //result.Tables.Add(table);
-                //        //int rows = table.Rows.Count;
-                //    }
-                //}
-                #endregion
-
-                using (OleDbDataAdapter dbAdapter = new OleDbDataAdapter("SELECT * FROM [" + SheetName + "]", dbConnection)) //rename sheet if required!
-
-                    dbAdapter.Fill(table);
-                table = table.Rows.Cast<DataRow>().Where(row => !row.ItemArray.All(field => field is System.DBNull || string.Compare((field as string).Trim(), string.Empty) == 0)).CopyToDataTable();
-
-                //for( int r=0; r< table.Rows.Count; r++)
-                //{
-                //    for( int i=0; i< table.Columns.Count; i++)
-                //    {
-                //        Console.WriteLine(i + ": " + table.Rows[r][i].ToString());
-                //    }
-                //     Console.WriteLine(r + " New row ----------------------------- "); 
+        //        dtSchema = dbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "TABLE" });
 
 
-                //}
-                //result.Tables.Add(table);
-                int rows = table.Rows.Count;
+        //        //      string filep = "\\\\rbencode02\\incoming\\titlemanagement\\metadata\\highbridge\\Library_HighBridge_091912.xls"
 
-                #endregion
+        //        string[] worksheet_names = new string[dtSchema.Rows.Count];
+        //        string SheetName = "";
 
-                dbConnection.Close();
-            }
+        //        string[] SheetName_1 = filePath.Split('\\');
 
-            return table;
-        }
+        //        //if (SheetName_1[5].ToString().ToLower() == "highbridgeaudio")
+        //        //{
+        //        //    SheetName = "Metadata$";
+        //        //}
+        //        //else if(SheetName_1[6].ToString().ToLower() == "audiogo" && SheetName_1[7].ToLower().EndsWith(".xlsx"))
+        //        //{                         
+        //        //    for (int i = 0; i < dtSchema.Rows.Count; i++)
+        //        //    {
+        //        //        worksheet_names[i] = dtSchema.Rows[i]["TABLE_NAME"].ToString();
+        //        //    }
+        //        //}
+        //        //else
+        //        //{
+        //        SheetName = dtSchema.Rows[0]["TABLE_NAME"].ToString();
+        //        for (int ii = 0; ii < dtSchema.Rows.Count; ii++)
+        //        {
+        //            string sheeetname = dtSchema.Rows[ii]["TABLE_NAME"].ToString();
+        //            if (sheeetname != "_xlnm#_FilterDatabase")
+        //            {
+        //                SheetName = sheeetname;
+        //                break;
+        //            }
+        //        }
+        //        //}
+
+        //        #region 'Load Excel Data in Result Dataset'
+
+        //        #region 'comment'
+        //        //if (SheetName_1[6].ToString().ToLower() == "audiogo" && SheetName_1[7].ToLower().EndsWith(".xlsx"))
+        //        //{
+        //        //    for (int i = 0; i < dtSchema.Rows.Count; i++)
+        //        //    {
+        //        //        using (OleDbDataAdapter dbAdapter = new OleDbDataAdapter("SELECT * FROM [" + worksheet_names[i] + "]", dbConnection)) //rename sheet if required!
+
+        //        //        dbAdapter.Fill(result,worksheet_names[i].ToString());
+        //        //        //result.Tables.Add(table);
+        //        //        //int rows = table.Rows.Count;
+        //        //    }
+        //        //}
+        //        #endregion
+
+        //        using (OleDbDataAdapter dbAdapter = new OleDbDataAdapter("SELECT * FROM [" + SheetName + "]", dbConnection)) //rename sheet if required!
+
+        //            dbAdapter.Fill(table);
+        //        table = table.Rows.Cast<DataRow>().Where(row => !row.ItemArray.All(field => field is System.DBNull || string.Compare((field as string).Trim(), string.Empty) == 0)).CopyToDataTable();
+
+        //        //for( int r=0; r< table.Rows.Count; r++)
+        //        //{
+        //        //    for( int i=0; i< table.Columns.Count; i++)
+        //        //    {
+        //        //        Console.WriteLine(i + ": " + table.Rows[r][i].ToString());
+        //        //    }
+        //        //     Console.WriteLine(r + " New row ----------------------------- "); 
+
+
+        //        //}
+        //        //result.Tables.Add(table);
+        //        int rows = table.Rows.Count;
+
+        //        #endregion
+
+        //        dbConnection.Close();
+        //    }
+
+        //    return table;
+        //}
 
   
 
@@ -1299,7 +1302,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
             return ID;
         }
-        public bool Process_CreativeContentUK(string Company, System.Windows.Forms.Label lbl_Processing)
+        public bool Process_Scholastic_Extraction(string Company, System.Windows.Forms.Label lbl_Processing)
         {
             bool result = false;
 
@@ -1311,7 +1314,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
 
             SQLFunction sqlfunction = new SQLFunction();
-            result = sqlfunction.ExecuteProc("WFH", ConfigurationSettings.AppSettings["WFH_Process_CreativeContent_Ebook_UK"].ToString());
+            result = sqlfunction.ExecuteProc("RB", ConfigurationSettings.AppSettings["RB_Process_Scholastic_EAudio"].ToString());
 
             if (result)
             {
@@ -1378,7 +1381,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
             dr["MetaDataID"] = MetaDataID;
             dr["ProductID"] = productCount;
             dr["RowCnt"] = 1;
-            dr["ISBN_b244"] = dt_TitleCollection.Rows[row]["ISBN"].ToString();
+            dr["ISBN_b244"] = dt_TitleCollection.Rows[row]["ISBN"].ToString().Trim();
 
 
             #endregion
@@ -1401,9 +1404,9 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
             dr["MetaDataID"] = MetaDataID;
             dr["ProductID"] = productCount;
             dr["RowCnt"] = 1;
-            dr["SubTitle_b029"] = dt_TitleCollection.Rows[row]["Subtitle"].ToString();
+            dr["SubTitle_b029"] = dt_TitleCollection.Rows[row]["Subtitle"].ToString().Trim();
             dr["TitleType_b202"] = "";
-            dr["Title_b203"] = dt_TitleCollection.Rows[row]["Title"].ToString();
+            dr["Title_b203"] = dt_TitleCollection.Rows[row]["Title"].ToString().Trim();
 
             dt_Title_Subtitle.Rows.Add(dr);
 
@@ -1418,14 +1421,14 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
         {
 
             #region 'Publisher'
-            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Publisher"].ToString()))
+            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Publisher"].ToString().Trim()))
             {
                 DataRow dr = dt_Publisher.NewRow();
 
                 dr["MetaDataID"] = MetaDataID;
                 dr["ProductID"] = productCount;
                 dr["RowCnt"] = 1;
-                dr["Publisher_b081"] = dt_TitleCollection.Rows[row]["Publisher"].ToString();
+                dr["Publisher_b081"] = "Scholastic Audiobooks"; // dt_TitleCollection.Rows[row]["Publisher"].ToString().Trim(); 
 
                 dt_Publisher.Rows.Add(dr);
             }
@@ -1478,28 +1481,28 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
             #region 'UnAbridged'
 
-            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Unabridged"].ToString()))
+            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Unabridged"].ToString().Trim()))
             {
                 string Unabridged = "";
-                if(dt_TitleCollection.Rows[row]["Unabridged"].ToString().ToLower() == "y")
+                if(dt_TitleCollection.Rows[row]["Unabridged"].ToString().Trim().ToLower() == "y")
                 {
                     Unabridged = "UnAbridged";
                 }
-                else if (dt_TitleCollection.Rows[row]["Unabridged"].ToString().ToLower() == "n")
+                else if (dt_TitleCollection.Rows[row]["Unabridged"].ToString().Trim().ToLower() == "n")
                 {
                     Unabridged = "Abridged";
                 }
-                else if (dt_TitleCollection.Rows[row]["Unabridged"].ToString().ToLower() == "abr")
+                else if (dt_TitleCollection.Rows[row]["Unabridged"].ToString().Trim().ToLower() == "abr")
                 {
                     Unabridged = "Abridged";
                 }
-                else if (dt_TitleCollection.Rows[row]["Unabridged"].ToString().ToLower() == "ubr")
+                else if (dt_TitleCollection.Rows[row]["Unabridged"].ToString().Trim().ToLower() == "ubr")
                 {
                     Unabridged = "UnAbridged";
                 }
                 else
                 {
-                    Unabridged = dt_TitleCollection.Rows[row]["Unabridged"].ToString();
+                    Unabridged = dt_TitleCollection.Rows[row]["Unabridged"].ToString().Trim();
                 }
 
                 DataRow dr = dt_UnAbridged.NewRow();
@@ -1523,14 +1526,14 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
             #region 'Language'
 
 
-           if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Language (3 Digit Country Code)"].ToString()))
+           if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Language (3 Digit Country Code)"].ToString().Trim()))
            {
                 DataRow dr = dt_Language.NewRow();
 
                 dr["MetaDataID"] = MetaDataID;
                 dr["ProductID"] = productCount;
                 dr["RowCnt"] = 1;
-                dr["Language_b252"] = dt_TitleCollection.Rows[row]["Language (3 Digit Country Code)"].ToString();
+                dr["Language_b252"] = dt_TitleCollection.Rows[row]["Language (3 Digit Country Code)"].ToString().Trim();
 
 
                 dt_Language.Rows.Add(dr);
@@ -1558,8 +1561,8 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                 dr["ProductID"] = productCount;
                 dr["RowCnt"] = 1;
                 dr["PriceType_j148"] = "";
-                dr["LibraryPrice_j151"] = dt_TitleCollection.Rows[row]["Library Price"].ToString();
-                dr["CurrencyCode_j152"] = dt_TitleCollection.Rows[row]["Currency Type"].ToString();
+                dr["LibraryPrice_j151"] = dt_TitleCollection.Rows[row]["Library Price"].ToString().Trim();
+                dr["CurrencyCode_j152"] = dt_TitleCollection.Rows[row]["Currency Type"].ToString().Trim();
                 dr["j261"] = "";
 
                 dt_Price.Rows.Add(dr);
@@ -1583,16 +1586,16 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
             dr["ProductID"] = productCount;
             dr["RowCnt"] = 1;
 
-            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Description"].ToString()))
+            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Description"].ToString().Trim()))
             {
-                if (dt_TitleCollection.Rows[row]["Description"].ToString().Length > 3500)
+                if (dt_TitleCollection.Rows[row]["Description"].ToString().Trim().Length > 3500)
                 {
                     //string asdf = product.obj_product_othertext_List[a].d104_product_othertext.Substring(0, 3500);
-                    dr["Description_d101"] = dt_TitleCollection.Rows[row]["Description"].ToString().Substring(0, 3500);
+                    dr["Description_d101"] = dt_TitleCollection.Rows[row]["Description"].ToString().Substring(0, 3500).Trim();
                 }
                 else
                 {
-                    dr["Description_d101"] = dt_TitleCollection.Rows[row]["Description"].ToString();
+                    dr["Description_d101"] = dt_TitleCollection.Rows[row]["Description"].ToString().Trim();
                 }
             }
           
@@ -1677,7 +1680,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
             if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Author(s)"].ToString()))
             {
               
-                string[] str_contributor = dt_TitleCollection.Rows[row]["Author(s)"].ToString().Split(';');
+                string[] str_contributor = dt_TitleCollection.Rows[row]["Author(s)"].ToString().Trim().Split(';');
                 int cnt = str_contributor.Count();
                 for (int i = 0; i < cnt; i++)
                 {
@@ -1701,7 +1704,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                     dr["ProductID"] = productCount;
                     dr["RowCnt"] = 1;
                     dr["Contribs_SequenceNumber_b034"] = i+1;
-                    dr["Contribs_ContribCode_b035"] = "A01";
+                    dr["Contribs_ContribCode_b035"] = "A";
                     dr["Contribs_FNF_b036"] = Name;
                     dr["Contribs_LNF_b037"] = "";
                     dr["Contribs_Prefix_b038"] = "";
@@ -1715,9 +1718,9 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
             }
 
 
-            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Narrator(s)"].ToString()))
+            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Narrator(s)"].ToString().Trim()))
             {
-                string[] str_contributor = dt_TitleCollection.Rows[row]["Narrator(s)"].ToString().Split(';');
+                string[] str_contributor = dt_TitleCollection.Rows[row]["Narrator(s)"].ToString().Trim().Split(';');
                 int cnt = str_contributor.Count();
 
                 for (int i = 0; i < cnt; i++)
@@ -1928,9 +1931,9 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
             string Bisac_Bic = "";
 
-            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["BISAC Code"].ToString()))
+            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["BISAC Code"].ToString().Trim()))
             {
-                Bisac_Bic = dt_TitleCollection.Rows[row]["BISAC Code"].ToString();
+                Bisac_Bic = dt_TitleCollection.Rows[row]["BISAC Code"].ToString().Trim();
             }
             //else if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["BISAC 2"].ToString()))
             //{
@@ -2030,64 +2033,30 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
 
         //}
-        //public DataTable MinAge(DataTable dt_TitleCollection, int row,  DataTable dt_MinAge, int MetaDataID, int productCount)
-        //{
-        //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-        //    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-        //    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+        public DataTable MinAge(DataTable dt_TitleCollection, int row, DataTable dt_MinAge, int MetaDataID, int productCount)
+        {
+            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-        //    #region 'MinAge'
+            #region 'MinAge'
+        
+            DataRow dr = dt_MinAge.NewRow();
 
-        //    string MinAge = "";
-        //    for (int a = 0; a < product.obj_productaudiencerange_List.Count; a++)
-        //    {
-        //        if (!string.IsNullOrEmpty(product.obj_productaudiencerange_List[a].b074_product.ToString()))
-        //        {
-        //            if (product.obj_productaudiencerange_List[a].b074_product.ToString() == "17")
-        //            {
-        //                // if b075 = 3 then get b076 value. if b075 = 3 not available then find b075 = 4 . if neither then no value.
-        //                for (int i = 0; i < product.obj_productaudiencerange_List[a].b075_product.Count; i++)
-        //                {
-        //                    if (!string.IsNullOrEmpty(product.obj_productaudiencerange_List[a].b075_product[i].ToString()))
-        //                    {
-        //                        if (Convert.ToInt32(product.obj_productaudiencerange_List[a].b075_product[i].ToString()) == 3)
-        //                        {
-        //                            DataRow dr = dt_MinAge.NewRow();
+            dr["MetaDataID"] = MetaDataID;
+            dr["ProductID"] = productCount;
+            dr["RowCnt"] = 1;
+            // dr["b074"] = Audience;
+            dr["b075"] = "";
+            dr["b076"] = dt_TitleCollection.Rows[row]["Age Range"].ToString().Trim();
 
-        //                            dr["MetaDataID"] = MetaDataID;
-        //                            dr["ProductID"] = productCount;
-        //                            dr["RowCnt"] = (a + 1);
-        //                            // dr["b074"] = Audience;
-        //                            dr["b075"] = product.obj_productaudiencerange_List[a].b075_product[i].ToString();
-        //                            dr["b076"] = product.obj_productaudiencerange_List[a].b076_product[i].ToString();
+            dt_MinAge.Rows.Add(dr);
+           
 
-        //                            dt_MinAge.Rows.Add(dr);
+            #endregion
 
-        //                            // exit out of loop.
-        //                            break;
-        //                        }
-        //                        else if (Convert.ToInt32(product.obj_productaudiencerange_List[a].b075_product[i].ToString()) == 4)
-        //                        {
-        //                            DataRow dr = dt_MinAge.NewRow();
-
-        //                            dr["ProductID"] = productCount;
-        //                            dr["RowCnt"] = (a + 1);
-        //                            // dr["b074"] = Audience;
-        //                            dr["b075"] = product.obj_productaudiencerange_List[a].b075_product[i].ToString();
-        //                            dr["b076"] = product.obj_productaudiencerange_List[a].b076_product[i].ToString(); ;
-
-        //                            dt_MinAge.Rows.Add(dr);
-        //                        }
-        //                    }
-
-        //                }
-        //            }
-        //        }
-        //    }
-        //    #endregion
-
-        //    return dt_MinAge;
-        //}
+            return dt_MinAge;
+        }
         public DataTable Series(DataTable dt_TitleCollection, int row, DataTable dt_Series, int MetaDataID, int productCount)
         {
             #region 'Series'
@@ -2097,8 +2066,8 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
             dr["MetaDataID"] = MetaDataID;
             dr["ProductID"] = productCount;
             dr["RowCnt"] = 1;
-            dr["SeriesName_b018"] = dt_TitleCollection.Rows[row]["Series Name"].ToString();
-            dr["SeriesNumber_b019"] = dt_TitleCollection.Rows[row]["Series Position Number"].ToString();;
+            dr["SeriesName_b018"] = dt_TitleCollection.Rows[row]["Series Name"].ToString().Trim();
+            dr["SeriesNumber_b019"] = dt_TitleCollection.Rows[row]["Series Position Number"].ToString().Trim();
             dr["SeriesName_b203"] = ""; // product.obj_product_series_List[a].obj_product_series_title_List[b].b203_product_series_title;
 
             dt_Series.Rows.Add(dr);
@@ -2121,7 +2090,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
             #region 'TotalRunTime'
 
 
-            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Total Run Time"].ToString()))
+            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Total Run Time"].ToString().Trim()))
             {
                 DataRow dr = dt_TotalRunTime.NewRow();
 
@@ -2129,7 +2098,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
                 dr["ProductID"] = productCount;
                 dr["RowCnt"] = 1;
                 dr["TotalRunTimeCode_b218"] = "";
-                dr["TotalRunTime_b219"] = dt_TitleCollection.Rows[row]["Total Run Time"].ToString();
+                dr["TotalRunTime_b219"] = dt_TitleCollection.Rows[row]["Total Run Time"].ToString().Trim();
                 dr["TotalRunTimeUnit_b220"] = "";
 
                 dt_TotalRunTime.Rows.Add(dr);
@@ -2221,7 +2190,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
             dr["ProductID"] = productCount;
             dr["RowCnt"] = 1;
             dr["SalesRightsTypeCode_b089"] = "";
-            dr["RightsCountry_b090"] = dt_TitleCollection.Rows[row]["Distribution Rights Territories"].ToString();
+            dr["RightsCountry_b090"] = dt_TitleCollection.Rows[row]["Distribution Rights Territories"].ToString().Trim();
             dr["RightsTerritory_b388"] = "";
 
             dt_SalesRights.Rows.Add(dr);
@@ -2323,17 +2292,20 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
             #region 'ReleaseDate_b003 - Publish Date'
 
-            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Publish Date"].ToString()))
+            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Release Date"].ToString().Trim()))
             {
+                if (dt_TitleCollection.Rows[row]["Release Date"].ToString().Trim().ToLower() != "n/a")
+                {
+                    string dt1 = dt_TitleCollection.Rows[row]["Release Date"].ToString().Trim();
+                    DataRow dr = dt_ReleaseDate_b003.NewRow();
 
-                DataRow dr = dt_ReleaseDate_b003.NewRow();
+                    dr["MetaDataID"] = MetaDataID;
+                    dr["ProductID"] = productCount;
+                    dr["RowCnt"] = 1;
+                    dr["ReleaseDate_b003"] = Convert.ToDateTime(dt_TitleCollection.Rows[row]["Release Date"].ToString().Trim()).ToShortDateString();
 
-                dr["MetaDataID"] = MetaDataID;
-                dr["ProductID"] = productCount;
-                dr["RowCnt"] = 1;
-                dr["ReleaseDate_b003"] = Convert.ToDateTime(dt_TitleCollection.Rows[row]["Publish Date"].ToString()).ToShortDateString();
-
-                dt_ReleaseDate_b003.Rows.Add(dr);
+                    dt_ReleaseDate_b003.Rows.Add(dr);
+                }
             }
             #endregion
 
@@ -2342,34 +2314,37 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic
 
 
         }
-        public DataTable ReleaseDate_j143(DataTable dt_TitleCollection, int row, DataTable dt_ReleaseDate_j143, int MetaDataID, int productCount)
-        {
+        //public DataTable ReleaseDate_j143(DataTable dt_TitleCollection, int row, DataTable dt_ReleaseDate_j143, int MetaDataID, int productCount)
+        //{
 
-            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+        //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+        //    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+        //    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-            #region 'ReleaseDate_j143'
+        //    #region 'ReleaseDate_j143'
 
-            if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Release Date"].ToString()))
-            {
-                DataRow dr = dt_ReleaseDate_j143.NewRow();
+        //    if (!string.IsNullOrEmpty(dt_TitleCollection.Rows[row]["Release Date"].ToString()))
+        //    {
+        //        if (dt_TitleCollection.Rows[row]["Release Date"].ToString().ToLower() != "n/a")
+        //        {
+        //            DataRow dr = dt_ReleaseDate_j143.NewRow();
 
-                dr["MetaDataID"] = MetaDataID;
-                dr["ProductID"] = productCount;
-                dr["RowCnt"] = 1;
-                dr["ReleaseDate_j143"] = Convert.ToDateTime(dt_TitleCollection.Rows[row]["Release Date"].ToString()).ToShortDateString();
+        //            dr["MetaDataID"] = MetaDataID;
+        //            dr["ProductID"] = productCount;
+        //            dr["RowCnt"] = 1;
+        //            dr["ReleaseDate_j143"] = Convert.ToDateTime(dt_TitleCollection.Rows[row]["Release Date"].ToString()).ToShortDateString();
 
-                dt_ReleaseDate_j143.Rows.Add(dr);
-            }
-            #endregion
-
-
-
-            return dt_ReleaseDate_j143;
+        //            dt_ReleaseDate_j143.Rows.Add(dr);
+        //        }
+        //    }
+        //    #endregion
 
 
-        }
+
+        //    return dt_ReleaseDate_j143;
+
+
+        //}
         //public DataTable EditionNumber_b057(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_EditionNumber_b057, int MetaDataID, int productCount)
         //{
         //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;

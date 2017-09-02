@@ -1562,7 +1562,7 @@ namespace TitleInjestion
 
                         #endregion
                     }
-                    if (str_Company == "RB" && PubID == 37 && FileType.ToLower() == "excel" )
+                    if (str_Company == "RB" && PubID == 37 && MediaType.ToLower()== "eaudio" && FileType.ToLower() == "excel")
                     {
                         #region 'Akashic'
                         TitleInjestion.Company.RecordedBooks.Publisher.EBook.Akashic.Akashic_Extraction Akashic = new Company.RecordedBooks.Publisher.EBook.Akashic.Akashic_Extraction();
@@ -1607,9 +1607,9 @@ namespace TitleInjestion
 
                         #endregion
                     }
-                    if (str_Company == "RB" && PubID == 38 && MediaType.ToLower() == "ebook" && OnixVersion == "3.0" && TagType == "short")
-                    {
                         #region 'NorthStar'
+                    if (str_Company == "RB" && PubID == 40 && MediaType.ToLower() == "ebook" && OnixVersion == "3.0" && TagType == "short")
+                    {
                         TitleInjestion.Company.RecordedBooks.Publisher.EBook.NorthStar.NorthStar_Extraction NorthStar = new Company.RecordedBooks.Publisher.EBook.NorthStar.NorthStar_Extraction();
                         result = NorthStar.RB_NorthStar_Extraction(fileinfo_3short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
 
@@ -1654,6 +1654,29 @@ namespace TitleInjestion
                     }
 
 
+                    if (str_Company == "RB" && PubID == 41 && MediaType.ToLower() == "eaudio" && FileType.ToLower() == "excel")
+                    {
+                        #region 'Scholastic'
+                        TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Scholastic.Scholastic_Extraction Scholastic = new Company.RecordedBooks.Publisher.EAudio.Scholastic.Scholastic_Extraction();
+                        result = Scholastic.RB_Scholastic_Extraction(PubID, filePath, FileName, MediaType, lbl_CleanUp, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_ScholasticEbook
+                            result = Scholastic.Process_Scholastic_Extraction(str_Company, lbl_Processing);
+
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
 
                 }
                 catch (Exception ex)
