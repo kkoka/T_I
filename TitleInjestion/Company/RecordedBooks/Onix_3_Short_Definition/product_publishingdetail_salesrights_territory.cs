@@ -12,5 +12,8 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Short_Definition
         [XmlElement("x449", IsNullable = true)]
         public List<string> obj_x449_List = new List<string>();
 
+        [XmlElement("x450", IsNullable = true)]
+        public List<string> obj_x450_List = new List<string>();
+
     }
 }
