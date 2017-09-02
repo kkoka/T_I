@@ -81,16 +81,16 @@ namespace TitleInjestion
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            //BeginIngestion(mfa_1);
+           BeginIngestion(mfa_1);
 
-            if (!backgroundWorker1.IsBusy)
-            {
-                backgroundWorker1.RunWorkerAsync();
-            }
-            else
-            {
-                MessageBox.Show("A job is currently running....Please wait.");
-            }
+            //if (!backgroundWorker1.IsBusy)
+            //{
+            //    backgroundWorker1.RunWorkerAsync();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("A job is currently running....Please wait.");
+            //}
         }
 
 
