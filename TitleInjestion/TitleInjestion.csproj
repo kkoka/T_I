@@ -215,6 +215,7 @@
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Hachette\Hachette_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\HarperCollins\HarperCollins_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\HighBridge\HighBridge_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Lerner\Lerner_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Macmillan\Macmillan_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\MYBooks\MYBooks_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Oasis\Oasis_Extraction.cs" />
