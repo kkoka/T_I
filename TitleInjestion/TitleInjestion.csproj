@@ -167,6 +167,47 @@
     <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_title.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_website.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Short_Definition\product_workidentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Header.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\ONIXMessage.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_AudienceRange.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_CollateralDetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_CollateralDetail_TextContent.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_Collection.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_Collection_TitleDetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_Collection_TitleDetail_TitleElement.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_Contributor.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_EpubUsageConstraint.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_EpubUsageConstraint_EpubUsageLimit.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_Extent.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_Language.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_ProductSupply.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_Imprint.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_Imprint_ImprintIdentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_ReligiousText.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_ReligiousText_Bible.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_Subject.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_TitleDetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_DescriptiveDetail_TitleDetail_TitleElement.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_ProductIdentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_MarketPublishingDetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_Publisher.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_PublishingDate.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_RelatedMaterial_RelatedProduct.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_RelatedMaterial_RelatedProduct_ProductIdentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_SalesRestriction.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_SalesRights.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_SupplyDetail.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_SupplyDetail_Price.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_SupplyDetail_Supplier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_SupplyDetail_Supplier_Website.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_PublishingDetail_Territory.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_RelatedMaterial.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_RelatedMaterial_RelatedWork.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Product_RelatedMaterial_RelatedWork_WorkIdentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Reference_Definiton\Sender.cs" />
     <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\header.cs" />
     <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\ONIXmessage.cs" />
     <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product.cs" />
@@ -255,6 +296,7 @@
     <Compile Include="Company\RecordedBooks\Publisher\EBook\SimonSchuster\SimonSchuster_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Sourcebooks\Sourcebooks_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\ThomasNelson\ThomasNelson_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Tyndale\Tyndale_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Wiley\Wiley_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Workman\Workman_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Zondervan\Zondervan_Extraction.cs" />
@@ -491,7 +533,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Company\RecordedBooks\Publisher\EBook\Pottermore\" />
-    <Folder Include="Company\RecordedBooks\Publisher\EBook\Tyndale\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RightArrow1.png" />

@@ -1607,9 +1607,11 @@ namespace TitleInjestion
 
                         #endregion
                     }
-                        #region 'NorthStar'
+                
                     if (str_Company == "RB" && PubID == 40 && MediaType.ToLower() == "ebook" && OnixVersion == "3.0" && TagType == "short")
                     {
+                        #region 'NorthStar'
+
                         TitleInjestion.Company.RecordedBooks.Publisher.EBook.NorthStar.NorthStar_Extraction NorthStar = new Company.RecordedBooks.Publisher.EBook.NorthStar.NorthStar_Extraction();
                         result = NorthStar.RB_NorthStar_Extraction(fileinfo_3short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
 
@@ -1653,7 +1655,6 @@ namespace TitleInjestion
                         #endregion
                     }
 
-
                     if (str_Company == "RB" && PubID == 41 && MediaType.ToLower() == "eaudio" && FileType.ToLower() == "excel")
                     {
                         #region 'Scholastic'
@@ -1666,6 +1667,30 @@ namespace TitleInjestion
                             #region'Stage 4: Processing'
                             //Process_ScholasticEbook
                             result = Scholastic.Process_Scholastic_Extraction(str_Company, lbl_Processing);
+
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+
+                    if (str_Company == "RB" && PubID == 42 && MediaType.ToLower() == "ebook" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Tyndale'
+                        TitleInjestion.Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_Extraction Tyndale = new Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_Extraction();
+                        result = Tyndale.RB_Tyndale_Extraction(fileinfo_3short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_TyndaleEbook
+                            result = Tyndale.Process_Tyndale_Extraction(str_Company, lbl_Processing);
 
 
                             if (result)
