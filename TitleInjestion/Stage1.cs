@@ -81,7 +81,7 @@ namespace TitleInjestion
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-           BeginIngestion(mfa_1);
+               BeginIngestion(mfa_1);
 
             //if (!backgroundWorker1.IsBusy)
             //{
@@ -577,6 +577,8 @@ namespace TitleInjestion
 
             TitleInjestion.Company.RecordedBooks.Onix_3_Short_Definition.ONIXmessage fileinfo_3short = new TitleInjestion.Company.RecordedBooks.Onix_3_Short_Definition.ONIXmessage();
 
+            TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton.ONIXMessage fileinfo_3reference = new TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton.ONIXMessage();
+
             string filePath = FileLocation + "\\" + FileName;
 
             if (result)
@@ -599,6 +601,10 @@ namespace TitleInjestion
                     if (OnixVersion == "3.0" && TagType == "short")
                     {
                         fileinfo_3short = read_Onix.Work_With_Onix3shortTags(filePath, lbl_Message, lbl_CleanUp, str_Company, MediaType, FileName, PublisherName, OnixVersion, TagType, XML_Encoding);
+                    }
+                    if (OnixVersion == "3.0" && TagType == "reference")
+                    {
+                        fileinfo_3reference = read_Onix.Work_With_Onix3ReferenceTags(filePath, lbl_Message, lbl_CleanUp, str_Company, MediaType, FileName, PublisherName, OnixVersion, TagType, XML_Encoding);
                     }
 
                 }
@@ -1679,11 +1685,11 @@ namespace TitleInjestion
                         #endregion
                     }
 
-                    if (str_Company == "RB" && PubID == 42 && MediaType.ToLower() == "ebook" && OnixVersion == "2.1" && TagType == "short")
+                    if (str_Company == "RB" && PubID == 42 && MediaType.ToLower() == "ebook" && OnixVersion == "3.0" && TagType == "reference")
                     {
                         #region 'Tyndale'
                         TitleInjestion.Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_Extraction Tyndale = new Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_Extraction();
-                        result = Tyndale.RB_Tyndale_Extraction(fileinfo_3short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+                        result = Tyndale.RB_Tyndale_Extraction(fileinfo_3reference, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
 
 
                         if (result)
