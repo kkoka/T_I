@@ -14,7 +14,7 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton
 
 
         [XmlElement("LanguageCode", IsNullable = true)]
-        public string LanguageCode { get; set; }
+        public List<string> obj_LanguageCode_Product_DescriptiveDetail_Language_List = new List<string>();
 
         [XmlElement("LanguageRole", IsNullable = true)]
         public string LanguageRole { get; set; }

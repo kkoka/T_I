@@ -13,13 +13,13 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton
     {
 
         [XmlElement("CountriesIncluded", IsNullable = true)]
-        public string CountriesIncluded { get; set; }
+        public List<string> obj_Product_PublishingDetail_Territory_CountriesIncluded_List = new List<string>();
 
         [XmlElement("CountriesExcluded", IsNullable = true)]
         public string CountriesExcluded { get; set; }
 
         [XmlElement("RegionsIncluded", IsNullable = true)]
-        public string RegionsIncluded { get; set; }
-         
+        public List<string> obj_Product_PublishingDetail_Territory_RegionsIncluded_List = new List<string>();
+      
     }
 }

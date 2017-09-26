@@ -17,7 +17,8 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton
         public List<Product_PublishingDetail_SupplyDetail_Price> obj_Product_PublishingDetail_SupplyDetail_Price_List = new List<Product_PublishingDetail_SupplyDetail_Price>();
 
         [XmlElement("ProductAvailability", IsNullable = true)]
-        public string ProductAvailability { get; set; }
+        public List<string> obj_ProductAvailability_List = new List<string>();
+
 
 
         [XmlElement("Supplier", IsNullable = true)]

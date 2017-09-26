@@ -13,7 +13,8 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton
     {
 
         [XmlElement("AudienceRangePrecision", IsNullable = true)]
-        public string AudienceRangePrecision { get; set; }
+        public List<string> obj_AudienceRangePrecision_List = new List<string>();
+
 
 
         [XmlElement("AudienceRangePrecision_AudienceAge", IsNullable = true)]
@@ -29,7 +30,7 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton
 
 
         [XmlElement("AudienceRangeValue", IsNullable = true)]
-        public string AudienceRangeValue { get; set; }
+        public List<string> obj_AudienceRangeValue_List = new List<string>();
 
 
         [XmlElement("AudienceRangeValue_AudienceAge", IsNullable = true)]

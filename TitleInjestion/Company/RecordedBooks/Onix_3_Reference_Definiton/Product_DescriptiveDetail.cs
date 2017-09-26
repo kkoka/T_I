@@ -26,6 +26,7 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton
 
         [XmlElement("EpubTechnicalProtection", IsNullable = true)]
         public string EpubTechnicalProtection { get; set; }
+        public List<string> obj_EpubTechnicalProtection_Product_DescriptiveDetail_List = new List<string>();
 
         [XmlElement("EpubUsageConstraint", IsNullable = true)]
         public List<Product_DescriptiveDetail_EpubUsageConstraint> obj_Product_DescriptiveDetail_EpubUsageConstraint_List = new List<Product_DescriptiveDetail_EpubUsageConstraint>();
@@ -41,7 +42,7 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton
         public string NoEdition { get; set; }
 
         [XmlElement("EditionType", IsNullable = true)]
-        public string EditionType { get; set; }
+        public List<string> obj_EditionType_Product_DescriptiveDetail_List = new List<string>();
 
         [XmlElement("TitleDetail", IsNullable = true)]
         public List<Product_DescriptiveDetail_TitleDetail> obj_Product_DescriptiveDetail_TitleDetail_List = new List<Product_DescriptiveDetail_TitleDetail>();
@@ -60,7 +61,8 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton
         public List<Product_DescriptiveDetail_Subject> obj_Product_DescriptiveDetail_Subject_List = new List<Product_DescriptiveDetail_Subject>();
 
         [XmlElement("AudienceCode", IsNullable = true)]
-        public string AudienceCode { get; set; }
+        public List<string> obj_Product_DescriptiveDetail_AudienceCode_List = new List<string>();
+
 
 
         [XmlElement("AudienceRange", IsNullable = true)]

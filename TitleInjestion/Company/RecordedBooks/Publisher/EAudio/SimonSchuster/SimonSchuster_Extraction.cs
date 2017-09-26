@@ -263,26 +263,26 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
 
                 #endregion
 
-                DataTable dt_AudienceCode_b073 = new DataTable("AudienceCode_b073");
-                #region 'Columns Declaration'
+                //DataTable dt_AudienceCode_b073 = new DataTable("AudienceCode_b073");
+                //#region 'Columns Declaration'
 
-                dt_AudienceCode_b073.Columns.Add("MetaDataID", typeof(int));
-                dt_AudienceCode_b073.Columns.Add("ProductID", typeof(int));
-                dt_AudienceCode_b073.Columns.Add("RowCnt", typeof(int));
-                dt_AudienceCode_b073.Columns.Add("AudienceCode_b073", typeof(string));
+                //dt_AudienceCode_b073.Columns.Add("MetaDataID", typeof(int));
+                //dt_AudienceCode_b073.Columns.Add("ProductID", typeof(int));
+                //dt_AudienceCode_b073.Columns.Add("RowCnt", typeof(int));
+                //dt_AudienceCode_b073.Columns.Add("AudienceCode_b073", typeof(string));
 
-                #endregion
+                //#endregion
 
 
-                DataTable dt_AudienceCode_b206 = new DataTable("AudienceCode_b206");
-                #region 'Columns Declaration'
+                //DataTable dt_AudienceCode_b206 = new DataTable("AudienceCode_b206");
+                //#region 'Columns Declaration'
 
-                dt_AudienceCode_b206.Columns.Add("MetaDataID", typeof(int));
-                dt_AudienceCode_b206.Columns.Add("ProductID", typeof(int));
-                dt_AudienceCode_b206.Columns.Add("RowCnt", typeof(int));
-                dt_AudienceCode_b206.Columns.Add("AudienceCode_b206", typeof(string));
+                //dt_AudienceCode_b206.Columns.Add("MetaDataID", typeof(int));
+                //dt_AudienceCode_b206.Columns.Add("ProductID", typeof(int));
+                //dt_AudienceCode_b206.Columns.Add("RowCnt", typeof(int));
+                //dt_AudienceCode_b206.Columns.Add("AudienceCode_b206", typeof(string));
 
-                #endregion
+                //#endregion
 
                 DataTable dt_contributor = new DataTable("Contributor");
                 #region 'Columns Declaration'
@@ -578,20 +578,20 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
 
 
                         #region 'Audience'
-                        //Step = "dt_Bisac";
-                        //dt_Bisac = Bisac(fileinfo_1.obj_product_List[i], dt_Bisac, (i + 1));
+                        //////Step = "dt_Bisac";
+                        //////dt_Bisac = Bisac(fileinfo_1.obj_product_List[i], dt_Bisac, (i + 1));
 
-                        //Step = "dt_Audience";
-                        //dt_Audience = Audience(fileinfo_1.obj_product_List[i], dt_Audience, MetaDataID, (i + 1));
-                        //Step = "dt_Audience";
+                        //////Step = "dt_Audience";
+                        //////dt_Audience = Audience(fileinfo_1.obj_product_List[i], dt_Audience, MetaDataID, (i + 1));
+                        //////Step = "dt_Audience";
 
-                        Step = "dt_AudienceCode_b073";
-                        dt_AudienceCode_b073 = AudienceCode_b073(fileinfo_1.obj_product_List[i], dt_AudienceCode_b073, MetaDataID, (i + 1));
-                        Step = "dt_AudienceCode_b073";
+                        //Step = "dt_AudienceCode_b073";
+                        //dt_AudienceCode_b073 = AudienceCode_b073(fileinfo_1.obj_product_List[i], dt_AudienceCode_b073, MetaDataID, (i + 1));
+                        //Step = "dt_AudienceCode_b073";
 
-                        Step = "dt_AudienceCode_b206";
-                        dt_AudienceCode_b206 = AudienceCode_b206(fileinfo_1.obj_product_List[i], dt_AudienceCode_b206, MetaDataID, (i + 1));
-                        Step = "dt_AudienceCode_b206";
+                        //Step = "dt_AudienceCode_b206";
+                        //dt_AudienceCode_b206 = AudienceCode_b206(fileinfo_1.obj_product_List[i], dt_AudienceCode_b206, MetaDataID, (i + 1));
+                        //Step = "dt_AudienceCode_b206";
 
 
 
@@ -697,7 +697,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
 
                     #region 'Insert the Data into the SQL Table'
 
-                    int count = 24;
+                    int count = 22;
 
                     result = InsertRecords(dt_ISBN, "RB");
                     Insertion_Label(lbl_Insert, count);
@@ -824,19 +824,19 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
                     }
                     count--;
 
-                    if (result)
-                    {
-                        result = InsertRecords(dt_AudienceCode_b073, "RB");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
+                    //if (result)
+                    //{
+                    //    result = InsertRecords(dt_AudienceCode_b073, "RB");
+                    //    Insertion_Label(lbl_Insert, count);
+                    //}
+                    //count--;
 
-                    if (result)
-                    {
-                        result = InsertRecords(dt_AudienceCode_b206, "RB");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
+                    //if (result)
+                    //{
+                    //    result = InsertRecords(dt_AudienceCode_b206, "RB");
+                    //    Insertion_Label(lbl_Insert, count);
+                    //}
+                    //count--;
 
                     if (result)
                     {
@@ -1382,11 +1382,11 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
 
                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "usd")
                     {
-                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                        {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
-                            {
-                                if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
+                        //if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                        //{
+                        //if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                        //{
+                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                         {
                             if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
                             {
@@ -1398,21 +1398,21 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
 
                                 DataRow dr = dt_Price.NewRow();
 
-                        dr["MetaDataID"] = MetaDataID;
-                        dr["ProductID"] = productCount;
-                        dr["RowCnt"] = (b + 1);
-                        dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                        //     dr["ClassOfTrade_j149"] = ""; //  product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j149_product_supplydetail_price;
-                        dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
-                        dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
-                        dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+                                dr["MetaDataID"] = MetaDataID;
+                                dr["ProductID"] = productCount;
+                                dr["RowCnt"] = (b + 1);
+                                dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                                //     dr["ClassOfTrade_j149"] = ""; //  product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j149_product_supplydetail_price;
+                                dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                                dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                                dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
 
-                        dt_Price.Rows.Add(dr);
+                                dt_Price.Rows.Add(dr);
 
-                                    }
-                                }
                             }
                         }
+                            //}
+                        //}
                         //    }
                         //}
                     }
@@ -1423,10 +1423,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
 
                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "cad")
                     {
-                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                        {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
-                            {
+                        //if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                        //{
+                        //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                        //    {
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                                 {
                                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
@@ -1453,8 +1453,8 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
                                         //}
                                     }
                                 }
-                            }
-                        }
+                        //    }     
+                        //}
                     }
 
                     #endregion

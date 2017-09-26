@@ -25,7 +25,7 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton
         public List<Product_PublishingDetail_Imprint> obj_Product_PublishingDetail_Imprint_List = new List<Product_PublishingDetail_Imprint>();
 
         [XmlElement("PublishingStatus", IsNullable = true)]
-        public string PublishingStatus { get; set; }
+        public List<string> obj_PublishingStatus_List = new List<string>();
 
         [XmlElement("ROWSalesRightsType", IsNullable = true)]
         public string ROWSalesRightsType { get; set; }

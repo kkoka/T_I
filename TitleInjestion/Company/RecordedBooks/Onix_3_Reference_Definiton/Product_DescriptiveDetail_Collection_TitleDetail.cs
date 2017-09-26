@@ -13,7 +13,7 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Reference_Definiton
     {
 
         [XmlElement("TitleElement", IsNullable = true)]
-        public List<Product_DescriptiveDetail_Collection_TitleDetail_TitleElement> obj_TitleDetail_List = new List<Product_DescriptiveDetail_Collection_TitleDetail_TitleElement>();
+        public List<Product_DescriptiveDetail_Collection_TitleDetail_TitleElement> obj_Product_DescriptiveDetail_Collection_TitleDetail_TitleElement_List = new List<Product_DescriptiveDetail_Collection_TitleDetail_TitleElement>();
 
         [XmlElement("TitleType", IsNullable = true)]
         public string TitleType { get; set; }
