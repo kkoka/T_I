@@ -2001,7 +2001,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Tantor
                         {
                             dr["AudienceCode_b073"] = "Adult";
                         }
-                        else if (b073 == "02")
+                        else if (b073 == "02" || b073 == "04")
                         {
                             dr["AudienceCode_b073"] = "Childrens";
                         }
