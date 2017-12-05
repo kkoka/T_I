@@ -2244,6 +2244,72 @@ namespace TitleInjestion
                         #endregion
                     }
 
+                    if (str_Company == "WFH" && PubID == 11 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Pottermore eaudio'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.Pottermore_UK.PottermoreUK_Extraction Pottermore_UK = new Company.WFHowes.Publisher.EAudio.Pottermore_UK.PottermoreUK_Extraction();
+                        result = Pottermore_UK.Pottermore_UK_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_AccentPressUKEbookUK
+                            result = Pottermore_UK.Process_PottermoreUK(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+
+                    if (str_Company == "WFH" && PubID == 3 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Penguin eaudio'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.Penguin_UK.PenguinUK_Extraction Penguin_UK = new Company.WFHowes.Publisher.EAudio.Penguin_UK.PenguinUK_Extraction();
+                        result = Penguin_UK.Penguin_UK_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_AccentPressUKEbookUK
+                            result = Penguin_UK.Process_PenguinUK(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+
+                    if (str_Company == "WFH" && PubID == 4 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'RandomHouse eaudio'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.RandomHouse_UK.RandomHouseUK_Extraction RandomHouse_UK = new Company.WFHowes.Publisher.EAudio.RandomHouse_UK.RandomHouseUK_Extraction();
+                        result = RandomHouse_UK.RandomHouse_UK_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_AccentPressUKEbookUK
+                            result = RandomHouse_UK.Process_RandomHouseUK(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+
 
                 }
                 catch (Exception ex)
