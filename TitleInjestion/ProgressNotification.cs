@@ -137,9 +137,16 @@ namespace TitleInjestion
 
         private void btn_StartJob_Click(object sender, EventArgs e)
         {
-            // SaveContributors();
-            // BackUp_OffRamp();
-          //   GenerateContributors();
+            //// SaveContributors();
+            //// BackUp_OffRamp();
+            ////  GenerateContributors();
+
+            //// ExecuteValidation(TaskName);
+
+            //Initiate_Jobs();
+
+
+
             if (!backgroundWorker1.IsBusy)
             {
                 backgroundWorker1.RunWorkerAsync();
