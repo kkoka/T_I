@@ -1186,7 +1186,8 @@ namespace TitleInjestion.Company.WFHowes.Publisher.EAudio.Pottermore_UK
                     {
                         if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
                         {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "10")
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06" ||
+                                product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "10")
                             {
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                                 {
@@ -1225,7 +1226,8 @@ namespace TitleInjestion.Company.WFHowes.Publisher.EAudio.Pottermore_UK
                     {
                         if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
                         {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "10")
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06" ||
+                                product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "10")
                             {
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                                 {
@@ -1259,7 +1261,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.EAudio.Pottermore_UK
 
                     #endregion
 
-                    //#region 'AUD - NZ'
+                    #region 'AUD - NZ - commented out'
 
                     //if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "aud")
                     //{
@@ -1299,7 +1301,48 @@ namespace TitleInjestion.Company.WFHowes.Publisher.EAudio.Pottermore_UK
                     //    }
                     //}
 
-                    //#endregion
+                    #endregion
+
+                    #region 'USD'
+
+                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "usd")
+                    {
+                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                        {
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06" ||
+                                product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "10")
+                            {
+                                if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
+                                {
+                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
+                                    {
+
+                                        //for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
+                                        //{
+                                        //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "gb")
+                                        //    {
+
+                                        DataRow dr = dt_RH_Price.NewRow();
+
+                                        dr["MetaDataID"] = MetaDataID;
+                                        dr["ProductID"] = productCount;
+                                        dr["RowCnt"] = (b + 1);
+                                        dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                                        dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                                        dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                                        dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+
+                                        dt_RH_Price.Rows.Add(dr);
+                                        //    }
+                                        //}
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    #endregion
+
 
                 }
             }
