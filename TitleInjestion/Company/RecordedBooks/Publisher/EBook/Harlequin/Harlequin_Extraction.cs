@@ -1906,13 +1906,20 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Harlequin
                 //dr["SeriesName_b018"] = ""; // product.obj_product_series_List[a].b018_product_series;
                 //dr["SeriesNumber_b019"] = product.obj_product_series_List[a].b019_product_series;
 
+                DataRow dr = dt_Series.NewRow();
+
+                dr["MetaDataID"] = MetaDataID;
+                dr["ProductID"] = productCount;
+                dr["RowCnt"] = (a + 1);
+                dr["SeriesName_b018"] = product.obj_product_series_List[a].b018_product_series;  //  product.obj_product_series_List[a].b018_product_series;
+                dr["SeriesNumber_b019"] = StringReplace(product.obj_product_series_List[a].b019_product_series, "No.", "");
 
                 for (int b = 0; b < product.obj_product_series_List[a].obj_product_series_title_List.Count; b++)
                 {
 
 
                     if (
-                        //(!string.IsNullOrEmpty(product.obj_product_series_List[a].b018_product_series))
+                        (!string.IsNullOrEmpty(product.obj_product_series_List[a].b018_product_series)) ||
                         (!string.IsNullOrEmpty(product.obj_product_series_List[a].obj_product_series_title_List[b].b203_product_series_title))
                        || (!string.IsNullOrEmpty(product.obj_product_series_List[a].b019_product_series))
                        )
@@ -1920,23 +1927,16 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Harlequin
 
 
 
-                        DataRow dr = dt_Series.NewRow();
+                            dr["SeriesName_b203"] = product.obj_product_series_List[a].obj_product_series_title_List[b].b203_product_series_title;
 
-                        dr["MetaDataID"] = MetaDataID;
-                        dr["ProductID"] = productCount;
-                        dr["RowCnt"] = (a + 1);
-                        dr["SeriesName_b018"] = ""; //  product.obj_product_series_List[a].b018_product_series;
-                        dr["SeriesNumber_b019"] = StringReplace(product.obj_product_series_List[a].b019_product_series, "No.", "");
-                        dr["SeriesName_b203"] = product.obj_product_series_List[a].obj_product_series_title_List[b].b203_product_series_title;
-
-                        dt_Series.Rows.Add(dr);
-
+                 
                     }
                 }
 
+                dt_Series.Rows.Add(dr);
 
 
-                
+
 
             }
             #endregion
