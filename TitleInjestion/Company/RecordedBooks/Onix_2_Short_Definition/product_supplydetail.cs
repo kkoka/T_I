@@ -33,6 +33,7 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition
         [XmlElement("j143", IsNullable = true)]
         public string j143_product_supplydetail { get; set; }
  
+
         [XmlElement("j144", IsNullable = true)]
         public string j144_product_supplydetail { get; set; }
   
