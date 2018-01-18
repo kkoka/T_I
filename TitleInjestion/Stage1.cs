@@ -81,7 +81,7 @@ namespace TitleInjestion
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-               BeginIngestion(mfa_1);
+            BeginIngestion(mfa_1);
 
             //if (!backgroundWorker1.IsBusy)
             //{
@@ -1720,6 +1720,27 @@ namespace TitleInjestion
                             //Process_TyndaleEbook
                             result = Tyndale.Process_Tyndale_Extraction(str_Company, lbl_Processing);
 
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+                    if (str_Company == "RB" && PubID == 43 && MediaType.ToLower() == "ebook" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Peachtree'
+                        TitleInjestion.Company.RecordedBooks.Publisher.EBook.PeachTree.PeachTree_Extraction Peachtree = new Company.RecordedBooks.Publisher.EBook.PeachTree.PeachTree_Extraction();
+                        result = Peachtree.RB_PeachTree_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_MacmillanEbook
+                            result = Peachtree.Process_PeachTree(str_Company, lbl_Processing);
 
                             if (result)
                             {
