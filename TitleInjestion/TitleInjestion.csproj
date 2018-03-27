@@ -248,11 +248,15 @@
     <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail_publishingdate.cs" />
     <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail_salesrights.cs" />
     <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_publishingdetail_salesrights_territory.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_relatedmaterial.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_relatedmaterial_relatedproduct.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\product_relatedmaterial_relatedproduct_productidentifier.cs" />
     <Compile Include="Company\RecordedBooks\Onix_3_Short_Definition\sender.cs" />
     <Compile Include="Company\RecordedBooks\Onix_CleanUP.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Blackstone\Blackstone_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\eChristian\eChristian_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\GalaxyPress\GalaxyPress_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Gildan\Gildan_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Hachette\Hachette_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\HarperCollins\HarperCollins_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\HighBridge\HighBridge_Extraction.cs" />
@@ -287,6 +291,7 @@
     <Compile Include="Company\RecordedBooks\Publisher\EBook\NorthStar\NorthStar_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\OpenRoad\OpenRoad_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\OrcaBookPublishers\OrcaBookPublishers_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\PeachTree\PeachTree_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Penquin\Penquin_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\PerseusDistribution\PerseusDistribution_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Perseus\Perseus_Extraction.cs" />
@@ -397,6 +402,9 @@
     <Compile Include="Company\WFHowes\Onix_2_Short_Definition\product_workidentifier.cs" />
     <Compile Include="Company\WFHowes\Onix_CleanUP.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\HarperCollins_UK\HarperUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Penguin_UK\PenguinUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Pottermore_UK\PottermoreUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\RandomHouse_UK\RandomHouseUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\AccentPress\AccentPressUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\BlackBooks_UK\BlackBooks_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Bloomsbury_UK\Bloomsbury_Extraction.cs" />
