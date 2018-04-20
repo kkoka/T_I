@@ -405,6 +405,7 @@
     <Compile Include="Company\WFHowes\Publisher\EAudio\Penguin_UK\PenguinUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Pottermore_UK\PottermoreUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\RandomHouse_UK\RandomHouseUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\RecordedBooks_UK\RecordedBooksUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\AccentPress\AccentPressUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\BlackBooks_UK\BlackBooks_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Bloomsbury_UK\Bloomsbury_Extraction.cs" />
@@ -421,6 +422,7 @@
     <Compile Include="Company\WFHowes\Publisher\Ebook\Pottermore\PottermoreUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Pottermore\PottermoreUK_ShortTag_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\RandomHouse_UK\RandomHouseUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Rebellion\RebellionUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\ScribePublications\ScribePublicationsUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\SevernHouse\SevernHouseUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Vearsa\Vearsa_Extraction.cs" />
