@@ -31,6 +31,10 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_3_Short_Definition
         [XmlElement("publishingdetail", IsNullable = true)]
         public List<product_publishingdetail> obj_productpublishingdetail_List = new List<product_publishingdetail>();
 
+        [XmlElement("relatedmaterial", IsNullable = true)]
+        public List<product_relatedmaterial> obj_productrelatedmaterial_List = new List<product_relatedmaterial>();
+
+
         [XmlElement("productsupply", IsNullable = true)]
         public List<product_productsupply> obj_productproductsupply_List = new List<product_productsupply>();
 

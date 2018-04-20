@@ -52,6 +52,19 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Blackstone
 
                 #endregion
 
+                //DataTable dt_RelatedISBN = new DataTable("Related_ISBN");
+                //#region 'Columns Declaration'
+
+                //dt_RelatedISBN.Columns.Add("MetaDataID", typeof(int));
+                //dt_RelatedISBN.Columns.Add("ProductID", typeof(int));
+                //dt_RelatedISBN.Columns.Add("RowCnt", typeof(int));
+                ////  dt_RelatedISBN.Columns.Add("b221", typeof(string));
+                //dt_RelatedISBN.Columns.Add("ISBN_b244", typeof(string));
+
+                //#endregion
+
+ 
+
                 DataTable dt_Title_Subtitle = new DataTable("Title_Subtitle");
                 #region 'Columns Declaration'
 
@@ -490,6 +503,13 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Blackstone
 
 
 
+
+                        // for each product
+                        //#region 'Related ISBN'
+                        //Step = "Related ISBN";
+                        //dt_RelatedISBN = RelatedISBN(fileinfo_1.obj_product_List[i], dt_RelatedISBN, MetaDataID, (i + 1));
+                        //#endregion
+
                         // for each product
                         #region 'b213 - COMMENTED OUT'
                         //Step = "b213";
@@ -728,6 +748,17 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Blackstone
                     //Insertion_Label(lbl_Insert, count);
 
                     count--;
+
+
+
+                    //if (result)
+                    //{
+                    //    result = InsertRecords(dt_RelatedISBN, "RB");
+                    //    Insertion_Label(lbl_Insert, count);
+                    //}
+                    //count--;
+                    
+
 
                     if (result)
                     {
@@ -1139,6 +1170,62 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Blackstone
 
 
         }
+
+        
+    public DataTable RelatedISBN(TitleInjestion.Company.RecordedBooks.Onix_3_Short_Definition.product product, DataTable dt_RelatedISBN, int MetaDataID, int productCount)
+        {
+
+
+            DataRow dr = dt_RelatedISBN.NewRow();
+
+            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+
+            #region 'Related ISBN_b244'
+            int i = 0;
+
+
+
+            for (int a = 0; a < product.obj_productrelatedmaterial_List.Count; a++)
+            {
+                for (int b = 0; b < product.obj_productrelatedmaterial_List[a].obj_productrelatedmaterial_relatedproduct_List.Count; b++)
+                {
+                    if (!string.IsNullOrEmpty(product.obj_productrelatedmaterial_List[a].obj_productrelatedmaterial_relatedproduct_List[b].x455))
+                    {
+                        if (product.obj_productrelatedmaterial_List[a].obj_productrelatedmaterial_relatedproduct_List[b].x455.ToString() == "03")
+                        {
+                            for (int c = 0; c < product.obj_productrelatedmaterial_List[a].obj_productrelatedmaterial_relatedproduct_List[b].obj_product_relatedmaterial_relatedproduct_productidentifier.Count; c++)
+                            {
+                                if (!string.IsNullOrEmpty(product.obj_productrelatedmaterial_List[a].obj_productrelatedmaterial_relatedproduct_List[b].obj_product_relatedmaterial_relatedproduct_productidentifier[c].b221))
+                                {
+                                    if (product.obj_productrelatedmaterial_List[a].obj_productrelatedmaterial_relatedproduct_List[b].obj_product_relatedmaterial_relatedproduct_productidentifier[c].b221 == "15")
+                                    {
+                                        i++;
+
+                                        dr["MetaDataID"] = MetaDataID;
+                                        dr["ProductID"] = productCount;
+                                        dr["RowCnt"] = i;
+                                        dr["ISBN_b244"] = product.obj_productrelatedmaterial_List[a].obj_productrelatedmaterial_relatedproduct_List[b].obj_product_relatedmaterial_relatedproduct_productidentifier[c].b244;
+
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            #endregion
+
+
+            dt_RelatedISBN.Rows.Add(dr);
+
+            return dt_RelatedISBN;
+
+
+        }
+
         public DataTable TitleSubtitle(TitleInjestion.Company.RecordedBooks.Onix_3_Short_Definition.product product, DataTable dt_Title_Subtitle, int MetaDataID, int productCount)
         {
 

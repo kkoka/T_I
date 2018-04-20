@@ -150,7 +150,15 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
 
                 #endregion;
 
+                DataTable dt_DRMFlag_x317 = new DataTable("DRMFlag_x317");
+                #region 'Columns Declaration'
 
+                dt_DRMFlag_x317.Columns.Add("MetaDataID", typeof(int));
+                dt_DRMFlag_x317.Columns.Add("ProductID", typeof(int));
+                dt_DRMFlag_x317.Columns.Add("RowCnt", typeof(int));
+                dt_DRMFlag_x317.Columns.Add("DRMFlag_x317", typeof(string));
+
+                #endregion;
 
                 DataTable dt_Language = new DataTable("Language");
                 #region 'Columns Declaration'
@@ -518,6 +526,13 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
                         dt_CDCount = CDCount(fileinfo_1.obj_product_List[i], dt_CDCount, MetaDataID, (i + 1));
                         #endregion
 
+                        #region 'DRMFlag_x317'
+                        Step = "DRMFlag_x317";
+                        dt_DRMFlag_x317 = DRMFlag_x317(fileinfo_1.obj_product_List[i], dt_DRMFlag_x317, MetaDataID, (i + 1));
+                        #endregion
+
+
+
                         #region 'Language'
                         Step = "Language";
                         dt_Language = Language(fileinfo_1.obj_product_List[i], dt_Language, MetaDataID, (i + 1));
@@ -697,7 +712,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
 
                     #region 'Insert the Data into the SQL Table'
 
-                    int count = 22;
+                    int count = 23;
 
                     result = InsertRecords(dt_ISBN, "RB");
                     Insertion_Label(lbl_Insert, count);
@@ -752,6 +767,12 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
                     count--;
 
 
+                    if (result)
+                    {
+                        result = InsertRecords(dt_DRMFlag_x317, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
 
                     if (result)
                     {
@@ -1322,6 +1343,53 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.SimonSchuster
             #endregion
 
             return dt_CDCount;
+
+        }
+
+        public DataTable DRMFlag_x317(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_DRMFlag_x317, int MetaDataID, int productCount)
+        {
+          
+            #region 'dt_DRMFlag_x317'
+            for (int a = 0; a < product.obj_product_supplydetail_List.Count; a++)
+            {
+
+                if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].j146_product_supplydetail))
+                {
+
+                    if (product.obj_product_supplydetail_List[a].j146_product_supplydetail.ToLower() == "r")
+                    {
+                        string drmValue = "";
+                        if(product.obj_product_supplydetail_List[a].j147_product_supplydetail.ToLower() == "drm required")
+                        {
+                            drmValue = "1";
+                        }
+                        else 
+                        {
+                            drmValue = "0";
+                        }
+
+                        DataRow dr = dt_DRMFlag_x317.NewRow();
+
+                        dr["MetaDataID"] = MetaDataID;
+                        dr["ProductID"] = productCount;
+                        dr["RowCnt"] = (a + 1);
+                        dr["DRMFlag_x317"] = drmValue; // product.obj_product_supplydetail_List[a].j146_product_supplydetail.ToString();
+
+                        dt_DRMFlag_x317.Rows.Add(dr);
+                    }
+                }
+
+
+            }
+            #endregion
+
+            return dt_DRMFlag_x317;
+
+
+             
+
+
+
 
         }
 

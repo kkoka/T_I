@@ -81,7 +81,7 @@ namespace TitleInjestion
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            BeginIngestion(mfa_1);
+             BeginIngestion(mfa_1);
 
             //if (!backgroundWorker1.IsBusy)
             //{
@@ -91,6 +91,8 @@ namespace TitleInjestion
             //{
             //    MessageBox.Show("A job is currently running....Please wait.");
             //}
+
+
         }
 
 
@@ -1752,6 +1754,27 @@ namespace TitleInjestion
                         #endregion
                     }
 
+                    if (str_Company == "RB" && PubID == 44 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'RandomHouse'
+                        TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Gildan.Gildan_Extraction Gildan = new Company.RecordedBooks.Publisher.EAudio.Gildan.Gildan_Extraction();
+                        result = Gildan.RB_Gildan_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_GildaneAudio
+                            result = Gildan.Process_Gildan_EAudio(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -2330,6 +2353,51 @@ namespace TitleInjestion
 
                         #endregion
                     }
+                    
+                    if (str_Company == "WFH" && PubID == 21 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'RecordedBooks eaudio'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.RecordedBooks_UK.RecordedBooksUK_Extraction RecordedBooks_UK = new Company.WFHowes.Publisher.EAudio.RecordedBooks_UK.RecordedBooksUK_Extraction();
+                        result = RecordedBooks_UK.RecordedBooks_UK_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+ 
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_RecordedBookseAudioUK
+                            result = RecordedBooks_UK.Process_RecordedBooksUK(str_Company, lbl_Processing);
+ 
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+ 
+                        #endregion
+                    }
+
+                    if (str_Company == "WFH" && PubID == 22 && MediaType.ToLower() == "ebook" && FileType.ToLower() == "excel")
+                    {
+                        #region 'Rebellion'
+                        TitleInjestion.Company.WFHowes.Publisher.Ebook.Rebellion.RebellionUK_Extraction Rebellion_UK = new Company.WFHowes.Publisher.Ebook.Rebellion.RebellionUK_Extraction();
+                        result = Rebellion_UK.Rebellion_UK_Extraction(PubID, filePath, FileName, MediaType, lbl_CleanUp, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_RebellionUK
+                            result = Rebellion_UK.Process_RebellionUK(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+
 
 
                 }
