@@ -24,7 +24,6 @@ namespace TitleInjestion.Company.WFHowes.Publisher.EAudio.RecordedBooks_UK
             System.Windows.Forms.Label lbl_Message)
         {
             bool result = true;
-
             string Step = "";
             try
             {
