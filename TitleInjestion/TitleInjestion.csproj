@@ -80,6 +80,7 @@
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_AudienceRange.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Contributor.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Contributor_ProfessionalAffiliation.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Extent.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Illustrations.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Imprint.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Language.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_SalesRights.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Series.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Series_SeriesIdentifier.cs" />
+    <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Series_Title.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Set.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_Subject.cs" />
     <Compile Include="Company\RecordedBooks\Onix_2_Reference_Definiton\Product_SupplyDetail.cs" />
@@ -260,10 +262,12 @@
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Hachette\Hachette_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\HarperCollins\HarperCollins_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\HighBridge\HighBridge_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Insatiable\Insatiable_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Lerner\Lerner_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Macmillan\Macmillan_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\MYBooks\MYBooks_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Oasis\Oasis_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Pottermore\Pottermore_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\RandomHouse\RandomHouse_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Scholastic\Scholastic_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\SimonSchuster\SimonSchuster_Extraction.cs" />
@@ -283,6 +287,7 @@
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Hachette\Hachette_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Harlequin\Harlequin_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\HarperAU\HarperAU_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\HarperAU\HarperAU_Short_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\HarperCollinsUK\HarperCollinsUK_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\HarperCollins\HarperCollins_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\HMH\HMH_Extraction.cs" />
@@ -296,6 +301,7 @@
     <Compile Include="Company\RecordedBooks\Publisher\EBook\PerseusDistribution\PerseusDistribution_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Perseus\Perseus_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\PoisonedPenPress\PoisonedPenPress_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Pottermore\Pottermore_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\RandomHouseDistributed\RandomHouseDistributed_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\RandomHouse\RandomHouse_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\SimonSchuster\SimonSchuster_Extraction.cs" />
@@ -314,6 +320,7 @@
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_AudienceRange.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Contributor.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Contributor_ProfessionalAffiliation.cs" />
+    <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Extent.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Illustrations.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Imprint.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Language.cs" />
@@ -334,6 +341,7 @@
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_SalesRights.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Series.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Series_SeriesIdentifier.cs" />
+    <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Series_Title.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Set.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_Subject.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Reference_Definiton\Product_SupplyDetail.cs" />
@@ -400,10 +408,15 @@
     <Compile Include="Company\WFHowes\Onix_2_Short_Definition\product_title.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Short_Definition\product_website.cs" />
     <Compile Include="Company\WFHowes\Onix_2_Short_Definition\product_workidentifier.cs" />
+    <Compile Include="Company\WFHowes\Onix_3_Reference_Definiton\Header.cs" />
+    <Compile Include="Company\WFHowes\Onix_3_Reference_Definiton\ONIXMessage.cs" />
     <Compile Include="Company\WFHowes\Onix_CleanUP.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\HarperCollins_UK\HarperUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Michael_OMara\Michael_OMara_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Penguin_AU\PenguinAU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Penguin_UK\PenguinUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Pottermore_UK\PottermoreUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\RandomHouse_AU\RandomHouseAU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\RandomHouse_UK\RandomHouseUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\RecordedBooks_UK\RecordedBooksUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\AccentPress\AccentPressUK_Extraction.cs" />
@@ -414,6 +427,7 @@
     <Compile Include="Company\WFHowes\Publisher\Ebook\FaberAndFaber\FaberAndFaber_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Faber_Factory\FaberFactory_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\HarperCollins_AU\HarperAU_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\HarperCollins_AU\HarperAU_ShortTag_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Macmillan_AU\MacmillanAU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Macmillan_UK\MacmillanUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Michael_OMara\Michael_OMara_Extraction.cs" />
@@ -426,6 +440,7 @@
     <Compile Include="Company\WFHowes\Publisher\Ebook\ScribePublications\ScribePublicationsUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\SevernHouse\SevernHouseUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Vearsa\Vearsa_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\YLolfa\YLolfa_Extraction.cs" />
     <Compile Include="Company\WFHowes\ReadOnix.cs" />
     <Compile Include="DeleteIds.cs">
       <SubType>Form</SubType>
@@ -541,9 +556,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Company\RecordedBooks\Publisher\EBook\Pottermore\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\RightArrow1.png" />
   </ItemGroup>
