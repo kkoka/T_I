@@ -19,5 +19,8 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_2_Reference_Definiton
         [XmlElement("TitleOfSeries", IsNullable = true)]
         public string TitleOfSeries_Product_Series { get; set; }
 
+
+
+         
     }
 }

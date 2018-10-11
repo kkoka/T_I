@@ -1224,10 +1224,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.DKPublishing
 
                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "usd")
                     {
-                        //if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                        //{
-                        //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
-                        //    {
+                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                        {
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                            {
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                                 {
                                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
@@ -1255,8 +1255,8 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.DKPublishing
                                         //}
                                     }
                                 }
-                        //    }
-                        //}
+                            }
+                        }
                     }
 
                     #endregion
@@ -1265,10 +1265,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.DKPublishing
 
                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "cad")
                     {
-                        //if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                        //{
-                        //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
-                        //    {
+                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                        {
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                            {
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                                 {
                                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
@@ -1296,8 +1296,8 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.DKPublishing
                                     }
                                 }
 
-                        //    }
-                        //}
+                            }
+                        }
                     }
 
                     #endregion

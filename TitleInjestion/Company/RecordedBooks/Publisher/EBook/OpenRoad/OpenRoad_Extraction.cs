@@ -996,6 +996,15 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.OpenRoad
 
                         dt_b213.Rows.Add(dr);
                     }
+                    else if (product.obj_b213_List[a].ToLower() == "epub")
+                    {
+                        dr["MetaDataID"] = MetaDataID;
+                        dr["ProductID"] = productCount;
+                        dr["RowCnt"] = i;
+                        dr["b213"] = "Reflowable";
+
+                        dt_b213.Rows.Add(dr);
+                    }
                     else if (product.obj_b213_List[a].ToLower() == "standard fixed layout ebook")
                     {
                         dr["MetaDataID"] = MetaDataID;

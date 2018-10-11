@@ -104,6 +104,11 @@ namespace TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton
         [XmlElement("Language", IsNullable = true)]
         public List<Product_Language> obj_ProductLanguage_List = new List<Product_Language>();
 
+
+        [XmlElement("Extent", IsNullable = true)]
+        public List<Product_Extent> obj_product_Extent_List = new List<Product_Extent>();
+
+
         [XmlElement("MainSubject", IsNullable = true)]
         public List<Product_MainSubject> obj_ProductMainSubject_List = new List<Product_MainSubject>();
 

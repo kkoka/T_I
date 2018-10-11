@@ -22,5 +22,9 @@ namespace TitleInjestion.Company.WFHowes.Onix_2_Reference_Definiton
         public string TitleOfSeries_ProductSeries { get; set; }
 
 
+        [XmlElement("Title", IsNullable = true)]
+        public List<Product_Series_Title> obj_productSeries_Title_List = new List<Product_Series_Title>();
+
+
     }
 }

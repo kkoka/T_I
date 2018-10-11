@@ -11,14 +11,13 @@ using TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition;
 using TitleInjestion.CommonFunctions;
 
 
-namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
+namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Insatiable
 {
-    class HarperCollins_Extraction
+    class Insatiable_Extraction
     {
-
         public List<string> d101_productID = new List<string>();
 
-        public bool RB_HarperCollins_Extraction(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.ONIXmessage fileinfo_1, int pubid, string FileName, string MediaType,
+        public bool RB_Insatiable_Extraction(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.ONIXmessage fileinfo_1, int pubid, string FileName, string MediaType,
             System.Windows.Forms.Label lbl_Extraction,
             System.Windows.Forms.Label lbl_Insert,
             System.Windows.Forms.Label lbl_Message)
@@ -108,7 +107,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
                 //dt_Imprint.Columns.Add("RowCnt", typeof(int));
                 //dt_Imprint.Columns.Add("Imprint_b079", typeof(string));
 
-              //  #endregion
+                //#endregion
 
                 //DataTable dt_DigitalFormat_b333 = new DataTable("DigitalFormat");
                 //#region 'Columns Declaration'
@@ -130,15 +129,15 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                 #endregion;
 
-                //////DataTable dt_UnAbridged2 = new DataTable("UnAbridged2");
-                //////#region 'Columns Declaration'
+                DataTable dt_UnAbridged2 = new DataTable("UnAbridged2");
+                #region 'Columns Declaration'
 
-                //////dt_UnAbridged2.Columns.Add("MetaDataID", typeof(int));
-                //////dt_UnAbridged2.Columns.Add("ProductID", typeof(int));
-                //////dt_UnAbridged2.Columns.Add("RowCnt", typeof(int));
-                //////dt_UnAbridged2.Columns.Add("UnAbridged_b058", typeof(string));
+                dt_UnAbridged2.Columns.Add("MetaDataID", typeof(int));
+                dt_UnAbridged2.Columns.Add("ProductID", typeof(int));
+                dt_UnAbridged2.Columns.Add("RowCnt", typeof(int));
+                dt_UnAbridged2.Columns.Add("UnAbridged_b058", typeof(string));
 
-                //////#endregion;
+                #endregion;
 
 
                 DataTable dt_CDCount = new DataTable("CDCount");
@@ -507,10 +506,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
                         #endregion
 
 
-                        ////#region 'UnAbridged_b058'
-                        ////Step = "UnAbridged_b058";
-                        ////dt_UnAbridged2 = UnAbridged2(fileinfo_1.obj_product_List[i], dt_UnAbridged2, MetaDataID, (i + 1));
-                        ////#endregion
+                        #region 'UnAbridged_b058'
+                        Step = "UnAbridged_b058";
+                        dt_UnAbridged2 = UnAbridged2(fileinfo_1.obj_product_List[i], dt_UnAbridged2, MetaDataID, (i + 1));
+                        #endregion
 
 
 
@@ -698,7 +697,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                     #region 'Insert the Data into the SQL Table'
 
-                    int count = 23;
+                    int count = 24;
 
                     result = InsertRecords(dt_ISBN, "RB");
                     Insertion_Label(lbl_Insert, count);
@@ -738,12 +737,12 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
                     }
                     count--;
 
-                    ////if (result)
-                    ////{
-                    ////    result = InsertRecords(dt_UnAbridged2, "RB");
-                    ////    Insertion_Label(lbl_Insert, count);
-                    ////}
-                    ////count--;
+                    if (result)
+                    {
+                        result = InsertRecords(dt_UnAbridged2, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
 
                     if (result)
                     {
@@ -1012,7 +1011,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
             return ID;
         }
-        public bool Process_HarperCollins_EAudio(string Company, System.Windows.Forms.Label lbl_Processing)
+        public bool Process_Insatiable_EAudio(string Company, System.Windows.Forms.Label lbl_Processing)
         {
             bool result = false;
 
@@ -1024,7 +1023,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
 
             SQLFunction sqlfunction = new SQLFunction();
-            result = sqlfunction.ExecuteProc("RB", ConfigurationSettings.AppSettings["RB_Process_HarperCollins_EAudio"].ToString());
+            result = sqlfunction.ExecuteProc("RB", ConfigurationSettings.AppSettings["RB_Process_Insatiable_EAudio"].ToString());
 
             if (result)
             {
@@ -1162,14 +1161,14 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
             #region 'Publisher'
             //for (int a = 0; a < product.obj_product_publisher_List.Count; a++)
             //{
-                DataRow dr = dt_Publisher.NewRow();
+            DataRow dr = dt_Publisher.NewRow();
 
-                dr["MetaDataID"] = MetaDataID;
-                dr["ProductID"] = productCount;
-                dr["RowCnt"] = 1;
-                dr["Publisher_b081"] = "HarperCollins Publishers";  // product.obj_product_publisher_List[a].b081_product_publisher;
+            dr["MetaDataID"] = MetaDataID;
+            dr["ProductID"] = productCount;
+            dr["RowCnt"] = 1;
+            dr["Publisher_b081"] = "Insatiable"; // product.obj_product_publisher_List[a].b081_product_publisher;
 
-                dt_Publisher.Rows.Add(dr);
+            dt_Publisher.Rows.Add(dr);
             //}
             #endregion
 
@@ -1209,36 +1208,36 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
         //}    
 
-        //public DataTable Imprint(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Imprint, int MetaDataID, int productCount)
-        //{
+        ////////public DataTable Imprint(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Imprint, int MetaDataID, int productCount)
+        ////////{
 
 
-        //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-        //    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-        //    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+        ////////    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+        ////////    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+        ////////    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-        //    #region 'Imprint'
-        //    for (int a = 0; a < product.obj_imprint_List.Count; a++)
-        //    {
+        ////////    #region 'Imprint'
+        ////////    for (int a = 0; a < product.obj_imprint_List.Count; a++)
+        ////////    {
 
-        //        DataRow dr = dt_Imprint.NewRow();
+        ////////        DataRow dr = dt_Imprint.NewRow();
 
-        //        dr["MetaDataID"] = MetaDataID;
-        //        dr["ProductID"] = productCount;
-        //        dr["RowCnt"] = a;
-        //        dr["Imprint_b079"] = product.obj_imprint_List[a].b079_product_imprint;
+        ////////        dr["MetaDataID"] = MetaDataID;
+        ////////        dr["ProductID"] = productCount;
+        ////////        dr["RowCnt"] = a;
+        ////////        dr["Imprint_b079"] = product.obj_imprint_List[a].b079_product_imprint;
 
-        //        dt_Imprint.Rows.Add(dr);
+        ////////        dt_Imprint.Rows.Add(dr);
 
-        //    }
-        //    #endregion
-
-
-
-        //    return dt_Imprint;
+        ////////    }
+        ////////    #endregion
 
 
-        //}
+
+        ////////    return dt_Imprint;
+
+
+        ////////}
         public DataTable UnAbridged(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_UnAbridged, int MetaDataID, int productCount)
         {
 
@@ -1267,34 +1266,34 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
 
         }
-        ////public DataTable UnAbridged2(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_UnAbridged2, int MetaDataID, int productCount)
-        ////{
+        public DataTable UnAbridged2(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_UnAbridged2, int MetaDataID, int productCount)
+        {
 
 
-        ////    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-        ////    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-        ////    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-        ////    #region 'dt_UnAbridged2'
-        ////    for (int a = 0; a < product.obj_b058_List.Count; a++)
-        ////    {
+            #region 'dt_UnAbridged2'
+            for (int a = 0; a < product.obj_b058_List.Count; a++)
+            {
 
-        ////        DataRow dr = dt_UnAbridged2.NewRow();
+                DataRow dr = dt_UnAbridged2.NewRow();
 
-        ////        dr["MetaDataID"] = MetaDataID;
-        ////        dr["ProductID"] = productCount;
-        ////        dr["RowCnt"] = (a + 1);
-        ////        dr["UnAbridged_b058"] = product.obj_b058_List[a];
+                dr["MetaDataID"] = MetaDataID;
+                dr["ProductID"] = productCount;
+                dr["RowCnt"] = (a + 1);
+                dr["UnAbridged_b058"] = product.obj_b058_List[a];
 
-        ////        dt_UnAbridged2.Rows.Add(dr);
+                dt_UnAbridged2.Rows.Add(dr);
 
-        ////    }
-        ////    #endregion
+            }
+            #endregion
 
-        ////    return dt_UnAbridged2;
+            return dt_UnAbridged2;
 
 
-        ////}
+        }
 
         public DataTable CDCount(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_CDCount, int MetaDataID, int productCount)
         {
@@ -1379,38 +1378,36 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "usd")
                     {
-
-                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
+                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
                         {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
                             {
-
-                                if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                                if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                                 {
-                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
                                     {
-                                        //for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
-                                        //{
-                                        //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "gb")
-                                        //    {
 
-                                        DataRow dr = dt_Price.NewRow();
+                                //for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
+                                //{
+                                //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "gb")
+                                //    {
 
-                                        dr["MetaDataID"] = MetaDataID;
-                                        dr["ProductID"] = productCount;
-                                        dr["RowCnt"] = (b + 1);
-                                        dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                                        //     dr["ClassOfTrade_j149"] = ""; //  product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j149_product_supplydetail_price;
-                                        dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
-                                        dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
-                                        dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+                                DataRow dr = dt_Price.NewRow();
 
-                                        dt_Price.Rows.Add(dr);
+                        dr["MetaDataID"] = MetaDataID;
+                        dr["ProductID"] = productCount;
+                        dr["RowCnt"] = (b + 1);
+                        dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                        //     dr["ClassOfTrade_j149"] = ""; //  product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j149_product_supplydetail_price;
+                        dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                        dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                        dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
 
-                                        //    }
-                                        //}
-                                    }
-                                   
+                        dt_Price.Rows.Add(dr);
+
+                                //    }
+                                //}
+                            }
                                 }
                             }
                         }
@@ -1422,37 +1419,35 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "cad")
                     {
-
-                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
+                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
                         {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
                             {
-
-                                if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                                if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                                 {
-                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
                                     {
+
                                         //for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
                                         //{
                                         //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "ie")
                                         //    {
 
-                                        DataRow dr = dt_Price.NewRow();
+                                                    DataRow dr = dt_Price.NewRow();
 
-                                        dr["MetaDataID"] = MetaDataID;
-                                        dr["ProductID"] = productCount;
-                                        dr["RowCnt"] = (b + 1);
-                                        dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                                        //    dr["ClassOfTrade_j149"] = ""; //  product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j149_product_supplydetail_price;
-                                        dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
-                                        dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
-                                        dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+                                                    dr["MetaDataID"] = MetaDataID;
+                                                    dr["ProductID"] = productCount;
+                                                    dr["RowCnt"] = (b + 1);
+                                                    dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                                                    //    dr["ClassOfTrade_j149"] = ""; //  product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j149_product_supplydetail_price;
+                                                    dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                                                    dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                                                    dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
 
-                                        dt_Price.Rows.Add(dr);
+                                                    dt_Price.Rows.Add(dr);
                                         //    }
                                         //}
                                     }
-                                  
                                 }
 
                             }
