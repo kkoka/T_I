@@ -1569,6 +1569,7 @@ namespace TitleInjestion.CommonFunctions
                 using (OleDbConnection excel_con = new OleDbConnection(conString))
                 {
                     excel_con.Open();
+
                     string sheet1 = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null).Rows[0]["TABLE_NAME"].ToString();
                     DataTable dtExcelData = new DataTable();
 
@@ -1639,15 +1640,15 @@ namespace TitleInjestion.CommonFunctions
                     }
                     excel_con.Close();
 
-                    string asdf = "";
-                    for(int i = 0; i<dtExcelData.Rows.Count;i++)
-                    {
-                        for (int j = 0; j < dtExcelData.Columns.Count; j++)
-                        {
-                            asdf += dtExcelData.Rows[i][j].ToString() + "<->";
-                        }
+                    //string asdf = "";
+                    //for(int i = 0; i<dtExcelData.Rows.Count;i++)
+                    //{
+                    //    for (int j = 0; j < dtExcelData.Columns.Count; j++)
+                    //    {
+                    //        asdf += dtExcelData.Rows[i][j].ToString() + "<->";
+                    //    }
                         
-                    }
+                    //}
 
 
                     //iU.Impersonate();

@@ -761,7 +761,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.RandomHouse
                     if (result)
                     {
                         //newdev
-                        //result = InsertRecords(dt_DRMFlag_x317, "RB");
+                        result = InsertRecords(dt_DRMFlag_x317, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
@@ -1413,7 +1413,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.RandomHouse
 
 
         }
-        public DataTable Price_newdev(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Price, int MetaDataID, int productCount)
+        public DataTable Price(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Price, int MetaDataID, int productCount)
         {
 
 
@@ -1522,7 +1522,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.RandomHouse
 
         }
 
-        public DataTable Price(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Price, int MetaDataID, int productCount)
+        public DataTable Price_OLDPROD(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Price, int MetaDataID, int productCount)
         {
 
 

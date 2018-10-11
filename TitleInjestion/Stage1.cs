@@ -81,7 +81,7 @@ namespace TitleInjestion
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-             BeginIngestion(mfa_1);
+           BeginIngestion(mfa_1);
 
             //if (!backgroundWorker1.IsBusy)
             //{
@@ -716,7 +716,7 @@ namespace TitleInjestion
 
                                 if (File.Exists(FileLocation + "\\" + FileName))
                                 {
-                                    File.Copy(FileLocation + "\\" + FileName, @"\\Rbencode02\incoming\TitleManagement\CustomExtract_Source\Hachette\" + FileName);
+                                    File.Copy(FileLocation + "\\" + FileName, @"\\pfingestion01\incoming\TitleManagement\CustomExtract_Source\Hachette\" + FileName);
                                 }
 
                                 }
@@ -1117,7 +1117,7 @@ namespace TitleInjestion
                         if (result)
                         {
                             #region'Stage 4: Processing'
-                            //Process_ThomasNelsonEbook
+                            //Process_HarperCollinsUK
                             result = HarperCollinsUK.Process_HarperCollinsUK(str_Company, lbl_Processing);
 
                             if (result)
@@ -1319,7 +1319,7 @@ namespace TitleInjestion
 
                                 if (File.Exists(FileLocation+"\\"+ FileName))
                                 {
-                                    File.Copy(FileLocation+"\\"+ FileName, @"\\Rbencode02\incoming\TitleManagement\CustomExtract_Source\SimonandSchuster\" + FileName);
+                                    File.Copy(FileLocation+"\\"+ FileName, @"\\pfingestion01\incoming\TitleManagement\CustomExtract_Source\SimonandSchuster\" + FileName);
                                 }
 
                             }
@@ -1549,11 +1549,14 @@ namespace TitleInjestion
                         #endregion
                     }
 
-                    if (str_Company == "RB" && PubID == 36 && MediaType.ToLower() == "ebook" && OnixVersion == "2.1" && TagType == "reference")
+                    if (str_Company == "RB" && PubID == 36 && MediaType.ToLower() == "ebook" && OnixVersion == "2.1" && TagType == "short")
                     {
                         #region 'HarperAU'
-                        TitleInjestion.Company.RecordedBooks.Publisher.EBook.HarperAU.HarperAU_Extraction HarperAU = new Company.RecordedBooks.Publisher.EBook.HarperAU.HarperAU_Extraction();
-                        result = HarperAU.RB_HarperAU_Extraction(fileinfo_2reference, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+                        //TitleInjestion.Company.RecordedBooks.Publisher.EBook.HarperAU.HarperAU_Extraction HarperAU = new Company.RecordedBooks.Publisher.EBook.HarperAU.HarperAU_Extraction();
+                        //result = HarperAU.RB_HarperAU_Extraction(fileinfo_2reference, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        TitleInjestion.Company.RecordedBooks.Publisher.EBook.HarperAU.HarperAU_Short_Extraction HarperAU = new Company.RecordedBooks.Publisher.EBook.HarperAU.HarperAU_Short_Extraction();
+                        result = HarperAU.RB_HarperAU_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
 
                         if (result)
                         {
@@ -1775,6 +1778,70 @@ namespace TitleInjestion
 
                         #endregion
                     }
+                    if (str_Company == "RB" && PubID == 45 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Pottermore'
+                        TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Pottermore.Pottermore_Extraction Pottermore = new Company.RecordedBooks.Publisher.EAudio.Pottermore.Pottermore_Extraction();
+                        result = Pottermore.RB_Pottermore_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_PottermoreAudio
+                            result = Pottermore.Process_Pottermore_EAudio(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+                    if (str_Company == "RB" && PubID == 45 && MediaType.ToLower() == "ebook" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Pottermore'
+                        TitleInjestion.Company.RecordedBooks.Publisher.EBook.Pottermore.Pottermore_Extraction Pottermore = new Company.RecordedBooks.Publisher.EBook.Pottermore.Pottermore_Extraction();
+                        result = Pottermore.RB_Pottermore_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_PottermoreAudio
+                            result = Pottermore.Process_Pottermore_EBook(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+
+                    if (str_Company == "RB" && PubID == 46 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Insatiable'
+                        TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Insatiable.Insatiable_Extraction Insatiable = new Company.RecordedBooks.Publisher.EAudio.Insatiable.Insatiable_Extraction();
+                        result = Insatiable.RB_Insatiable_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_InsatiableeAudio
+                            result = Insatiable.Process_Insatiable_EAudio(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1870,11 +1937,14 @@ namespace TitleInjestion
                     }
 
 
-                    if (str_Company == "WFH" && PubID == 2 && MediaType.ToLower() == "ebook" && OnixVersion == "2.1" && TagType == "reference")
+                    if (str_Company == "WFH" && PubID == 2 && MediaType.ToLower() == "ebook" && OnixVersion == "2.1" && TagType == "short")
                     {
                         #region 'Harper AU'
-                        TitleInjestion.Company.WFHowes.Publisher.Ebook.HarperCollins_AU.HarperAU_Extraction HarperAU = new Company.WFHowes.Publisher.Ebook.HarperCollins_AU.HarperAU_Extraction();
-                        result = HarperAU.Harper_AU_Extraction(fileinfo_2reference, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+                        //TitleInjestion.Company.WFHowes.Publisher.Ebook.HarperCollins_AU.HarperAU_Extraction HarperAU = new Company.WFHowes.Publisher.Ebook.HarperCollins_AU.HarperAU_Extraction();
+
+                        TitleInjestion.Company.WFHowes.Publisher.Ebook.HarperCollins_AU.HarperAU_ShortTag_Extraction HarperAU = new Company.WFHowes.Publisher.Ebook.HarperCollins_AU.HarperAU_ShortTag_Extraction();
+
+                        result = HarperAU.Harper_AU_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
 
                         if (result)
                         {
@@ -2397,8 +2467,93 @@ namespace TitleInjestion
 
                         #endregion
                     }
+                    if (str_Company == "WFH" && PubID == 18 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "reference")
+                    {
+                        #region 'Michael_OMara_Books'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.Michael_OMara.Michael_OMara_Extraction MichaelOMara_UK = new Company.WFHowes.Publisher.EAudio.Michael_OMara.Michael_OMara_Extraction();
+                        result = MichaelOMara_UK.MichaelOMara_Extraction(fileinfo_2reference, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
 
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_MichaelOMara
+                            result = MichaelOMara_UK.Process_MichaelOMara(str_Company, lbl_Processing);
 
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+                    if (str_Company == "WFH" && PubID == 23 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Penguin_AU'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.Penguin_AU.PenguinAU_Extraction Penguin_AU = new Company.WFHowes.Publisher.EAudio.Penguin_AU.PenguinAU_Extraction();
+                        result = Penguin_AU.Penguin_AU_Extraction( fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_Penguin_AU
+                            result = Penguin_AU.Process_PenguinAU(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+                    if (str_Company == "WFH" && PubID == 24 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'RandomHouse_AU'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.RandomHouse_AU.RandomHouseAU_Extraction RandomHouse_AU = new Company.WFHowes.Publisher.EAudio.RandomHouse_AU.RandomHouseAU_Extraction();
+                        result = RandomHouse_AU.RandomHouse_AU_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_RandomHouse_AU
+                            result = RandomHouse_AU.Process_RandomHouseAU(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+                    if (str_Company == "WFH" && PubID == 25 && MediaType.ToLower() == "ebook" && FileType.ToLower() == "excel")
+                    {
+                        #region 'YLolfa_UK'
+
+                        TitleInjestion.Company.WFHowes.Publisher.Ebook.YLolfa.YLolfa_Extraction YLolfa_UK = new Company.WFHowes.Publisher.Ebook.YLolfa.YLolfa_Extraction();
+                        result = YLolfa_UK.YLolfa_UK_Extraction(PubID, filePath, FileName, MediaType, lbl_CleanUp, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                       
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_YLolfanUK
+                            result = YLolfa_UK.Process_YLolfanUK(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+                    
 
                 }
                 catch (Exception ex)
