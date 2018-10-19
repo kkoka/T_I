@@ -81,7 +81,7 @@ namespace TitleInjestion
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-           BeginIngestion(mfa_1);
+          BeginIngestion(mfa_1);
 
             //if (!backgroundWorker1.IsBusy)
             //{
