@@ -1149,7 +1149,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.HarperCollins_AU
                     {
                         if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
                         {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "00")
                             {
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                                 {
@@ -1188,7 +1188,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.HarperCollins_AU
                     {
                         if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
                         {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "00")
                             {
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                                 {
@@ -1228,7 +1228,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.HarperCollins_AU
                     {
                         if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
                         {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "00")
                             {
 
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
