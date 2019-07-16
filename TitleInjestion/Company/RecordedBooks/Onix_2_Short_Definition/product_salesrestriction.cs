@@ -11,7 +11,7 @@ namespace TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition
     public class product_salesrestriction
     {
         [XmlElement("b381", IsNullable = true)]
-        public string b381_product_salesrestriction { get; set; }
+        public List<string> obj_b381_product_salesrestriction_list = new List<string>();// { get; set; }
 
         [XmlElement("b383", IsNullable = true)]
         public string b383_product_salesrestriction { get; set; }

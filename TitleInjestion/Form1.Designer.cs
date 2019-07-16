@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_Injestion = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
@@ -47,6 +47,7 @@
             this.lbl_CompanySelected = new System.Windows.Forms.Label();
             this.lbl_ErrorLogDetails = new System.Windows.Forms.Label();
             this.btn_ErrorLog = new System.Windows.Forms.Button();
+            this.btn_RoyaltyRateDiscount = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Grd_MetaDataPub)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -118,8 +119,8 @@
             this.Grd_MetaDataPub.AllowUserToAddRows = false;
             this.Grd_MetaDataPub.AllowUserToDeleteRows = false;
             this.Grd_MetaDataPub.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Silver;
-            this.Grd_MetaDataPub.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Silver;
+            this.Grd_MetaDataPub.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.Grd_MetaDataPub.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Grd_MetaDataPub.Location = new System.Drawing.Point(13, 380);
             this.Grd_MetaDataPub.Name = "Grd_MetaDataPub";
@@ -251,12 +252,29 @@
             this.btn_ErrorLog.UseVisualStyleBackColor = false;
             this.btn_ErrorLog.Click += new System.EventHandler(this.btn_ErrorLog_Click);
             // 
+            // btn_RoyaltyRateDiscount
+            // 
+            this.btn_RoyaltyRateDiscount.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_RoyaltyRateDiscount.Enabled = false;
+            this.btn_RoyaltyRateDiscount.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_RoyaltyRateDiscount.Font = new System.Drawing.Font("MS Reference Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RoyaltyRateDiscount.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_RoyaltyRateDiscount.Location = new System.Drawing.Point(46, 599);
+            this.btn_RoyaltyRateDiscount.Name = "btn_RoyaltyRateDiscount";
+            this.btn_RoyaltyRateDiscount.Size = new System.Drawing.Size(168, 42);
+            this.btn_RoyaltyRateDiscount.TabIndex = 23;
+            this.btn_RoyaltyRateDiscount.Text = "Add RoyaltyRateDetails";
+            this.btn_RoyaltyRateDiscount.UseVisualStyleBackColor = false;
+            this.btn_RoyaltyRateDiscount.Visible = false;
+            this.btn_RoyaltyRateDiscount.Click += new System.EventHandler(this.btn_RoyaltyRateDiscount_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.btn_RoyaltyRateDiscount);
             this.Controls.Add(this.btn_ErrorLog);
             this.Controls.Add(this.lbl_ErrorLogDetails);
             this.Controls.Add(this.lbl_CompanySelected);
@@ -300,6 +318,7 @@
         private System.Windows.Forms.Label lbl_CompanySelected;
         private System.Windows.Forms.Label lbl_ErrorLogDetails;
         private System.Windows.Forms.Button btn_ErrorLog;
+        private System.Windows.Forms.Button btn_RoyaltyRateDiscount;
     }
 }
 

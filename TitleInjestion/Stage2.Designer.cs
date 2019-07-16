@@ -47,6 +47,7 @@
             this.btn_GenerateContribs = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.lbl_Num_Contributor = new System.Windows.Forms.Label();
             this.btn_SaveContributors = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -59,7 +60,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_DeleteID = new System.Windows.Forms.Button();
-            this.lbl_Num_Contributor = new System.Windows.Forms.Label();
+            this.btn_FilterTitles = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -74,7 +75,7 @@
             this.TitleIngestion.AutoSize = true;
             this.TitleIngestion.Font = new System.Drawing.Font("Bernard MT Condensed", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleIngestion.ForeColor = System.Drawing.Color.Red;
-            this.TitleIngestion.Location = new System.Drawing.Point(387, 42);
+            this.TitleIngestion.Location = new System.Drawing.Point(335, 39);
             this.TitleIngestion.Name = "TitleIngestion";
             this.TitleIngestion.Size = new System.Drawing.Size(401, 81);
             this.TitleIngestion.TabIndex = 10;
@@ -278,6 +279,15 @@
             this.panel6.Size = new System.Drawing.Size(815, 50);
             this.panel6.TabIndex = 15;
             // 
+            // lbl_Num_Contributor
+            // 
+            this.lbl_Num_Contributor.AutoSize = true;
+            this.lbl_Num_Contributor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_Num_Contributor.Location = new System.Drawing.Point(186, 9);
+            this.lbl_Num_Contributor.Name = "lbl_Num_Contributor";
+            this.lbl_Num_Contributor.Size = new System.Drawing.Size(0, 17);
+            this.lbl_Num_Contributor.TabIndex = 3;
+            // 
             // btn_SaveContributors
             // 
             this.btn_SaveContributors.BackColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -437,14 +447,22 @@
             this.btn_DeleteID.UseVisualStyleBackColor = false;
             this.btn_DeleteID.Click += new System.EventHandler(this.btn_DeleteID_Click);
             // 
-            // lbl_Num_Contributor
+            // btn_FilterTitles
             // 
-            this.lbl_Num_Contributor.AutoSize = true;
-            this.lbl_Num_Contributor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbl_Num_Contributor.Location = new System.Drawing.Point(186, 9);
-            this.lbl_Num_Contributor.Name = "lbl_Num_Contributor";
-            this.lbl_Num_Contributor.Size = new System.Drawing.Size(0, 17);
-            this.lbl_Num_Contributor.TabIndex = 3;
+            this.btn_FilterTitles.BackColor = System.Drawing.Color.SteelBlue;
+            this.btn_FilterTitles.Cursor = System.Windows.Forms.Cursors.AppStarting;
+            this.btn_FilterTitles.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_FilterTitles.FlatAppearance.BorderSize = 2;
+            this.btn_FilterTitles.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_FilterTitles.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
+            this.btn_FilterTitles.ForeColor = System.Drawing.Color.White;
+            this.btn_FilterTitles.Location = new System.Drawing.Point(435, 143);
+            this.btn_FilterTitles.Name = "btn_FilterTitles";
+            this.btn_FilterTitles.Size = new System.Drawing.Size(80, 40);
+            this.btn_FilterTitles.TabIndex = 38;
+            this.btn_FilterTitles.Text = "FilterTitles";
+            this.btn_FilterTitles.UseVisualStyleBackColor = false;
+            this.btn_FilterTitles.Click += new System.EventHandler(this.btn_FilterTitles_Click);
             // 
             // Stage2
             // 
@@ -453,6 +471,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1044, 661);
+            this.Controls.Add(this.btn_FilterTitles);
             this.Controls.Add(this.btn_DeleteID);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -526,5 +545,6 @@
         private System.Windows.Forms.Button btn_DeleteID;
         private System.Windows.Forms.Button btn_FTPOffRamp;
         private System.Windows.Forms.Label lbl_Num_Contributor;
+        private System.Windows.Forms.Button btn_FilterTitles;
     }
 }

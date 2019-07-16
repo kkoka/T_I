@@ -42,6 +42,9 @@ namespace TitleInjestion
             {
                 btn_FTPOffRamp.Enabled = true;
                 btn_FTPOffRamp.Visible = true;
+
+                btn_FilterTitles.Enabled = false;
+                btn_FilterTitles.Visible = false;
             }
         }
 
@@ -256,8 +259,12 @@ namespace TitleInjestion
 
         }
 
+        private void btn_FilterTitles_Click(object sender, EventArgs e)
+        {
+            ShowTitlesInReports Showtitles = new ShowTitlesInReports(str_Company);
+            Showtitles.ShowDialog();
 
-     
+        }
     }
 }
 

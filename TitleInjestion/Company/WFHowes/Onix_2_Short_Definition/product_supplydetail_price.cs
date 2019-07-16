@@ -71,6 +71,9 @@ namespace TitleInjestion.Company.WFHowes.Onix_2_Short_Definition
         [XmlElement("j266", IsNullable = true)]
         public string j266_product_supplydetail_price { get; set; }
 
+        [XmlElement("j267", IsNullable = true)]
+        public string j267_product_supplydetail_price { get; set; }
+
         [XmlElement("j303", IsNullable = true)]
         public string j303_product_supplydetail_price { get; set; }
 

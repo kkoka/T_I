@@ -41,13 +41,18 @@ namespace TitleInjestion.Company.WFHowes
             xmlText = xmlText.Replace("<b044  textformat=\"02\">", "<b044 textformat=\"02\"><![CDATA[").Replace("<b044 textformat=\"02\">", "<b044 textformat=\"02\"><![CDATA[").Replace("<b044 textformat=\"02\"><![CDATA[<![CDATA[", "<b044 textformat=\"02\"><![CDATA[");
             xmlText = xmlText.Replace("<d104 language=\"eng\">", "<d104  language=\"eng\"><![CDATA[").Replace("<d104 language=\"eng\"><![CDATA[<![CDATA[", "<d104 language=\"eng\"><![CDATA[");
             xmlText = xmlText.Replace("<d104 textformat=\"05\">", "<d104 textformat=\"05\"><![CDATA[").Replace("<d104 textformat=\"05\"><![CDATA[<![CDATA[", "<d104 textformat=\"05\"><![CDATA[").Replace("</d104>", "]]></d104>").Replace("]]>]]></d104>", "]]></d104>");
-            xmlText = xmlText.Replace("<d104  textformat=\"02\">", "<d104 textformat=\"02\"><![CDATA[").Replace("<d104 textformat=\"02\">", "<d104 textformat=\"02\"><![CDATA[").Replace("<d104 textformat=\"02\"><![CDATA[<![CDATA[", "<d104 textformat=\"02\"><![CDATA[");
+            
+            xmlText = xmlText.Replace(" < d104  textformat=\"02\">", "<d104 textformat=\"02\"><![CDATA[").Replace("<d104 textformat=\"02\">", "<d104 textformat=\"02\"><![CDATA[").Replace("<d104 textformat=\"02\"><![CDATA[<![CDATA[", "<d104 textformat=\"02\"><![CDATA[");
             xmlText = xmlText.Replace("<d104 textformat=\"02\" refname=\"Text\" >", "<d104 textformat=\"02\" refname=\"Text\" ><![CDATA[").Replace("<d104 textformat=\"02\">", "<d104 textformat=\"02\"><![CDATA[").Replace("<d104 textformat=\"02\"><![CDATA[<![CDATA[", "<d104 textformat=\"02\"><![CDATA[");
             xmlText = xmlText.Replace("<d104  textformat=\"04\">", "<d104 textformat=\"04\"><![CDATA[").Replace("<d104 textformat=\"04\">", "<d104 textformat=\"04\"><![CDATA[").Replace("<d104 textformat=\"02\" refname=\"Text\" ><![CDATA[<![CDATA[", "<d104 textformat=\"02\" refname=\"Text\" ><![CDATA[");
             xmlText = xmlText.Replace("<b070>", "<b070><![CDATA[").Replace("<b070><![CDATA[<![CDATA[", "<b070><![CDATA[").Replace("</b070>", "]]></b070>").Replace("]]>]]></b070>", "]]></b070>");
             xmlText = xmlText.Replace("]]>\n]]>", "\n]]>").Replace("]]>\r\n]]>", "\r\n]]>");
             xmlText = xmlText.Replace("<d104>", "<d104><![CDATA[").Replace("<d104><![CDATA[<![CDATA[", "<d104><![CDATA[");
 
+            xmlText = xmlText.Replace("<d104 textcase=\"02\">", "<d104 textcase=\"02\"><![CDATA[").Replace("<d104 textcase=\"02\"><![CDATA[<![CDATA[", "<d104 textcase=\"02\"><![CDATA[");
+            xmlText = xmlText.Replace("<d104 textcase=\"05\">", "<d104 textcase=\"05\"><![CDATA[").Replace("<d104 textcase=\"05\"><![CDATA[<![CDATA[", "<d104 textcase=\"05\"><![CDATA[");
+            xmlText = xmlText.Replace("<d104 textcase=\"05\">", "<d104 textcase=\"05\"><![CDATA[").Replace("<d104 textcase=\"05\"><![CDATA[<![CDATA[", "<d104 textcase=\"05\"><![CDATA[");
+            xmlText = xmlText.Replace("<d104 textcase=\"06\">", "<d104 textcase=\"06\"><![CDATA[").Replace("<d104 textcase=\"06\"><![CDATA[<![CDATA[", "<d104 textcase=\"06\"><![CDATA[");
             return xmlText;
         }
 
@@ -73,7 +78,7 @@ namespace TitleInjestion.Company.WFHowes
                     string xmltext = "";
 
 
-                    using (StreamWriter sw1 = new StreamWriter(cleanedupFilePath + file.Name))
+                    using (StreamWriter sw1 = new StreamWriter(cleanedupFilePath + "\\"+ file.Name))
                     {
 
                         using (StreamReader sr = new StreamReader(file.FullName))
@@ -153,7 +158,7 @@ namespace TitleInjestion.Company.WFHowes
 
             }
 
-            return cleanedupFilePath + file.Name;
+            return cleanedupFilePath + "\\" + file.Name;
         }
 
         public string CleanUP_OnixElements(FileInfo file, string Company) //, string fullfilepath_Sortfile)

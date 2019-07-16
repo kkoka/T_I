@@ -368,6 +368,17 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                 #endregion
 
+
+                DataTable dt_ProductSalesRestriction = new DataTable("ProductSalesRestriction");
+                #region 'Columns Declaration'
+
+                dt_ProductSalesRestriction.Columns.Add("MetaDataID", typeof(int));
+                dt_ProductSalesRestriction.Columns.Add("ProductID", typeof(int));
+                dt_ProductSalesRestriction.Columns.Add("RowCnt", typeof(int));
+                dt_ProductSalesRestriction.Columns.Add("ProductSalesRestriction_b381", typeof(string));
+
+                #endregion
+                
                 //DataTable dt_PageCount = new DataTable("PageCount");
                 //#region 'Columns Declaration'
 
@@ -640,6 +651,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
                         Step = "SalesRights_NotForSale";
                         dt_SalesRights_NotForSale = SalesRights_NotForSale(fileinfo_1.obj_product_List[i], dt_SalesRights_NotForSale, MetaDataID, (i + 1));
 
+                        Step = "ProductSalesRestriction";
+                        dt_ProductSalesRestriction = ProductSalesRestriction(fileinfo_1.obj_product_List[i], dt_ProductSalesRestriction, MetaDataID, (i + 1));
+
+                        
                         #endregion
 
                         //#region 'Page Count'
@@ -698,7 +713,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                     #region 'Insert the Data into the SQL Table'
 
-                    int count = 23;
+                    int count = 24;
 
                     result = InsertRecords(dt_ISBN, "RB");
                     Insertion_Label(lbl_Insert, count);
@@ -891,7 +906,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                     if (result)
                     {
-                        result = InsertRecords(dt_SalesRights_NotForSale, "RB");
+                        result = InsertRecords(dt_ProductSalesRestriction, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
@@ -905,7 +920,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                     //if (result)
                     //{
-                    //    result = InsertRecords(dt_SalesRestriction, "RB");
+                    //    result = InsertRecords(dt_ProductSalesRestriction, "RB");
                     //    Insertion_Label(lbl_Insert, count);
                     //}
                     //count--;
@@ -2288,6 +2303,44 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
 
         }
+
+        
+        public DataTable ProductSalesRestriction(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_ProductSalesRestriction, int MetaDataID, int productCount)
+        {
+
+            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+
+            #region 'ProductSalesRestriction'
+
+            for (int a = 0; a < product.obj_product_salesrestriction_List.Count; a++)
+            {
+                for (int b = 0; b < product.obj_product_salesrestriction_List[a].obj_b381_product_salesrestriction_list.Count; b++)
+                {
+
+                    if (!string.IsNullOrEmpty(product.obj_product_salesrestriction_List[a].obj_b381_product_salesrestriction_list[b]))
+                    {
+                        DataRow dr = dt_ProductSalesRestriction.NewRow();
+
+                        dr["MetaDataID"] = MetaDataID;
+                        dr["ProductID"] = productCount;
+                        dr["RowCnt"] = (b + 1);
+                        dr["ProductSalesRestriction_b381"] = product.obj_product_salesrestriction_List[a].obj_b381_product_salesrestriction_list[b].ToString();
+
+                        dt_ProductSalesRestriction.Rows.Add(dr);
+                    }
+                }
+
+            }
+            #endregion
+
+            return dt_ProductSalesRestriction;
+
+
+        }
+
+
         //public DataTable PageCount(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_SalesRights, int MetaDataID, int productCount)
         //{
 

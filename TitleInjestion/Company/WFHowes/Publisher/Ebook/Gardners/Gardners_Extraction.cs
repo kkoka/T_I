@@ -13,13 +13,14 @@ using TitleInjestion.Company.WFHowes.Onix_2_Short_Definition;
 using TitleInjestion.CommonFunctions;
 
 
-namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
+
+namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 {
-    class SimonSchuster_AU_Extraction
+    class Gardners_Extraction
     {
         public List<string> d101_productID = new List<string>();
 
-        public bool SimonSchusterAU_Extraction(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.ONIXmessage fileinfo_1, int pubid, string FileName, string MediaType,
+        public bool Gardners_UK_Extraction(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.ONIXmessage fileinfo_1, int pubid, string FileName, string MediaType,
             System.Windows.Forms.Label lbl_Extraction,
             System.Windows.Forms.Label lbl_Insert,
             System.Windows.Forms.Label lbl_Message)
@@ -391,6 +392,20 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
 
                 #endregion
 
+
+                
+                DataTable dt_DiscountPercent_j267 = new DataTable("DiscountPercent_j267");
+                #region 'Columns Declaration'
+
+                dt_DiscountPercent_j267.Columns.Add("MetaDataID", typeof(int));
+                dt_DiscountPercent_j267.Columns.Add("ProductID", typeof(int));
+                dt_DiscountPercent_j267.Columns.Add("RowCnt", typeof(int));
+                dt_DiscountPercent_j267.Columns.Add("DiscountPercent_j267", typeof(string));
+
+                #endregion
+
+
+
                 #endregion
 
                 int MetaDataID = InsertMetaData_Info(pubid, FileName, MediaType, "WFH");
@@ -584,6 +599,16 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
                         #endregion
 
 
+                        #region 'DiscountPercent_j267'
+
+                        Step = "DiscountPercent_j267";
+                        dt_DiscountPercent_j267 = DiscountPercent_j267(fileinfo_1.obj_product_List[i], dt_DiscountPercent_j267, MetaDataID, (i + 1));
+
+                        #endregion
+                     
+
+
+
                         #endregion
                     }
 
@@ -600,7 +625,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
 
                     #region 'Insert the Data into the SQL Table'
 
-                    int count = 25;
+                    int count = 26;
 
                     result = InsertRecords(dt_ISBN, "WFH");
                     Insertion_Label(lbl_Insert, count);
@@ -812,6 +837,18 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
 
                     if (result)
                     {
+                        result = InsertRecords(dt_DiscountPercent_j267, "WFH");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+
+
+
+
+
+
+
+                    if (result)
+                    {
 
                         lbl_Insert.BackColor = System.Drawing.Color.Green;
                         lbl_Insert.Refresh();
@@ -877,7 +914,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
 
             return ID;
         }
-        public bool Process_SimonSchuster_AU(string Company, System.Windows.Forms.Label lbl_Processing)
+        public bool Process_Gardners(string Company, System.Windows.Forms.Label lbl_Processing)
         {
             bool result = false;
 
@@ -889,7 +926,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
 
 
             SQLFunction sqlfunction = new SQLFunction();
-            result = sqlfunction.ExecuteProc("WFH", ConfigurationSettings.AppSettings["WFH_Process_SimonSchuster_Ebook_AU"].ToString());
+            result = sqlfunction.ExecuteProc("WFH", ConfigurationSettings.AppSettings["WFH_Process_Gardners_Ebook_UK"].ToString());
 
             if (result)
             {
@@ -1152,7 +1189,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
                 {
 
 
-                    #region 'GBP - Commented out'
+                    #region 'GBP'
 
                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "gbp")
                     {
@@ -1161,37 +1198,37 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
                         //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
                         //    {
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
-                        {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
-                            {
-
-                                for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
                                 {
-                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "gb")
+                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "02")
                                     {
 
-                                        DataRow dr = dt_Price.NewRow();
+                                        //for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
+                                        //{
+                                        //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "gb")
+                                        //    {
 
-                                        dr["MetaDataID"] = MetaDataID;
-                                        dr["ProductID"] = productCount;
-                                        dr["RowCnt"] = (b + 1);
-                                        dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                                        dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
-                                        dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
-                                        dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+                                                DataRow dr = dt_Price.NewRow();
 
-                                        dt_Price.Rows.Add(dr);
+                                                dr["MetaDataID"] = MetaDataID;
+                                                dr["ProductID"] = productCount;
+                                                dr["RowCnt"] = (b + 1);
+                                                dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                                                dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                                                dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                                                dr["j261"] = ""; // product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+
+                                                dt_Price.Rows.Add(dr);
+                                        //    }
+                                        //}
                                     }
                                 }
-                            }
-                        }
                         //    }
                         //}
                     }
 
                     #endregion
 
-                    #region 'EUR - Commented Out'
+                    #region 'EUR - commented out'
 
                     //if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "eur")
                     //{
@@ -1201,7 +1238,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
                     //        {
                     //            if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                     //            {
-                    //                if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "02")
+                    //                if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
                     //                {
 
                     //                    for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
@@ -1215,7 +1252,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
                     //                            dr["ProductID"] = productCount;
                     //                            dr["RowCnt"] = (b + 1);
                     //                            dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                    //                            dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j155_product_supplydetail_price;
+                    //                            dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
                     //                            dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
                     //                            dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
 
@@ -1231,43 +1268,43 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
 
                     #endregion
 
-                    #region 'AUD'
+                    #region 'AUD - commented out'
 
-                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "aud")
-                    {
-                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                        {
-                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
-                            {
+                    //if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "aud")
+                    //{
+                    //    if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                    //    {
+                    //        if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                    //        {
 
-                                if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
-                                {
-                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
-                                    {
+                    //            if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
+                    //            {
+                    //                if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
+                    //                {
 
-                                        for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
-                                        {
-                                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "au")
-                                            {
+                    //                    for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
+                    //                    {
+                    //                        if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "au")
+                    //                        {
 
-                                                DataRow dr = dt_Price.NewRow();
+                    //                            DataRow dr = dt_Price.NewRow();
 
-                                                dr["MetaDataID"] = MetaDataID;
-                                                dr["ProductID"] = productCount;
-                                                dr["RowCnt"] = (b + 1);
-                                                dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                                                dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
-                                                dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
-                                                dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+                    //                            dr["MetaDataID"] = MetaDataID;
+                    //                            dr["ProductID"] = productCount;
+                    //                            dr["RowCnt"] = (b + 1);
+                    //                            dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                    //                            dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                    //                            dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                    //                            dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
 
-                                                dt_Price.Rows.Add(dr);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    //                            dt_Price.Rows.Add(dr);
+                    //                        }
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //}
 
                     #endregion
 
@@ -2101,6 +2138,37 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
 
         }
 
+        public DataTable DiscountPercent_j267(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_DiscountPercent_j267, int MetaDataID, int productCount)
+        {
+
+            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+
+            #region 'DiscountPercent_j267'
+
+            for (int a = 0; a < product.obj_product_supplydetail_List.Count; a++)
+            {
+                for (int b = 0; b < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List.Count; b++)
+                {                     
+                        DataRow dr = dt_DiscountPercent_j267.NewRow();
+
+                        dr["MetaDataID"] = MetaDataID;
+                        dr["ProductID"] = productCount;
+                        dr["RowCnt"] = (a + 1);
+                        dr["DiscountPercent_j267"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j267_product_supplydetail_price;
+
+                        dt_DiscountPercent_j267.Rows.Add(dr);                       
+                }
+            }
+
+            #endregion
+
+            return dt_DiscountPercent_j267;
+
+
+        }
+ 
 
         #endregion
 

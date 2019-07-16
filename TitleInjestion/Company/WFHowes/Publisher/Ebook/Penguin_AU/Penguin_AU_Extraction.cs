@@ -13,13 +13,14 @@ using TitleInjestion.Company.WFHowes.Onix_2_Short_Definition;
 using TitleInjestion.CommonFunctions;
 
 
-namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
+
+namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Penguin_AU
 {
-    class SimonSchuster_AU_Extraction
+    class Penguin_AU_Extraction
     {
         public List<string> d101_productID = new List<string>();
 
-        public bool SimonSchusterAU_Extraction(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.ONIXmessage fileinfo_1, int pubid, string FileName, string MediaType,
+        public bool PenguinAU_Extraction(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.ONIXmessage fileinfo_1, int pubid, string FileName, string MediaType,
             System.Windows.Forms.Label lbl_Extraction,
             System.Windows.Forms.Label lbl_Insert,
             System.Windows.Forms.Label lbl_Message)
@@ -877,7 +878,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
 
             return ID;
         }
-        public bool Process_SimonSchuster_AU(string Company, System.Windows.Forms.Label lbl_Processing)
+        public bool Process_Penguin_AU(string Company, System.Windows.Forms.Label lbl_Processing)
         {
             bool result = false;
 
@@ -889,7 +890,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
 
 
             SQLFunction sqlfunction = new SQLFunction();
-            result = sqlfunction.ExecuteProc("WFH", ConfigurationSettings.AppSettings["WFH_Process_SimonSchuster_Ebook_AU"].ToString());
+            result = sqlfunction.ExecuteProc("WFH", ConfigurationSettings.AppSettings["WFH_Process_Penguin_Ebook_AU"].ToString());
 
             if (result)
             {
@@ -1152,14 +1153,14 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
                 {
 
 
-                    #region 'GBP - Commented out'
+                    #region 'GBP'
 
                     if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "gbp")
                     {
-                        //if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                        //{
-                        //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
-                        //    {
+                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                        {
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                            {
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                         {
                             if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
@@ -1185,49 +1186,49 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
                                 }
                             }
                         }
-                        //    }
-                        //}
+                            }
+                        }
                     }
 
                     #endregion
 
-                    #region 'EUR - Commented Out'
+                    #region 'EUR'
 
-                    //if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "eur")
-                    //{
-                    //    if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                    //    {
-                    //        if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
-                    //        {
-                    //            if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
-                    //            {
-                    //                if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "02")
-                    //                {
+                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "eur")
+                    {
+                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                        {
+                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                            {
+                                if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
+                                {
+                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
+                                    {
 
-                    //                    for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
-                    //                    {
-                    //                        if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "ie")
-                    //                        {
+                                        for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
+                                        {
+                                            if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "ie")
+                                            {
 
-                    //                            DataRow dr = dt_Price.NewRow();
+                                                DataRow dr = dt_Price.NewRow();
 
-                    //                            dr["MetaDataID"] = MetaDataID;
-                    //                            dr["ProductID"] = productCount;
-                    //                            dr["RowCnt"] = (b + 1);
-                    //                            dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                    //                            dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j155_product_supplydetail_price;
-                    //                            dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
-                    //                            dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+                                                dr["MetaDataID"] = MetaDataID;
+                                                dr["ProductID"] = productCount;
+                                                dr["RowCnt"] = (b + 1);
+                                                dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                                                dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                                                dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                                                dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
 
-                    //                            dt_Price.Rows.Add(dr);
-                    //                        }
-                    //                    }
-                    //                }
-                    //            }
+                                                dt_Price.Rows.Add(dr);
+                                            }
+                                        }
+                                    }
+                                }
 
-                    //        }
-                    //    }
-                    //}
+                            }
+                        }
+                    }
 
                     #endregion
 
@@ -1252,15 +1253,15 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.SimonSchuster_AU
 
                                                 DataRow dr = dt_Price.NewRow();
 
-                                                dr["MetaDataID"] = MetaDataID;
-                                                dr["ProductID"] = productCount;
-                                                dr["RowCnt"] = (b + 1);
-                                                dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                                                dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
-                                                dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
-                                                dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+                                        dr["MetaDataID"] = MetaDataID;
+                                        dr["ProductID"] = productCount;
+                                        dr["RowCnt"] = (b + 1);
+                                        dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                                        dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                                        dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                                        dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
 
-                                                dt_Price.Rows.Add(dr);
+                                        dt_Price.Rows.Add(dr);
                                             }
                                         }
                                     }

@@ -30,6 +30,9 @@ namespace TitleInjestion.Company.RecordedBooks
             xmlText = xmlText.Replace("<!DOCTYPE ONIXMessage SYSTEM \"http://www.editeur.org/onix/2.1/reference/onix-international.dtd\">", "");
 
 
+
+            xmlText = xmlText.Replace("<ONIXmessage release=\"3.0\" xmlns=\"http://ns.editeur.org/onix/3.0/short\">", "<ONIXmessage release=\"3.0\">");
+        
             xmlText = xmlText.Replace("<RecordReference>", "<a001>").Replace("<NotificationType>", "<a002>").Replace("<Text>", "<Text><![CDATA[").Replace("<Text textformat=\"02\">", "<Text textformat=\"02\"><![CDATA[").Replace("</Text>", "]]></Text>");
             xmlText = xmlText.Replace("</RecordReference>", "</a001>").Replace("</NotificationType>", "</a002>");
             xmlText = xmlText.Replace("<Text textformat=\"04\">", "<Text textformat=\"04\"><![CDATA[");
@@ -450,6 +453,8 @@ namespace TitleInjestion.Company.RecordedBooks
 
             buffer.Replace("<!DOCTYPE ONIXmessage SYSTEM \"http://www.editeur.org/onix/2.1/short/onix-international.dtd\">", "");
             buffer.Replace("<!DOCTYPE ONIXMessage SYSTEM \"http://www.editeur.org/onix/2.1/reference/onix-international.dtd\">", "");
+
+            buffer.Replace("<ONIXmessage release=\"3.0\" xmlns=\"http://ns.editeur.org/onix/3.0/short\">", "<ONIXmessage release=\"3.0\">");
 
             return buffer.ToString();
         }

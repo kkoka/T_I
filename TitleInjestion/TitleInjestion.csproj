@@ -67,6 +67,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddRoyaltyDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddRoyaltyDetails.Designer.cs">
+      <DependentUpon>AddRoyaltyDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommonFunctions\CommonFuncCalls.cs" />
     <Compile Include="CommonFunctions\ImpersonateUser.cs" />
     <Compile Include="CommonFunctions\SQLBackup.cs" />
@@ -267,6 +273,7 @@
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Macmillan\Macmillan_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\MYBooks\MYBooks_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Oasis\Oasis_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EAudio\Orca\Orca_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Pottermore\Pottermore_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\RandomHouse\RandomHouse_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EAudio\Scholastic\Scholastic_Extraction.cs" />
@@ -279,6 +286,7 @@
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Baker\Baker_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Barbour\Barbour_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\BloomsburyUSA\Bloomsbury_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\ChildsWorld\ChildsWorld_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\ChronicleBooks\ChronicleBooks_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\DKPublishing\DKPublishing_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\ECWPress\ECW Press_Extraction.cs" />
@@ -308,6 +316,7 @@
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Sourcebooks\Sourcebooks_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\ThomasNelson\ThomasNelson_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Tyndale\Tyndale_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\Tyndale\Tyndale_shorttag_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Wiley\Wiley_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Workman\Workman_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\Zondervan\Zondervan_Extraction.cs" />
@@ -411,35 +420,68 @@
     <Compile Include="Company\WFHowes\Onix_3_Reference_Definiton\Header.cs" />
     <Compile Include="Company\WFHowes\Onix_3_Reference_Definiton\ONIXMessage.cs" />
     <Compile Include="Company\WFHowes\Onix_CleanUP.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Andrews_UK\Andrews_UK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Blackstone_RB\BlackstoneRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Dreamscape_RB\DreamscapeRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Gildan_WFH\GildanWFH_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\HarperCollins_UK\HarperUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\HarperCollinsUS_RB\HarperCollinsUS_RB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Highbridge_WFH\HighbridgeWFH_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\LATheatreWorks_RB\LATheatreWorksRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Lerner_RB\LernerRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\ListenLive_RB\ListenLiveRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Michael_OMara\Michael_OMara_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\MyBooks_RB\MyBooksRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Oasis_RB\OasisRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Penguin_AU\PenguinAU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Penguin_UK\PenguinUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Pottermore_UK\PottermoreUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\RandomHouse_AU\RandomHouseAU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\RandomHouse_UK\RandomHouseUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\RecordedBooks_UK\RecordedBooksUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Sodalite_UK\Sodalite_UK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Tantor_WFH\TantorWFH_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\AccentPress\AccentPressUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Allen_Unwin\Allen_Unwin_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Alnpete_Limited\AlnpeteLimited_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Andrews_UK\Andrews_UK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\BlackBooks_UK\BlackBooks_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Bloomsbury_UK\Bloomsbury_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Canongate\CanongateUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\CreativeContent\CreativeContentUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\FaberAndFaber\FaberAndFaber_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Faber_Factory\FaberFactory_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Gardners\Gardners_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Gingko\Gingko_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\HarperCollins_AU\HarperAU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\HarperCollins_AU\HarperAU_ShortTag_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Haus\Haus_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Infinite_Ideas\InfiniteIdeas_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\LionHudson\LionHudson_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\LonelyPlanet\LonelyPlanet_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Macleod_Trotter\Macleod_Trotter_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Macmillan_AU\MacmillanAU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Macmillan_UK\MacmillanUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Michael_OMara\Michael_OMara_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\MyBooks\MyBooksUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Penguin_AU\Penguin_AU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Penguin_UK\PenguinUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\PneumaSprings\PneumaSprings_UK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Pottermore\PottermoreUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Pottermore\PottermoreUK_ShortTag_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\RandomHouse_AU\RandomHouse_AU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\RandomHouse_UK\RandomHouseUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Rebellion\RebellionUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\RoughGuides\RoughGuides_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\ScribePublications\ScribePublicationsUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\SevernHouse\SevernHouseUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\SimonSchuster_AU\SimonSchuster_AU_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\SimonSchuster_UK\SimonSchuster_UK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Sodalite_UK\Sodalite_UK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Telos\Telos_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\Troubador\Troubador_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Vearsa\Vearsa_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\WalkerBooks\WalkerBooks_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\YLolfa\YLolfa_Extraction.cs" />
     <Compile Include="Company\WFHowes\ReadOnix.cs" />
     <Compile Include="DeleteIds.cs">
@@ -483,6 +525,12 @@
       <DependentUpon>ProgressNotification.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShowTitlesInReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowTitlesInReports.Designer.cs">
+      <DependentUpon>ShowTitlesInReports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stage2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -495,6 +543,9 @@
     <Compile Include="Stage1.Designer.cs">
       <DependentUpon>Stage1.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddRoyaltyDetails.resx">
+      <DependentUpon>AddRoyaltyDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeleteIds.resx">
       <DependentUpon>DeleteIds.cs</DependentUpon>
     </EmbeddedResource>
@@ -520,6 +571,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ShowTitlesInReports.resx">
+      <DependentUpon>ShowTitlesInReports.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stage2.resx">
       <DependentUpon>Stage2.cs</DependentUpon>
     </EmbeddedResource>

@@ -1268,13 +1268,15 @@ namespace TitleInjestion.CommonFunctions
 
         public DataTable ReadExcel(string Company, string filePath, string TableName = "" )
         {
-            ImpersonateUser iU = new ImpersonateUser();
-
-            if (Company =="WFH")
+               ImpersonateUser iU = new ImpersonateUser();
+            if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
             {
-            iU.Undo();
+             
+                if (Company == "WFH")
+                {
+                    iU.Undo();
+                }
             }
-
             //    string strConn = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1;TypeGuessRows=0;ImportMixedTypes=Text\"", filePath);
             DataTable table = new DataTable();
             DataTable dtSchema = new DataTable();
@@ -1290,7 +1292,7 @@ namespace TitleInjestion.CommonFunctions
 
                 if (filePath.ToLower().EndsWith("xls"))
                 {
-                    strConn = "Provider=Microsoft.Jet.Oledb.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34 + "';";
+                    strConn = "Provider=Microsoft.Jet.Oledb.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34 + "';";
                 }
                 else if (filePath.ToLower().EndsWith("xlsx"))
                 {
@@ -1402,9 +1404,12 @@ namespace TitleInjestion.CommonFunctions
             }
             finally
             {
-                if (Company == "WFH")
+                if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
                 {
-                    iU.Impersonate();
+                    if (Company == "WFH")
+                    {
+                        iU.Impersonate();
+                    }
                 }
             }
 
@@ -1952,7 +1957,7 @@ namespace TitleInjestion.CommonFunctions
             return result;
 
         }
-        public bool UploadFile_MetaData(string Company, string FilePathName)
+        public bool UploadFile_WFHMetaData(string Company, string FilePathName)
         {
             bool result = true;
         
@@ -1979,7 +1984,7 @@ namespace TitleInjestion.CommonFunctions
 
 #region 'read excel file'
 
-                    dtExcelData.Columns.AddRange(new DataColumn[59] {
+                    dtExcelData.Columns.AddRange(new DataColumn[60] {
                         new DataColumn("File Type", typeof(string)),
                         new DataColumn("Errors", typeof(string)),
                         new DataColumn("Agent Parent PublisherName", typeof(string)),
@@ -2032,13 +2037,15 @@ namespace TitleInjestion.CommonFunctions
                         new DataColumn("Status", typeof(string)),
                         new DataColumn("SAP_Status", typeof(string)),
                         new DataColumn("PageCount", typeof(string)),
+                        new DataColumn("DiscountPercent", typeof(string)) ,
                         new DataColumn("Delta/New", typeof(string)),
                         new DataColumn("PubID", typeof(string)),
                         new DataColumn("AddToDoNotLoad", typeof(string)),
                         new DataColumn("ReasonCode", typeof(string)),
                         new DataColumn("TobeDeleted", typeof(string)),
                         new DataColumn("ID", typeof(int)),
-                        new DataColumn("filename", typeof(string)) });
+                        new DataColumn("filename", typeof(string))
+                       });
                    
 #endregion
 
@@ -2116,6 +2123,7 @@ namespace TitleInjestion.CommonFunctions
                             sqlBulkCopy.ColumnMappings.Add("Status", "Status");
                             sqlBulkCopy.ColumnMappings.Add("SAP_Status", "SAP_Status");
                             sqlBulkCopy.ColumnMappings.Add("PageCount", "PageCount");
+                            sqlBulkCopy.ColumnMappings.Add("DiscountPercent", "DiscountPercent");
                             sqlBulkCopy.ColumnMappings.Add("Delta/New", "Delta_New");
                             sqlBulkCopy.ColumnMappings.Add("PubID", "PubID");
                             sqlBulkCopy.ColumnMappings.Add("AddToDoNotLoad", "AddToDoNotLoad");
@@ -2123,6 +2131,7 @@ namespace TitleInjestion.CommonFunctions
                             sqlBulkCopy.ColumnMappings.Add("TobeDeleted", "Tobedeleted");
                             sqlBulkCopy.ColumnMappings.Add("ID", "id");
                             sqlBulkCopy.ColumnMappings.Add("filename", "filename");
+                        
 
 
                             con.Open();
@@ -2372,10 +2381,792 @@ namespace TitleInjestion.CommonFunctions
         }
 
         //Read XSL Data
-   
 
-      
 
+        public bool Display_Count_OfTitlesInReports(string Company, System.Windows.Forms.Label lbl_CountOfTitles, System.Windows.Forms.Label lbl_Message)
+        {
+
+
+
+
+            bool result = true;
+            string query = "select count(*) From Processed_Titles with(nolock) where isdonotload = '0' and isApproved = 0 and isValidated1 = 1 and Showinreports=1 ";
+
+
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                  try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandText = query;
+
+                    int count =  (int) cmd.ExecuteScalar();
+
+                    lbl_CountOfTitles.Text = Convert.ToString(count);
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at Display_PublisherName:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                   
+                    dbConnection.Close();
+                }
+
+            }
+            return result;
+
+
+
+        }
+        public bool Display_PublisherName(string Company, System.Windows.Forms.ListBox lstbx_publisher, System.Windows.Forms.Label lbl_Message)
+        {
+
+             
+
+
+            bool result = true;
+            string query = "select distinct parent_publishername as Publisher From Processed_Titles with(nolock) where isdonotload = '0' and isApproved = 0 and isValidated1 = 1";
+
+
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                SqlDataReader sdr = null;
+                try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandText = query;
+
+                    sdr = cmd.ExecuteReader();
+
+                    while (sdr.Read())
+                    {
+                        lstbx_publisher.Items.Add(sdr[0]);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at Display_PublisherName:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    sdr = null;
+                    dbConnection.Close();
+                }
+
+            }
+            return result;
+
+
+
+        }
+       
+        public bool Display_Delta_New(string Company, System.Windows.Forms.ListBox lstbx_delta_New, System.Windows.Forms.Label lbl_Message)
+        {
+
+
+            bool result = true;
+            string query = "select distinct case when TitleID is null then 'New' else 'Delta' end as NewDelta From Processed_Titles with(nolock) where isdonotload = '0' and isApproved = 0 and isValidated1 = 1";
+
+
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                SqlDataReader sdr = null;
+                try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandText = query;
+
+                    sdr = cmd.ExecuteReader();
+
+                    while (sdr.Read())
+                    {
+                      lstbx_delta_New.Items.Add(sdr[0]);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at Display_Delta_New:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    sdr = null;
+                    dbConnection.Close();
+                }
+
+            }
+            return result;
+
+
+
+
+
+        }
+
+        public bool Display_FileType(string Company, System.Windows.Forms.ListBox lstbx_filetype, System.Windows.Forms.Label lbl_Message)
+        {
+
+
+
+            bool result = true;
+            string query = "select distinct filetype  From Processed_Titles with(nolock) where isdonotload = '0' and isApproved = 0 and isValidated1 = 1";
+
+
+           
+
+
+
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                SqlDataReader sdr = null;
+                try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandText = query;
+
+                    sdr = cmd.ExecuteReader();
+                     
+                    while (sdr.Read())
+                    {
+                        lstbx_filetype.Items.Add(sdr[0]);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at Display_FileType:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    sdr = null;
+                    dbConnection.Close();
+                }
+
+            }
+            return result;
+
+
+
+        }
+
+        public bool Display_SelectedTitleCount (string Company, string str_PublisherName, string str_Delta_New, string str_FileType,  System.Windows.Forms.Label lbl_Message)
+        {
+            bool result = true;
+
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                try
+                {
+
+                    string str_publishername = "";
+                    string str_deltanew = "";
+                    string str_filetype = "";
+
+                    string[] PublisherName = str_PublisherName.Split(';');
+                    string[] Delta_New = str_Delta_New.Split(';');
+                    string[] FileType = str_FileType.Split(';');
+
+
+                    if(str_PublisherName.Length>0)
+                    {
+                        for (int i = 0; i < PublisherName.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                str_publishername = " parent_publishername = '" + PublisherName[i].ToString() + "' ";
+                            }
+                            else
+                            {
+                                str_publishername += " or parent_publishername = '" + PublisherName[i].ToString() + "'";
+                            }
+                        }
+                    }
+
+
+                    if (str_Delta_New.Length > 0)
+                    {
+                        for (int i = 0; i < Delta_New.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                if (Delta_New[i].ToString().ToLower() == "new")
+                                {
+                                    str_deltanew = " titleid is null";
+                                }
+                                else
+                                {
+                                    str_deltanew = " titleid is not null";
+                                }
+
+                            }
+                            else
+                            {
+
+                                if (Delta_New[i].ToString().ToLower() == "new")
+                                {
+                                    str_deltanew = "or titleid is null";
+                                }
+                                else
+                                {
+                                    str_deltanew = " or titleid is not null";
+                                }
+
+                            }
+                        }
+                    }
+
+                    if (str_FileType.Length > 0)
+                    {
+                        for (int i = 0; i < FileType.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                str_filetype = " FileType = '" + FileType[i].ToString().ToLower() + "' ";
+                            }
+                            else
+                            {
+                                str_filetype += " or FileType = '" + FileType[i].ToString().ToLower() + "'";
+                            }
+                        }
+                    }
+
+
+                    string query = "";
+                    if (str_publishername.Length > 0)
+                    {
+                        query = " and ( " + str_publishername + " ) ";
+                    }
+
+                    if (str_deltanew.Length > 0)
+                    {
+                        if (query.Length > 0)
+                        {
+                            query += " and ( " + str_deltanew + " ) ";
+
+                        }
+                        else
+                        {
+                            query = " and ( " + str_deltanew + " ) ";
+
+                        }
+                    }
+
+                    if (str_filetype.Length > 0)
+                    {
+                        if (query.Length > 0)
+                        {
+                            query += " and ( " + str_filetype + " ) ";
+                        }
+                        else
+                        {
+                            query = " and ( " + str_filetype + " ) ";
+                        }
+                    }
+
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select count(*) From Processed_Titles with(nolock) where isdonotload = '0' and isApproved = 0 and isValidated1 = 1  " + query ;
+
+                    Int32 count = (Int32)cmd.ExecuteScalar();
+               
+                    MessageBox.Show(count + " Titles Selected.");
+
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+
+              
+                    System.Windows.Forms.Application.DoEvents();
+
+                    lbl_Message.Text = "Unfortunately we encountered an error, please try again later.";
+                    lbl_Message.Refresh();
+                    System.Windows.Forms.Application.DoEvents();
+
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at Display_SelectedTitleCount:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    dbConnection.Close();
+                }
+
+            }
+
+            return result;
+
+        }
+
+        public bool FlagTitlesToShow(string Company, string str_PublisherName, string str_Delta_New, string str_FileType, System.Windows.Forms.Label lbl_NoOfRows, System.Windows.Forms.Label lbl_Message)
+        {
+            bool result = true;
+
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                try
+                {
+
+                    string str_publishername = "";
+                    string str_deltanew = "";
+                    string str_filetype = "";
+
+                    string[] PublisherName = str_PublisherName.Split(';');
+                    string[] Delta_New = str_Delta_New.Split(';');
+                    string[] FileType = str_FileType.Split(';');
+
+
+                    if (str_PublisherName.Length > 0)
+                    {
+                        for (int i = 0; i < PublisherName.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                str_publishername = " parent_publishername = '" + PublisherName[i].ToString() + "' ";
+                            }
+                            else
+                            {
+                                str_publishername += " or parent_publishername = '" + PublisherName[i].ToString() + "'";
+                            }
+                        }
+                    }
+
+
+                    if (str_Delta_New.Length > 0)
+                    {
+                        for (int i = 0; i < Delta_New.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                if (Delta_New[i].ToString().ToLower() == "new")
+                                {
+                                    str_deltanew = " titleid is null";
+                                }
+                                else
+                                {
+                                    str_deltanew = " titleid is not null";
+                                }
+
+                            }
+                            else
+                            {
+
+                                if (Delta_New[i].ToString().ToLower() == "new")
+                                {
+                                    str_deltanew = "or titleid is null";
+                                }
+                                else
+                                {
+                                    str_deltanew = " or titleid is not null";
+                                }
+
+                            }
+                        }
+                    }
+
+                    if (str_FileType.Length > 0)
+                    {
+                        for (int i = 0; i < FileType.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                str_filetype = " FileType = '" + FileType[i].ToString().ToLower() + "' ";
+                            }
+                            else
+                            {
+                                str_filetype += " or FileType = '" + FileType[i].ToString().ToLower() + "'";
+                            }
+                        }
+                    }
+
+
+                    string query = "";
+                    if (str_publishername.Length > 0)
+                    {
+                        query = " and ( " + str_publishername + " ) ";
+                    }
+
+                    if (str_deltanew.Length > 0)
+                    {
+                        if (query.Length > 0)
+                        {
+                            query += " and ( " + str_deltanew + " ) ";
+
+                        }
+                        else
+                        {
+                            query = " and ( " + str_deltanew + " ) ";
+
+                        }
+                    }
+
+                    if (str_filetype.Length > 0)
+                    {
+                        if (query.Length > 0)
+                        {
+                            query += " and ( " + str_filetype + " ) ";
+                        }
+                        else
+                        {
+                            query = " and ( " + str_filetype + " ) ";
+                        }
+                    }
+
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "update Processed_Titles set Showinreports = 1 where isdonotload = '0' and isApproved = 0 and isValidated1 = 1  " + query;
+
+                    int count = cmd.ExecuteNonQuery();
+                   
+
+                    Display_Count_OfTitlesInReports(Company, lbl_NoOfRows, lbl_Message);
+
+                    MessageBox.Show(count + " Titles Selected into Reports.");
+
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+
+
+                    System.Windows.Forms.Application.DoEvents();
+
+                    lbl_Message.Text = "Unfortunately we encountered an error, please try again later.";
+                    lbl_Message.Refresh();
+                    System.Windows.Forms.Application.DoEvents();
+
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at FlagTitlesToShow:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    dbConnection.Close();
+                }
+
+            }
+
+            return result;
+
+        }
+
+        public bool FlagTitlesToHide(string Company, string str_PublisherName, string str_Delta_New, string str_FileType, System.Windows.Forms.Label lbl_NoOfRows, System.Windows.Forms.Label lbl_Message)
+        {
+            bool result = true;
+
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                try
+                {
+
+                    string str_publishername = "";
+                    string str_deltanew = "";
+                    string str_filetype = "";
+
+                    string[] PublisherName = str_PublisherName.Split(';');
+                    string[] Delta_New = str_Delta_New.Split(';');
+                    string[] FileType = str_FileType.Split(';');
+
+
+                    if (str_PublisherName.Length > 0)
+                    {
+                        for (int i = 0; i < PublisherName.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                str_publishername = " parent_publishername = '" + PublisherName[i].ToString() + "' ";
+                            }
+                            else
+                            {
+                                str_publishername += " or parent_publishername = '" + PublisherName[i].ToString() + "'";
+                            }
+                        }
+                    }
+
+
+                    if (str_Delta_New.Length > 0)
+                    {
+                        for (int i = 0; i < Delta_New.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                if (Delta_New[i].ToString().ToLower() == "new")
+                                {
+                                    str_deltanew = " titleid is null";
+                                }
+                                else
+                                {
+                                    str_deltanew = " titleid is not null";
+                                }
+
+                            }
+                            else
+                            {
+
+                                if (Delta_New[i].ToString().ToLower() == "new")
+                                {
+                                    str_deltanew = "or titleid is null";
+                                }
+                                else
+                                {
+                                    str_deltanew = " or titleid is not null";
+                                }
+
+                            }
+                        }
+                    }
+
+                    if (str_FileType.Length > 0)
+                    {
+                        for (int i = 0; i < FileType.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                str_filetype = " FileType = '" + FileType[i].ToString().ToLower() + "' ";
+                            }
+                            else
+                            {
+                                str_filetype += " or FileType = '" + FileType[i].ToString().ToLower() + "'";
+                            }
+                        }
+                    }
+
+
+                    string query = "";
+                    if (str_publishername.Length > 0)
+                    {
+                        query = " and ( " + str_publishername + " ) ";
+                    }
+
+                    if (str_deltanew.Length > 0)
+                    {
+                        if (query.Length > 0)
+                        {
+                            query += " and ( " + str_deltanew + " ) ";
+
+                        }
+                        else
+                        {
+                            query = " and ( " + str_deltanew + " ) ";
+
+                        }
+                    }
+
+                    if (str_filetype.Length > 0)
+                    {
+                        if (query.Length > 0)
+                        {
+                            query += " and ( " + str_filetype + " ) ";
+                        }
+                        else
+                        {
+                            query = " and ( " + str_filetype + " ) ";
+                        }
+                    }
+
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "update Processed_Titles set Showinreports = '0' where isdonotload = '0' and isApproved = 0 and isValidated1 = 1  " + query;
+
+                    int count = cmd.ExecuteNonQuery();
+
+
+                    Display_Count_OfTitlesInReports(Company, lbl_NoOfRows, lbl_Message);
+
+                    MessageBox.Show(count + " Titles hidden from Reports.");
+
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+
+
+                    System.Windows.Forms.Application.DoEvents();
+
+                    lbl_Message.Text = "Unfortunately we encountered an error, please try again later.";
+                    lbl_Message.Refresh();
+                    System.Windows.Forms.Application.DoEvents();
+
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at FlagTitlesToHide:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    dbConnection.Close();
+                }
+
+            }
+
+            return result;
+
+        }
+
+        public string GetImprintPublisherName(string Company, string AccountNo, System.Windows.Forms.Label lbl_imprintName, System.Windows.Forms.Label lbl_parentaccountn)
+        {
+            string imprintpublishername = "";
+            string parentpublisheraccountno = "";
+
+
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+
+                try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandType = CommandType.Text;
+
+                    if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
+                    {
+                        cmd.CommandText = "select Name, Parent_AccountNo From trilogy.dbo.publisher where id = " + AccountNo;
+                    }
+                    else
+                    {
+                        cmd.CommandText = "select Name, Parent_AccountNo From trilogy_replica.dbo.publisher where id = " + AccountNo;
+                    }
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        imprintpublishername = reader["Name"].ToString();
+                        parentpublisheraccountno = reader["Parent_AccountNo"].ToString();
+                    }
+
+                    reader.Close();
+
+                    lbl_imprintName.Text = imprintpublishername;
+                    lbl_parentaccountn.Text = parentpublisheraccountno;
+
+                }
+                catch (Exception ex)
+                {
+
+                    System.Windows.Forms.Application.DoEvents();
+
+
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at GetImprintPublisherName:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    dbConnection.Close();
+                }
+
+            }
+
+            return imprintpublishername;
+
+        }
+
+        public DataTable Get_Parent_Publisher(string Company, System.Windows.Forms.Label lbl_Message)
+        {
+            bool result = true;
+
+             
+
+            DataTable dt = new DataTable();
+
+            // Copy the DataTable to SQL Server
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandText = "select distinct ID, Publishername from dbo.publisher_master order by Publishername asc";
+                   SqlDataAdapter da = null;
+
+                    using (da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lbl_Message.Text = "There has been a problem with the request. Please the Error Logs.";
+                    lbl_Message.Refresh();
+                    System.Windows.Forms.Application.DoEvents();
+
+                    result = false;
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at Get_Parent_Publisher:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    dbConnection.Close();
+                }
+
+            }
+
+            return dt;
+        }
+
+        public bool AddRoyaltyRecord(string Company, string imprintaccountno, string imprintName, string parentaccountname, string AgentCode, string royaltypercent, string discountrate,string username)
+        {
+            bool result = false;
+
+            return result;
+
+        }
 
     }
 }

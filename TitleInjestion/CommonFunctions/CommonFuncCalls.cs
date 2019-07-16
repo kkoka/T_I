@@ -193,7 +193,7 @@ namespace TitleInjestion.CommonFunctions
                     for (int i = 0; i < files.Length; i++)
                     {
                         string filename = files[i].ToString();
-                        sqlfunc.UploadFile_MetaData(Company, filename);
+                        sqlfunc.UploadFile_WFHMetaData(Company, filename);
 
                         result = sqlfunc.ExecuteProc(Company, "UpdateApprovedTitles");
 
@@ -448,6 +448,7 @@ namespace TitleInjestion.CommonFunctions
 
         }
 
+       
 
 
     }

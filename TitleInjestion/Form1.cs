@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using TitleInjestion.Company.WFHowes.Onix_2_Short_Definition;
+using System.Configuration;
 
 using TitleInjestion.MetaData;
 using TitleInjestion.CommonFunctions;
@@ -51,7 +52,7 @@ namespace TitleInjestion
                 drpbx_IngestionSource.DataSource = cmnfunc.Populate_IngestionSource();
                 #endregion
 
-
+               
                 string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
 
                 ////////ImpersonateUser iU = new ImpersonateUser();
@@ -138,6 +139,9 @@ namespace TitleInjestion
                 ErrorLogCount("RB");
                 Check_TitleCount("RB");
 
+                btn_RoyaltyRateDiscount.Visible = true;
+                btn_RoyaltyRateDiscount.Enabled = true;
+
                 lbl_Message.Text = "";
                 #region 'Populate the MediaType'
                 result = sqlfunc.PopulateMediaType("RB", lstbx_MediaType);
@@ -150,13 +154,17 @@ namespace TitleInjestion
                 System.Windows.Forms.Application.DoEvents();
 
 
-
-                ImpersonateUser iU = new ImpersonateUser();
-                // TODO: Replace credentials
-                iU.Impersonate();
-
+                if(System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
+                {             
+                    ImpersonateUser iU = new ImpersonateUser();
+                    // TODO: Replace credentials
+                    iU.Impersonate();
+                }
                 ErrorLogCount("WFH");
                 Check_TitleCount("WFH");
+
+                btn_RoyaltyRateDiscount.Visible = false;
+                btn_RoyaltyRateDiscount.Enabled = false;
 
                 lbl_Message.Text = "";
                 #region 'Populate the MediaType'
@@ -262,7 +270,7 @@ namespace TitleInjestion
 
         private void btn_SearchForFiles_Click(object sender, EventArgs e)
         {
-            bool result = true;
+                bool result = true;
 
             string username = Environment.UserName;
 
@@ -535,6 +543,13 @@ namespace TitleInjestion
             else { }
            
 
+        }
+
+        private void btn_RoyaltyRateDiscount_Click(object sender, EventArgs e)
+        {
+
+            AddRoyaltyDetails royaltydetails = new AddRoyaltyDetails("RB");
+            royaltydetails.ShowDialog();
         }
 
         private void Load_Stage1(string Company , List<MetaDataFileAvailability> mfa)
@@ -847,13 +862,21 @@ namespace TitleInjestion
 
             if (Company == "WFH")
             {
-                if (!File.Exists(@"\\rbftp01\WFHowesPublishing\WFHSAP_TI\RestoreWFHSAP_TI.txt"))
+                if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
                 {
-                    Load_Stage1(Company, mfa);
+                    if (!File.Exists(@"\\rbftp01\WFHowesPublishing\WFHSAP_TI\RestoreWFHSAP_TI.txt"))
+                    {
+                        Load_Stage1(Company, mfa);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please wait while the WFHSAP_TI database is being Restored.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Please wait while the WFHSAP_TI database is being Restored.");
+                    Load_Stage1(Company, mfa);
+
                 }
             }
             else if (Company == "RB")
@@ -878,6 +901,7 @@ namespace TitleInjestion
                      
         }
 
-   }
+  
+    }
 }
 
