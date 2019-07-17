@@ -18,7 +18,7 @@ namespace TitleInjestion.CommonFunctions
         public string GetConnectionString(string Company)
         {
 
-            string connectionString = ConfigurationSettings.AppSettings[Company +"_connString"].ToString();
+            string connectionString = ConfigurationSettings.AppSettings[Company + "_connString"].ToString();
 
             return connectionString;
         }
@@ -37,7 +37,7 @@ namespace TitleInjestion.CommonFunctions
             //Read the connection string from Web.Config file
 
             int ID = 0;
-              
+
             try
             {
                 using (SqlConnection con = new SqlConnection(GetConnectionString(Company)))
@@ -63,7 +63,7 @@ namespace TitleInjestion.CommonFunctions
             }
             catch (Exception ex)
             {
-               Insert_ErrorLog(GetConnectionString(Company), ex.ToString());
+                Insert_ErrorLog(GetConnectionString(Company), ex.ToString());
             }
 
             return ID;
@@ -74,7 +74,7 @@ namespace TitleInjestion.CommonFunctions
         {
             bool result = true;
             try
-            { 
+            {
                 // Copy the DataTable to SQL Server
                 using (SqlConnection dbConnection = new SqlConnection(connectionstring))
                 {
@@ -95,7 +95,7 @@ namespace TitleInjestion.CommonFunctions
             catch (Exception ex)
             {
                 result = false;
-                Insert_ErrorLog(connectionstring, "Table : "+dt.TableName + ". " +ex.ToString());
+                Insert_ErrorLog(connectionstring, "Table : " + dt.TableName + ". " + ex.ToString());
             }
 
             finally
@@ -121,17 +121,17 @@ namespace TitleInjestion.CommonFunctions
 
                     //Specify that the SqlCommand is a stored procedure
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-           
+
                     //Open the connection and execute the query
                     con.Open();
                     cmd.ExecuteNonQuery();
 
-                 }
+                }
             }
             catch (Exception ex)
             {
                 result = false;
-                Insert_ErrorLog(GetConnectionString(Company), "Error at Execute Process : "+  ProcName + ". Exception : "+ ex.ToString());
+                Insert_ErrorLog(GetConnectionString(Company), "Error at Execute Process : " + ProcName + ". Exception : " + ex.ToString());
 
             }
 
@@ -161,7 +161,7 @@ namespace TitleInjestion.CommonFunctions
 
                     //Add the input parameters to the command object
                     cmd.Parameters.AddWithValue("@ID", Param1);
-                 
+
                     //Open the connection and execute the query
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -229,7 +229,7 @@ namespace TitleInjestion.CommonFunctions
             return result;
         }
 
-        public bool Execute_ValidationProc(string Company,string Param1)
+        public bool Execute_ValidationProc(string Company, string Param1)
         {
             bool result;
             //Read the connection string from Web.Config file
@@ -267,7 +267,7 @@ namespace TitleInjestion.CommonFunctions
                     result = true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result = false;
                 Insert_ErrorLog(GetConnectionString(Company), "Error at Execute_ValidationProc:" + ex.ToString());
@@ -306,7 +306,7 @@ namespace TitleInjestion.CommonFunctions
 
         //}
 
-       public void Insert_ErrorLog(string connectionString, string ErrorMessage)
+        public void Insert_ErrorLog(string connectionString, string ErrorMessage)
         {
             //Read the connection string from Web.Config file
 
@@ -337,8 +337,8 @@ namespace TitleInjestion.CommonFunctions
 
 
         }
-  
- 
+
+
         public bool GetErrorLogCount(string Company, System.Windows.Forms.Button btn_ErrorLog)
         {
             bool result = true;
@@ -360,14 +360,14 @@ namespace TitleInjestion.CommonFunctions
 
                     if (count > 0)
                     {
-                      //  btn_ErrorLog.Text = "Error Log : "  + Convert.ToString(count);
+                        //  btn_ErrorLog.Text = "Error Log : "  + Convert.ToString(count);
                         btn_ErrorLog.BackColor = System.Drawing.Color.DodgerBlue;
                         btn_ErrorLog.Enabled = true;
                         btn_ErrorLog.Refresh();
                         System.Windows.Forms.Application.DoEvents();
 
                     }
-                    if (count==0)
+                    if (count == 0)
                     {
                         btn_ErrorLog.Text = "Error Log";
                         btn_ErrorLog.Enabled = false;
@@ -380,8 +380,8 @@ namespace TitleInjestion.CommonFunctions
                 }
                 catch (Exception ex)
                 {
-                    result = false;                
-                   
+                    result = false;
+
                     Insert_ErrorLog(GetConnectionString(Company), "Error at GetErrorLogCount:" + ex.ToString());
                 }
                 finally
@@ -394,17 +394,17 @@ namespace TitleInjestion.CommonFunctions
             }
 
             return result;
-            
+
         }
         public bool Delete_ErrorLogs(string Company, string ID)
         {
             bool result = true;
             SqlCommand cmd = null;
             using (SqlConnection con = new SqlConnection(GetConnectionString(Company)))
-                {
+            {
                 try
-                    {
-               
+                {
+
                     //Create the SqlCommand object
                     cmd = new SqlCommand("Delete from ErrorLog where id in (" + ID + ")", con);
                     cmd.CommandTimeout = 0;
@@ -416,23 +416,23 @@ namespace TitleInjestion.CommonFunctions
                     //Open the connection and execute the query
                     con.Open();
                     cmd.ExecuteNonQuery();
-                 }
-            
+                }
+
                 catch (Exception ex)
                 {
-                   result = false;                
-                   Insert_ErrorLog(GetConnectionString(Company), "Error at Delete_ErrorLogs:" + ex.ToString());
+                    result = false;
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at Delete_ErrorLogs:" + ex.ToString());
                 }
                 finally
                 {
-                   cmd.Dispose();
-                   cmd = null;
-                   con.Close();
+                    cmd.Dispose();
+                    cmd = null;
+                    con.Close();
                 }
 
             }
             return result;
-          
+
         }
 
         public DataTable GetErrorLogDetails(string Company, System.Windows.Forms.Label lbl_Message, System.Windows.Forms.DataGridView GridView)
@@ -440,7 +440,7 @@ namespace TitleInjestion.CommonFunctions
             bool result = true;
 
             DataTable dt = new DataTable();
-           
+
             // Copy the DataTable to SQL Server
             using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
             {
@@ -448,7 +448,7 @@ namespace TitleInjestion.CommonFunctions
                 try
                 {
                     dbConnection.Open();
-               
+
                     cmd = dbConnection.CreateCommand();
                     cmd.CommandTimeout = 0;
 
@@ -480,7 +480,7 @@ namespace TitleInjestion.CommonFunctions
             }
 
             return dt;
-            
+
         }
 
 
@@ -489,116 +489,116 @@ namespace TitleInjestion.CommonFunctions
             bool result = true;
 
             string query_MediaType = "";
-            
-                    for (int i = 0; i < MediaType.Length; i++)
+
+            for (int i = 0; i < MediaType.Length; i++)
+            {
+                if (i == 0)
+                {
+                    query_MediaType = "MediaType in ( '" + MediaType[i].ToString() + "' ";
+                }
+                else
+                {
+                    query_MediaType += ", '" + MediaType[i].ToString() + "'";
+                }
+            }
+
+            if (query_MediaType.Length > 0)
+            {
+                query_MediaType += ")";
+            }
+
+
+
+            string query_PublisherName = "";
+
+            for (int i = 0; i < PublisherName.Length; i++)
+            {
+                string str_PublisherName = PublisherName[i].ToString();
+                int index = str_PublisherName.IndexOf(':');
+                str_PublisherName = str_PublisherName.Substring(index + 1).Trim();
+
+
+                if (i == 0)
+                {
+                    query_PublisherName = "publishername  in ( '" + str_PublisherName + "' ";
+                }
+                else
+                {
+                    query_PublisherName += ", '" + str_PublisherName + "'";
+                }
+            }
+
+
+
+            if (query_PublisherName.Length > 0)
+            {
+                query_PublisherName += ")";
+            }
+
+            //  select Id, *From metadata_publisher
+            //  where xml_encoding in ('UTF-8','iso-8859-1') 
+            //  and publisher_name in ('Oasis',	'RandomHouse',	'Naxos Audiobooks')
+
+
+
+            string query = "";
+
+            if (query_MediaType.Length > 0)
+            {
+                query = query + "where " + query_MediaType;
+            }
+
+            if (query_MediaType.Length == 0 && query_PublisherName.Length > 0)
+            {
+                query = query + "where " + query_PublisherName;
+            }
+
+            if (query_MediaType.Length > 0 && query_PublisherName.Length > 0)
+            {
+                query = query + " and " + query_PublisherName;
+            }
+
+
+            DataTable dt = new DataTable();
+
+            // Copy the DataTable to SQL Server
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandText = "select Id, PubID, PublisherName, MediaType, FileType, PublisherFilelocation, OnixVersion, XML_Encoding, TagType From metadata_publisher " + query + " order by PublisherName, MediaType";
+                    SqlDataAdapter da = null;
+
+                    using (da = new SqlDataAdapter(cmd))
                     {
-                        if (i == 0)
-                        {
-                            query_MediaType = "MediaType in ( '" + MediaType[i].ToString() + "' ";
-                        }
-                        else
-                        {
-                            query_MediaType += ", '" + MediaType[i].ToString() + "'";
-                        }
+                        da.Fill(dt);
                     }
+                }
+                catch (Exception ex)
+                {
+                    lbl_Message.Text = "There has been a problem with the request. Please the Error Logs.";
+                    lbl_Message.Refresh();
+                    System.Windows.Forms.Application.DoEvents();
 
-                    if(query_MediaType.Length  > 0)
-                    {
-                        query_MediaType += ")"; 
-                    }
+                    result = false;
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at Get_MetaData_Publisher_Info:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    dbConnection.Close();
+                }
 
+            }
 
-
-                    string query_PublisherName = "";
-
-                    for (int i = 0; i < PublisherName.Length; i++)
-                    {
-                        string str_PublisherName = PublisherName[i].ToString();
-                        int index = str_PublisherName.IndexOf(':');
-                        str_PublisherName = str_PublisherName.Substring(index + 1).Trim();
-
-
-                        if (i == 0)
-                        {
-                            query_PublisherName = "publishername  in ( '" + str_PublisherName + "' ";
-                        }
-                        else
-                        {
-                            query_PublisherName += ", '" + str_PublisherName + "'";
-                        }
-                    }
-
-
-
-                    if (query_PublisherName.Length > 0)
-                    {
-                        query_PublisherName += ")";
-                    }
-
-                     //  select Id, *From metadata_publisher
-                     //  where xml_encoding in ('UTF-8','iso-8859-1') 
-	                 //  and publisher_name in ('Oasis',	'RandomHouse',	'Naxos Audiobooks')
-
-
-
-                    string query = "";
-
-                    if (query_MediaType.Length>0)
-                    {
-                        query = query + "where " + query_MediaType ;
-                    }
-
-                    if (query_MediaType.Length == 0 && query_PublisherName.Length > 0)
-                    {
-                        query = query + "where " + query_PublisherName;
-                    }
-
-                    if (query_MediaType.Length > 0 && query_PublisherName.Length > 0)
-                    {
-                        query = query + " and " + query_PublisherName;
-                    }
-
-
-                    DataTable dt = new DataTable();
-
-                    // Copy the DataTable to SQL Server
-                    using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
-                    {
-                        SqlCommand cmd = null;
-                        try
-                        {
-                            dbConnection.Open();
-              
-                            cmd = dbConnection.CreateCommand();
-                            cmd.CommandTimeout = 0;
-
-                            cmd.CommandText = "select Id, PubID, PublisherName, MediaType, FileType, PublisherFilelocation, OnixVersion, XML_Encoding, TagType From metadata_publisher " +  query + " order by PublisherName, MediaType";
-                            SqlDataAdapter da = null;
-
-                            using (da = new SqlDataAdapter(cmd))
-                            {
-                                da.Fill(dt);
-                            }
-                        }
-                        catch ( Exception ex)
-                        {
-                            lbl_Message.Text = "There has been a problem with the request. Please the Error Logs.";
-                            lbl_Message.Refresh();
-                            System.Windows.Forms.Application.DoEvents();
-
-                            result = false;
-                            Insert_ErrorLog(GetConnectionString(Company), "Error at Get_MetaData_Publisher_Info:" + ex.ToString());
-                        }
-                        finally
-                        {
-                            cmd.Dispose();
-                            cmd = null;
-                            dbConnection.Close();
-                        }
-
-                    }
-
-                    return dt;
+            return dt;
         }
 
         public bool PopulateMediaType(string Company, System.Windows.Forms.ListBox lstbox)
@@ -612,14 +612,14 @@ namespace TitleInjestion.CommonFunctions
                 try
                 {
                     dbConnection.Open();
-               
+
                     cmd = dbConnection.CreateCommand();
                     cmd.CommandTimeout = 0;
 
                     cmd.CommandText = "select distinct MediaType From metadata_publisher order by MediaType";
                     sdr = cmd.ExecuteReader();
 
-                    while(sdr.Read())
+                    while (sdr.Read())
                     {
                         lstbox.Items.Add(sdr[0]);
                     }
@@ -639,19 +639,19 @@ namespace TitleInjestion.CommonFunctions
 
             }
             return result;
- 
+
         }
-        
+
         public bool PopulatePublishers(string Company, string[] MediaType, System.Windows.Forms.ListBox lstbox)
         {
             bool result = true;
             string query = "";
 
-            for(int i = 0; i < MediaType.Length; i++ )
+            for (int i = 0; i < MediaType.Length; i++)
             {
-                if(i==0)
-                { 
-                query = " where MediaType = '" + MediaType[i].ToString() + "' ";
+                if (i == 0)
+                {
+                    query = " where MediaType = '" + MediaType[i].ToString() + "' ";
                 }
                 else
                 {
@@ -666,11 +666,11 @@ namespace TitleInjestion.CommonFunctions
                 try
                 {
                     dbConnection.Open();
-                
+
                     cmd = dbConnection.CreateCommand();
                     cmd.CommandTimeout = 0;
 
-                    cmd.CommandText = "select distinct MediaType + ': ' + PublisherName From metadata_publisher "+ query + " order by 1";
+                    cmd.CommandText = "select distinct MediaType + ': ' + PublisherName From metadata_publisher " + query + " order by 1";
                     sdr = cmd.ExecuteReader();
 
                     while (sdr.Read())
@@ -753,7 +753,7 @@ namespace TitleInjestion.CommonFunctions
 
             string query = "select count(*) From Processed_Titles";
 
-            if (Company =="RB")
+            if (Company == "RB")
             {
                 query += " where isdonotload = '0'";
             }
@@ -798,7 +798,7 @@ namespace TitleInjestion.CommonFunctions
 
             }
 
-            return result; 
+            return result;
 
         }
         public Int32 DisplayTitleCount_Val1(string Company)
@@ -816,15 +816,15 @@ namespace TitleInjestion.CommonFunctions
                     cmd.CommandTimeout = 0;
 
                     cmd.CommandType = CommandType.Text;
-                     cmd.CommandText = "select count(*) From Processed_Titles where IsValidated1 = 0 ";
+                    cmd.CommandText = "select count(*) From Processed_Titles where IsValidated1 = 0 ";
 
                     count = (Int32)cmd.ExecuteScalar();
 
-                   
+
 
                 }
                 catch (Exception ex)
-                {                
+                {
                     Insert_ErrorLog(GetConnectionString(Company), "Error at DisplayTitleCount:" + ex.ToString());
                 }
                 finally
@@ -953,15 +953,15 @@ namespace TitleInjestion.CommonFunctions
                     cmd.CommandText = "select count(*) From Processed_Titles where isApproved = 1 and isValidated1=1 ";
 
                     count = (Int32)cmd.ExecuteScalar();
-                   
+
 
                 }
                 catch (Exception ex)
                 {
-                   
+
                     System.Windows.Forms.Application.DoEvents();
 
-                  
+
                     Insert_ErrorLog(GetConnectionString(Company), "Error at DisplayApprovedTitleCount:" + ex.ToString());
                 }
                 finally
@@ -1023,7 +1023,7 @@ namespace TitleInjestion.CommonFunctions
 
             return result;
 
-        }        
+        }
         public bool DisplayContributorCount(string Company, System.Windows.Forms.Label label1, System.Windows.Forms.Label lbl_Message)
         {
 
@@ -1167,7 +1167,7 @@ namespace TitleInjestion.CommonFunctions
         {
 
 
-         
+
             //    string strConn = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1;TypeGuessRows=0;ImportMixedTypes=Text\"", filePath);
             DataTable table = new DataTable();
             DataTable dtSchema = new DataTable();
@@ -1214,16 +1214,16 @@ namespace TitleInjestion.CommonFunctions
                 //}
                 //else
                 //{
-                    SheetName = dtSchema.Rows[0]["TABLE_NAME"].ToString();
-                    for (int ii = 0; ii < dtSchema.Rows.Count; ii++)
+                SheetName = dtSchema.Rows[0]["TABLE_NAME"].ToString();
+                for (int ii = 0; ii < dtSchema.Rows.Count; ii++)
+                {
+                    string sheeetname = dtSchema.Rows[ii]["TABLE_NAME"].ToString();
+                    if (sheeetname != "_xlnm#_FilterDatabase")
                     {
-                        string sheeetname = dtSchema.Rows[ii]["TABLE_NAME"].ToString();
-                        if (sheeetname != "_xlnm#_FilterDatabase")
-                        {
-                            SheetName = sheeetname;
-                            break;
-                        }
+                        SheetName = sheeetname;
+                        break;
                     }
+                }
                 //}
 
                 #region 'Load Excel Data in Result Dataset'
@@ -1257,7 +1257,7 @@ namespace TitleInjestion.CommonFunctions
 
 
                 //}
-               
+
                 #endregion
 
                 dbConnection.Close();
@@ -1266,12 +1266,12 @@ namespace TitleInjestion.CommonFunctions
             return table;
         }
 
-        public DataTable ReadExcel(string Company, string filePath, string TableName = "" )
+        public DataTable ReadExcel(string Company, string filePath, string TableName = "")
         {
-               ImpersonateUser iU = new ImpersonateUser();
+            ImpersonateUser iU = new ImpersonateUser();
             if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
             {
-             
+
                 if (Company == "WFH")
                 {
                     iU.Undo();
@@ -1344,9 +1344,9 @@ namespace TitleInjestion.CommonFunctions
                     {
                         SheetName = TableName;
                     }
-                    
+
                     //}
-                   
+
                     #region 'Load Excel Data in Result Dataset'
 
                     #region 'comment'
@@ -1559,10 +1559,10 @@ namespace TitleInjestion.CommonFunctions
             {
                 //Upload and save the file
 
-               
-                 string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR=YES;IMEX=1'";
+
+                string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR=YES;IMEX=1'";
                 //                string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + FilePathName + ";Extended Properties=" + (char)34 + "Excel 12.0 XML;IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34;
-             //    string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text'";
+                //    string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text'";
 
                 //   string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=" + (char)34 + "Excel 12.0 XML;IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34;
                 //conString = string.Format(conString, FilePathName);
@@ -1640,7 +1640,7 @@ namespace TitleInjestion.CommonFunctions
                         new DataColumn("filename", typeof(string)),
                         new DataColumn("parent_publishername", typeof(string)),
                         new DataColumn("imprint_publisher_accountno", typeof(string)) });
-                                  
+
 
                     #endregion
 
@@ -1658,7 +1658,7 @@ namespace TitleInjestion.CommonFunctions
                     //    {
                     //        asdf += dtExcelData.Rows[i][j].ToString() + "<->";
                     //    }
-                        
+
                     //}
 
 
@@ -1677,57 +1677,57 @@ namespace TitleInjestion.CommonFunctions
                             //[OPTIONAL]: Map the Excel columns with that of the database table
 
 
-                                sqlBulkCopy.ColumnMappings.Add("File Type", "FileType");
-                              //  sqlBulkCopy.ColumnMappings.Add("Errors", "ErrorMessage");
-                                sqlBulkCopy.ColumnMappings.Add("Publisher Name", "PublisherName");
-                                sqlBulkCopy.ColumnMappings.Add("ISBN", "ISBN");
-                                sqlBulkCopy.ColumnMappings.Add("Title", "Title");
-                                sqlBulkCopy.ColumnMappings.Add("Original Title", "Original_Title");
-                                sqlBulkCopy.ColumnMappings.Add("Sub Title", "SubTitle");
-                                sqlBulkCopy.ColumnMappings.Add("Original SubTitle", "Original_SubTitle");
-                                sqlBulkCopy.ColumnMappings.Add("EditionNumber", "EditionNumber");
-                                sqlBulkCopy.ColumnMappings.Add("DigitalFormat", "DigitalFormat");
-                                sqlBulkCopy.ColumnMappings.Add("Authors", "Authors");
-                                sqlBulkCopy.ColumnMappings.Add("Narrators", "Narrators");
-                                sqlBulkCopy.ColumnMappings.Add("Illustrator", "Illustrator");
-                                sqlBulkCopy.ColumnMappings.Add("Editor", "Editor");
-                                sqlBulkCopy.ColumnMappings.Add("Reader", "Reader");
-                                sqlBulkCopy.ColumnMappings.Add("Corporate Authors", "CorporateAuthors");
-                                sqlBulkCopy.ColumnMappings.Add("Translator", "Translator");
-                                sqlBulkCopy.ColumnMappings.Add("Photographer", "Photographer");
-                                sqlBulkCopy.ColumnMappings.Add("Unabridged", "Unabridged");
-                                sqlBulkCopy.ColumnMappings.Add("Edition Type Code", "EditionTypeCode");
-                                sqlBulkCopy.ColumnMappings.Add("BISAC", "BISAC");
-                                sqlBulkCopy.ColumnMappings.Add("Min Age", "MinAge");
-                                sqlBulkCopy.ColumnMappings.Add("AgeGroup", "AgeGroup");
-                                sqlBulkCopy.ColumnMappings.Add("Publish Date", "PublishDate");
-                                sqlBulkCopy.ColumnMappings.Add("Release Date", "ReleaseDate");
-                                sqlBulkCopy.ColumnMappings.Add("Total Run Time", "TotalRunTime");
-                                sqlBulkCopy.ColumnMappings.Add("Language", "Language");
-                                sqlBulkCopy.ColumnMappings.Add("Fiction", "Fiction");
-                                sqlBulkCopy.ColumnMappings.Add("DRM Flag", "DRM_Flag");
-                                sqlBulkCopy.ColumnMappings.Add("Media Type", "MediaType");
-                                sqlBulkCopy.ColumnMappings.Add("Library Price", "LibraryPrice_USD");
-                                sqlBulkCopy.ColumnMappings.Add("Library Price CAD", "LibraryPrice_CAD");
-                                sqlBulkCopy.ColumnMappings.Add("Description", "Description");
-                                sqlBulkCopy.ColumnMappings.Add("Series Name", "SeriesName");
-                                sqlBulkCopy.ColumnMappings.Add("Original Series Name", "Original_SeriesName");
-                                sqlBulkCopy.ColumnMappings.Add("Series Position Number", "SeriesPositionNumber");
-                                sqlBulkCopy.ColumnMappings.Add("Status", "Status");
-                                sqlBulkCopy.ColumnMappings.Add("Trilogy Status", "Trilogy_Status");
-                                sqlBulkCopy.ColumnMappings.Add("PageCount", "PageCount");
-                                sqlBulkCopy.ColumnMappings.Add("RightsCountry", "RightsCountry");
-                         //   sqlBulkCopy.ColumnMappings.Add("Not_For_Sale_In_US", "");
-                                sqlBulkCopy.ColumnMappings.Add("Manual_Correction_For_RightsCountry", "Manual_Correction_For_RightsCountry");
-                                sqlBulkCopy.ColumnMappings.Add("Add To DoNot Load", "AddToDoNotLoad");
-                                sqlBulkCopy.ColumnMappings.Add("Reason Code", "ReasonCode");
-                                sqlBulkCopy.ColumnMappings.Add("ID", "ID");
-                                sqlBulkCopy.ColumnMappings.Add("PubID", "PubID");
-                         //   sqlBulkCopy.ColumnMappings.Add("Delta/ New", "");
-                                sqlBulkCopy.ColumnMappings.Add("filename", "FileName");
-                                sqlBulkCopy.ColumnMappings.Add("parent_publishername", "Parent_PublisherName");
-                                sqlBulkCopy.ColumnMappings.Add("imprint_publisher_accountno", "Imprint_Publisher_AccountNo");
-                            
+                            sqlBulkCopy.ColumnMappings.Add("File Type", "FileType");
+                            //  sqlBulkCopy.ColumnMappings.Add("Errors", "ErrorMessage");
+                            sqlBulkCopy.ColumnMappings.Add("Publisher Name", "PublisherName");
+                            sqlBulkCopy.ColumnMappings.Add("ISBN", "ISBN");
+                            sqlBulkCopy.ColumnMappings.Add("Title", "Title");
+                            sqlBulkCopy.ColumnMappings.Add("Original Title", "Original_Title");
+                            sqlBulkCopy.ColumnMappings.Add("Sub Title", "SubTitle");
+                            sqlBulkCopy.ColumnMappings.Add("Original SubTitle", "Original_SubTitle");
+                            sqlBulkCopy.ColumnMappings.Add("EditionNumber", "EditionNumber");
+                            sqlBulkCopy.ColumnMappings.Add("DigitalFormat", "DigitalFormat");
+                            sqlBulkCopy.ColumnMappings.Add("Authors", "Authors");
+                            sqlBulkCopy.ColumnMappings.Add("Narrators", "Narrators");
+                            sqlBulkCopy.ColumnMappings.Add("Illustrator", "Illustrator");
+                            sqlBulkCopy.ColumnMappings.Add("Editor", "Editor");
+                            sqlBulkCopy.ColumnMappings.Add("Reader", "Reader");
+                            sqlBulkCopy.ColumnMappings.Add("Corporate Authors", "CorporateAuthors");
+                            sqlBulkCopy.ColumnMappings.Add("Translator", "Translator");
+                            sqlBulkCopy.ColumnMappings.Add("Photographer", "Photographer");
+                            sqlBulkCopy.ColumnMappings.Add("Unabridged", "Unabridged");
+                            sqlBulkCopy.ColumnMappings.Add("Edition Type Code", "EditionTypeCode");
+                            sqlBulkCopy.ColumnMappings.Add("BISAC", "BISAC");
+                            sqlBulkCopy.ColumnMappings.Add("Min Age", "MinAge");
+                            sqlBulkCopy.ColumnMappings.Add("AgeGroup", "AgeGroup");
+                            sqlBulkCopy.ColumnMappings.Add("Publish Date", "PublishDate");
+                            sqlBulkCopy.ColumnMappings.Add("Release Date", "ReleaseDate");
+                            sqlBulkCopy.ColumnMappings.Add("Total Run Time", "TotalRunTime");
+                            sqlBulkCopy.ColumnMappings.Add("Language", "Language");
+                            sqlBulkCopy.ColumnMappings.Add("Fiction", "Fiction");
+                            sqlBulkCopy.ColumnMappings.Add("DRM Flag", "DRM_Flag");
+                            sqlBulkCopy.ColumnMappings.Add("Media Type", "MediaType");
+                            sqlBulkCopy.ColumnMappings.Add("Library Price", "LibraryPrice_USD");
+                            sqlBulkCopy.ColumnMappings.Add("Library Price CAD", "LibraryPrice_CAD");
+                            sqlBulkCopy.ColumnMappings.Add("Description", "Description");
+                            sqlBulkCopy.ColumnMappings.Add("Series Name", "SeriesName");
+                            sqlBulkCopy.ColumnMappings.Add("Original Series Name", "Original_SeriesName");
+                            sqlBulkCopy.ColumnMappings.Add("Series Position Number", "SeriesPositionNumber");
+                            sqlBulkCopy.ColumnMappings.Add("Status", "Status");
+                            sqlBulkCopy.ColumnMappings.Add("Trilogy Status", "Trilogy_Status");
+                            sqlBulkCopy.ColumnMappings.Add("PageCount", "PageCount");
+                            sqlBulkCopy.ColumnMappings.Add("RightsCountry", "RightsCountry");
+                            //   sqlBulkCopy.ColumnMappings.Add("Not_For_Sale_In_US", "");
+                            sqlBulkCopy.ColumnMappings.Add("Manual_Correction_For_RightsCountry", "Manual_Correction_For_RightsCountry");
+                            sqlBulkCopy.ColumnMappings.Add("Add To DoNot Load", "AddToDoNotLoad");
+                            sqlBulkCopy.ColumnMappings.Add("Reason Code", "ReasonCode");
+                            sqlBulkCopy.ColumnMappings.Add("ID", "ID");
+                            sqlBulkCopy.ColumnMappings.Add("PubID", "PubID");
+                            //   sqlBulkCopy.ColumnMappings.Add("Delta/ New", "");
+                            sqlBulkCopy.ColumnMappings.Add("filename", "FileName");
+                            sqlBulkCopy.ColumnMappings.Add("parent_publishername", "Parent_PublisherName");
+                            sqlBulkCopy.ColumnMappings.Add("imprint_publisher_accountno", "Imprint_Publisher_AccountNo");
+
 
                             con.Open();
 
@@ -1743,7 +1743,7 @@ namespace TitleInjestion.CommonFunctions
                 }
             }
             catch (Exception ex)
-             {
+            {
                 result = false;
                 Insert_ErrorLog(GetConnectionString(Company), "USERNAME:" + System.Environment.UserName.ToString() + ". -- Error at UploadFile Process : File: " + FilePathName + ". Exception : " + ex.ToString());
 
@@ -1764,12 +1764,12 @@ namespace TitleInjestion.CommonFunctions
         {
             bool result = true;
 
-#region ''
+            #region ''
             try
             {
                 //Upload and save the file
 
-              
+
                 // string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR=YES'";
                 string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + FilePathName + ";Extended Properties=" + (char)34 + "Excel 12.0 XML;IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text" + (char)34;
 
@@ -1786,7 +1786,7 @@ namespace TitleInjestion.CommonFunctions
                     string sheet1 = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null).Rows[0]["TABLE_NAME"].ToString();
                     DataTable dtExcelData = new DataTable();
 
-#region 'read excel file'
+                    #region 'read excel file'
 
 
 
@@ -1841,7 +1841,7 @@ namespace TitleInjestion.CommonFunctions
                         new DataColumn("Edition Type Code", typeof(string)),
                         new DataColumn("DigitalFormat", typeof(string)) });
 
-#endregion
+                    #endregion
 
 
                     using (OleDbDataAdapter oda = new OleDbDataAdapter("SELECT * FROM [" + sheet1 + "]", excel_con))
@@ -1853,7 +1853,7 @@ namespace TitleInjestion.CommonFunctions
                     iU.Impersonate();
                     username = System.Environment.UserName.ToString();
 
-#region 'SQLBULKCOPY'
+                    #region 'SQLBULKCOPY'
                     using (SqlConnection con = new SqlConnection(GetConnectionString(Company)))
                     {
                         using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
@@ -1935,7 +1935,7 @@ namespace TitleInjestion.CommonFunctions
                         }
                     }
 
-#endregion
+                    #endregion
 
                 }
             }
@@ -1952,7 +1952,7 @@ namespace TitleInjestion.CommonFunctions
 
             }
 
-#endregion
+            #endregion
 
             return result;
 
@@ -1960,13 +1960,13 @@ namespace TitleInjestion.CommonFunctions
         public bool UploadFile_WFHMetaData(string Company, string FilePathName)
         {
             bool result = true;
-        
-#region ''
+
+            #region ''
             try
             {
                 //Upload and save the file
 
-               
+
                 string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR=YES'";
 
                 conString = string.Format(conString, FilePathName);
@@ -1975,14 +1975,14 @@ namespace TitleInjestion.CommonFunctions
                 iU.Undo();
 
                 string username = System.Environment.UserName.ToString();
-            
+
                 using (OleDbConnection excel_con = new OleDbConnection(conString))
                 {
                     excel_con.Open();
                     string sheet1 = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null).Rows[0]["TABLE_NAME"].ToString();
                     DataTable dtExcelData = new DataTable();
 
-#region 'read excel file'
+                    #region 'read excel file'
 
                     dtExcelData.Columns.AddRange(new DataColumn[60] {
                         new DataColumn("File Type", typeof(string)),
@@ -2046,8 +2046,8 @@ namespace TitleInjestion.CommonFunctions
                         new DataColumn("ID", typeof(int)),
                         new DataColumn("filename", typeof(string))
                        });
-                   
-#endregion
+
+                    #endregion
 
 
                     using (OleDbDataAdapter oda = new OleDbDataAdapter("SELECT * FROM [" + sheet1 + "]", excel_con))
@@ -2058,8 +2058,8 @@ namespace TitleInjestion.CommonFunctions
 
                     iU.Impersonate();
                     username = System.Environment.UserName.ToString();
-                    
-#region 'SQLBULKCOPY'
+
+                    #region 'SQLBULKCOPY'
                     using (SqlConnection con = new SqlConnection(GetConnectionString(Company)))
                     {
                         using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
@@ -2131,7 +2131,7 @@ namespace TitleInjestion.CommonFunctions
                             sqlBulkCopy.ColumnMappings.Add("TobeDeleted", "Tobedeleted");
                             sqlBulkCopy.ColumnMappings.Add("ID", "id");
                             sqlBulkCopy.ColumnMappings.Add("filename", "filename");
-                        
+
 
 
                             con.Open();
@@ -2143,14 +2143,14 @@ namespace TitleInjestion.CommonFunctions
                         }
                     }
 
-#endregion
+                    #endregion
 
                 }
             }
             catch (Exception ex)
             {
                 result = false;
-                Insert_ErrorLog(GetConnectionString(Company), "USERNAME:" + System.Environment.UserName.ToString()+ ". -- Error at UploadFile Process : File: " + FilePathName + ". Exception : " + ex.ToString());
+                Insert_ErrorLog(GetConnectionString(Company), "USERNAME:" + System.Environment.UserName.ToString() + ". -- Error at UploadFile Process : File: " + FilePathName + ". Exception : " + ex.ToString());
 
                 MessageBox.Show("There has been some issue during Contributor Generation.");
             }
@@ -2160,7 +2160,7 @@ namespace TitleInjestion.CommonFunctions
 
             }
 
-#endregion
+            #endregion
 
             return result;
 
@@ -2174,7 +2174,7 @@ namespace TitleInjestion.CommonFunctions
             {
                 //Upload and save the file
 
-               
+
                 string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR=YES'";
 
                 conString = string.Format(conString, FilePathName);
@@ -2190,7 +2190,7 @@ namespace TitleInjestion.CommonFunctions
                     DataTable dtExcelData = new DataTable();
 
                     #region 'Read Excel file'
-                                      
+
 
 
                     //[OPTIONAL]: It is recommended as otherwise the data will be considered as String by default.
@@ -2231,8 +2231,8 @@ namespace TitleInjestion.CommonFunctions
 
                             #region 'SQLBULKCOPY'
 
-                         //   sqlBulkCopy.ColumnMappings.Add("Pub_code", "");
-                         //   sqlBulkCopy.ColumnMappings.Add("Isbn", "ISBN");
+                            //   sqlBulkCopy.ColumnMappings.Add("Pub_code", "");
+                            //   sqlBulkCopy.ColumnMappings.Add("Isbn", "ISBN");
                             sqlBulkCopy.ColumnMappings.Add("ForeName", "ForeName");
                             sqlBulkCopy.ColumnMappings.Add("SurName", "SurName");
                             sqlBulkCopy.ColumnMappings.Add("FNF", "FNF");
@@ -2241,8 +2241,8 @@ namespace TitleInjestion.CommonFunctions
                             sqlBulkCopy.ColumnMappings.Add("Lead", "lead");
                             sqlBulkCopy.ColumnMappings.Add("Rank", "Rank");
                             sqlBulkCopy.ColumnMappings.Add("ID", "ID");
-                      //    sqlBulkCopy.ColumnMappings.Add("status", "");
-                      //      sqlBulkCopy.ColumnMappings.Add("FileType", "");
+                            //    sqlBulkCopy.ColumnMappings.Add("status", "");
+                            //      sqlBulkCopy.ColumnMappings.Add("FileType", "");
 
                             #endregion
 
@@ -2276,13 +2276,13 @@ namespace TitleInjestion.CommonFunctions
         public bool UploadFile_Contribs(string Company, string FilePathName)
         {
             bool result = true;
-          
-#region ''
+
+            #region ''
             try
             {
                 //Upload and save the file
 
-              
+
                 string conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR=YES'";
 
                 conString = string.Format(conString, FilePathName);
@@ -2297,7 +2297,7 @@ namespace TitleInjestion.CommonFunctions
                     string sheet1 = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null).Rows[0]["TABLE_NAME"].ToString();
                     DataTable dtExcelData = new DataTable();
 
-#region 'Read Excel file'
+                    #region 'Read Excel file'
 
                     //[OPTIONAL]: It is recommended as otherwise the data will be considered as String by default.
                     dtExcelData.Columns.AddRange(new DataColumn[12] {
@@ -2314,7 +2314,7 @@ namespace TitleInjestion.CommonFunctions
                         new DataColumn("ToBeDeleted", typeof(string)),
                         new DataColumn("ID", typeof(string))  });
 
-#endregion
+                    #endregion
 
 
                     using (OleDbDataAdapter oda = new OleDbDataAdapter("SELECT * FROM [" + sheet1 + "]", excel_con))
@@ -2324,7 +2324,7 @@ namespace TitleInjestion.CommonFunctions
                     excel_con.Close();
 
                     iU.Impersonate();
-                  
+
                     using (SqlConnection con = new SqlConnection(GetConnectionString(Company)))
                     {
                         using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
@@ -2335,7 +2335,7 @@ namespace TitleInjestion.CommonFunctions
 
                             //[OPTIONAL]: Map the Excel columns with that of the database table
 
-#region 'SQLBULKCOPY'
+                            #region 'SQLBULKCOPY'
 
                             sqlBulkCopy.ColumnMappings.Add("FileName", "FileName");
                             sqlBulkCopy.ColumnMappings.Add("ErrorMessage", "ErrorMessage");
@@ -2350,9 +2350,9 @@ namespace TitleInjestion.CommonFunctions
                             sqlBulkCopy.ColumnMappings.Add("ToBeDeleted", "ToBeDeleted");
                             sqlBulkCopy.ColumnMappings.Add("ID", "ID");
 
-#endregion
-                            
-                                                    
+                            #endregion
+
+
                             con.Open();
 
 
@@ -2374,7 +2374,7 @@ namespace TitleInjestion.CommonFunctions
 
             }
 
-#endregion
+            #endregion
 
             return result;
 
@@ -2396,7 +2396,7 @@ namespace TitleInjestion.CommonFunctions
             using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
             {
                 SqlCommand cmd = null;
-                  try
+                try
                 {
                     dbConnection.Open();
 
@@ -2405,7 +2405,7 @@ namespace TitleInjestion.CommonFunctions
 
                     cmd.CommandText = query;
 
-                    int count =  (int) cmd.ExecuteScalar();
+                    int count = (int)cmd.ExecuteScalar();
 
                     lbl_CountOfTitles.Text = Convert.ToString(count);
                 }
@@ -2418,7 +2418,7 @@ namespace TitleInjestion.CommonFunctions
                 {
                     cmd.Dispose();
                     cmd = null;
-                   
+
                     dbConnection.Close();
                 }
 
@@ -2431,7 +2431,7 @@ namespace TitleInjestion.CommonFunctions
         public bool Display_PublisherName(string Company, System.Windows.Forms.ListBox lstbx_publisher, System.Windows.Forms.Label lbl_Message)
         {
 
-             
+
 
 
             bool result = true;
@@ -2477,7 +2477,7 @@ namespace TitleInjestion.CommonFunctions
 
 
         }
-       
+
         public bool Display_Delta_New(string Company, System.Windows.Forms.ListBox lstbx_delta_New, System.Windows.Forms.Label lbl_Message)
         {
 
@@ -2503,7 +2503,7 @@ namespace TitleInjestion.CommonFunctions
 
                     while (sdr.Read())
                     {
-                      lstbx_delta_New.Items.Add(sdr[0]);
+                        lstbx_delta_New.Items.Add(sdr[0]);
                     }
                 }
                 catch (Exception ex)
@@ -2537,7 +2537,7 @@ namespace TitleInjestion.CommonFunctions
             string query = "select distinct filetype  From Processed_Titles with(nolock) where isdonotload = '0' and isApproved = 0 and isValidated1 = 1";
 
 
-           
+
 
 
 
@@ -2555,7 +2555,7 @@ namespace TitleInjestion.CommonFunctions
                     cmd.CommandText = query;
 
                     sdr = cmd.ExecuteReader();
-                     
+
                     while (sdr.Read())
                     {
                         lstbx_filetype.Items.Add(sdr[0]);
@@ -2581,7 +2581,7 @@ namespace TitleInjestion.CommonFunctions
 
         }
 
-        public bool Display_SelectedTitleCount (string Company, string str_PublisherName, string str_Delta_New, string str_FileType,  System.Windows.Forms.Label lbl_Message)
+        public bool Display_SelectedTitleCount(string Company, string str_PublisherName, string str_Delta_New, string str_FileType, System.Windows.Forms.Label lbl_Message)
         {
             bool result = true;
 
@@ -2600,7 +2600,7 @@ namespace TitleInjestion.CommonFunctions
                     string[] FileType = str_FileType.Split(';');
 
 
-                    if(str_PublisherName.Length>0)
+                    if (str_PublisherName.Length > 0)
                     {
                         for (int i = 0; i < PublisherName.Length; i++)
                         {
@@ -2702,10 +2702,10 @@ namespace TitleInjestion.CommonFunctions
                     cmd.CommandTimeout = 0;
 
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select count(*) From Processed_Titles with(nolock) where isdonotload = '0' and isApproved = 0 and isValidated1 = 1  " + query ;
+                    cmd.CommandText = "select count(*) From Processed_Titles with(nolock) where isdonotload = '0' and isApproved = 0 and isValidated1 = 1  " + query;
 
                     Int32 count = (Int32)cmd.ExecuteScalar();
-               
+
                     MessageBox.Show(count + " Titles Selected.");
 
                 }
@@ -2713,7 +2713,7 @@ namespace TitleInjestion.CommonFunctions
                 {
                     result = false;
 
-              
+
                     System.Windows.Forms.Application.DoEvents();
 
                     lbl_Message.Text = "Unfortunately we encountered an error, please try again later.";
@@ -2859,7 +2859,7 @@ namespace TitleInjestion.CommonFunctions
                     cmd.CommandText = "update Processed_Titles set Showinreports = 1 where isdonotload = '0' and isApproved = 0 and isValidated1 = 1  " + query;
 
                     int count = cmd.ExecuteNonQuery();
-                   
+
 
                     Display_Count_OfTitlesInReports(Company, lbl_NoOfRows, lbl_Message);
 
@@ -3111,8 +3111,8 @@ namespace TitleInjestion.CommonFunctions
             return imprintpublishername;
 
         }
-         
-        public string GetParentPublisherName(string Company, string AgentCode, System.Windows.Forms.Label lbl_parentpubname )
+
+        public string GetParentPublisherName(string Company, string AgentCode, System.Windows.Forms.Label lbl_parentpubname)
         {
             string Parent_PublisherName = "";
 
@@ -3132,7 +3132,7 @@ namespace TitleInjestion.CommonFunctions
 
                     if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
                     {
-                        cmd.CommandText = "select distinct top 1 Parent_PublisherName From trilogy.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode +"'";
+                        cmd.CommandText = "select distinct top 1 Parent_PublisherName From trilogy.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "'";
                     }
                     else
                     {
@@ -3149,7 +3149,7 @@ namespace TitleInjestion.CommonFunctions
                     reader.Close();
 
                     lbl_parentpubname.Text = Parent_PublisherName;
-                   
+
 
                 }
                 catch (Exception ex)
@@ -3172,13 +3172,13 @@ namespace TitleInjestion.CommonFunctions
             return Parent_PublisherName;
 
         }
- 
+
 
         public DataTable Get_Parent_Publisher(string Company, System.Windows.Forms.Label lbl_Message)
         {
             bool result = true;
 
-             
+
 
             DataTable dt = new DataTable();
 
@@ -3194,7 +3194,7 @@ namespace TitleInjestion.CommonFunctions
                     cmd.CommandTimeout = 0;
 
                     cmd.CommandText = "select distinct ID, Publishername from dbo.publisher_master order by Publishername asc";
-                   SqlDataAdapter da = null;
+                    SqlDataAdapter da = null;
 
                     using (da = new SqlDataAdapter(cmd))
                     {
@@ -3222,11 +3222,101 @@ namespace TitleInjestion.CommonFunctions
             return dt;
         }
 
-        public bool AddRoyaltyRecord(string Company, string imprintaccountno, string imprintName, string parentaccountname, string AgentCode, string royaltypercent, string discountrate,string username, System.Windows.Forms.Label lbl_Message)
+        public bool AddRoyaltyRecord(string Company, string imprintaccountno, string imprintName, string parentaccountname, string AgentCode, string royaltypercent, string discountrate, string username, System.Windows.Forms.Label lbl_Message)
         {
             bool result = false;
             Int32 count = 0;
             #region 'check if record exists'
+
+            count = CheckIfRoyaltyDetailsRecordExists(Company, AgentCode, imprintName, parentaccountname);
+
+            if (count > 0)
+            {
+                lbl_Message.Text = "Record already exists, please check your entries.";
+            }
+            if (count < 0)
+            {
+                lbl_Message.Text = "Unfortunately we encountered an error, please try again later.";
+
+                Insert_ErrorLog(GetConnectionString(Company), "Error at AddRoyaltyRecord(check if record exists)");
+
+            }
+            #endregion
+
+
+            if (count == 0)
+            {
+                #region 'Add record'
+
+
+                result = AddRoyaltyRecord(Company, parentaccountname, imprintaccountno, imprintName, AgentCode, royaltypercent, username);
+
+                if (result)
+                {
+
+                    lbl_Message.Text = "Record ADDED Successfully.";
+
+                }
+                else
+                {
+                    lbl_Message.Text = "Unfortunately we encountered an error, please try again later.";
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at AddRoyaltyRecord(Add record):");
+                }
+
+
+            #endregion
+            }
+
+            return result;
+
+        }
+
+        public int CheckIfRoyaltyDetailsRecordExists(string Company, string AgentCode, string imprintName, string parentaccountname)
+        {
+            Int32 count = 0;
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandType = CommandType.Text;
+
+                    if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
+                    {
+                        cmd.CommandText = "select count(*) From trilogy.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "' and publisher_name = '" + imprintName + "' and Parent_PublisherName = '" + parentaccountname + "'";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "select count(*) From trilogy_replica.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "' and publisher_name = '" + imprintName + "' and Parent_PublisherName = '" + parentaccountname + "'";
+                    }
+                    count = (Int32)cmd.ExecuteScalar();
+
+
+                }
+                catch (Exception ex)
+                {
+                    count = -1;
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    dbConnection.Close();
+                }
+
+                return count;
+            }
+        }
+
+
+        public bool AddRoyaltyRecord(string Company, string parentaccountname, string imprintaccountno, string imprintName, string AgentCode, string royaltypercent, string username)
+        {
+            bool result = false;
 
             using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
             {
@@ -3242,31 +3332,59 @@ namespace TitleInjestion.CommonFunctions
 
                     if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
                     {
-                        cmd.CommandText = "select count(*) From trilogy.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "' and publisher_name = '"+ imprintName + "' and Parent_PublisherName = '"+ parentaccountname +"'";
+                        cmd.CommandText = "insert into trilogy.dbo.RoyaltyRateDiscount(Parent_PublisherName	,Imprint_Publisher_AccountNo	,publisher_name,	d_agent_code	,d_royalty_percent	,LogDateTime	,Added_by) " +
+                            "values( " +
+                               " @Parent_PublisherName," + // --Parent_PublisherName,
+                               " @Imprint_Publisher_AccountNo," + // --Imprint_Publisher_AccountNo,
+                               " @publisher_name," + // --publisher_name,
+                               " @d_agent_code," + // --d_agent_code,
+                               " @d_royalty_percent," + // --d_royalty_percent,
+
+                              " @Timestmp," +
+                              " @UserName )";
                     }
                     else
                     {
-                        cmd.CommandText = "select count(*) From trilogy_replica.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "' and publisher_name = '" + imprintName + "' and Parent_PublisherName = '" + parentaccountname + "'";
+                        cmd.CommandText = "insert into trilogy_replica.dbo.RoyaltyRateDiscount(Parent_PublisherName	,Imprint_Publisher_AccountNo	,publisher_name,	d_agent_code	,d_royalty_percent	,LogDateTime	,Added_by) " +
+                            "values( " +
+                               " @Parent_PublisherName," + // --Parent_PublisherName,
+                               " @Imprint_Publisher_AccountNo," + // --Imprint_Publisher_AccountNo,
+                               " @publisher_name," + // --publisher_name,
+                               " @d_agent_code," + // --d_agent_code,
+                               " @d_royalty_percent," + // --d_royalty_percent,
+
+                              " @Timestmp," +
+                              " @UserName )";
                     }
-                    count = (Int32)cmd.ExecuteScalar();
-                    if (count > 0)
-                    {
-                        lbl_Message.Text = "Record already exists, please check your entries.";
-                    }
+
+
+                    cmd.Parameters.Add("@Parent_PublisherName", SqlDbType.VarChar, 100);
+                    cmd.Parameters.Add("@Imprint_Publisher_AccountNo", SqlDbType.VarChar, 50);
+                    cmd.Parameters.Add("@publisher_name", SqlDbType.VarChar, 100);
+                    cmd.Parameters.Add("@d_agent_code", SqlDbType.VarChar, 100);
+                    cmd.Parameters.Add("@d_royalty_percent", SqlDbType.VarChar, 100);
+                    cmd.Parameters.Add("@Timestmp", SqlDbType.DateTime);
+                    cmd.Parameters.Add("@UserName", SqlDbType.VarChar, 50);
+
+
+                    cmd.Parameters["@Parent_PublisherName"].Value = parentaccountname;
+                    cmd.Parameters["@Imprint_Publisher_AccountNo"].Value = imprintaccountno;
+                    cmd.Parameters["@publisher_name"].Value = imprintName;
+                    cmd.Parameters["@d_agent_code"].Value = AgentCode;
+                    cmd.Parameters["@d_royalty_percent"].Value = royaltypercent;
+                    cmd.Parameters["@Timestmp"].Value = System.DateTime.Now;
+                    cmd.Parameters["@UserName"].Value = username;
+
+                    cmd.ExecuteNonQuery();
+
+                    result = true;
+
 
                 }
                 catch (Exception ex)
                 {
+
                     result = false;
-
-                   
-                    System.Windows.Forms.Application.DoEvents();
-
-                    lbl_Message.Text = "Unfortunately we encountered an error, please try again later.";
-                    lbl_Message.Refresh();
-                    System.Windows.Forms.Application.DoEvents();
-
-                    Insert_ErrorLog(GetConnectionString(Company), "Error at AddRoyaltyRecord(check if record exists):" + ex.ToString());
                 }
                 finally
                 {
@@ -3275,112 +3393,12 @@ namespace TitleInjestion.CommonFunctions
                     dbConnection.Close();
                 }
 
+
+
             }
 
-            #endregion
-            if(count==0)
-            {
-                #region 'Add record'
-
-
-            
-
-             
-                using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
-                {
-                    SqlCommand cmd = null;
-                    try
-                    {
-                        dbConnection.Open();
-
-                        cmd = dbConnection.CreateCommand();
-                        cmd.CommandTimeout = 0;
-
-                        cmd.CommandType = CommandType.Text;
-
-                        if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
-                        {
-                            cmd.CommandText = "insert into trilogy.dbo.RoyaltyRateDiscount(Parent_PublisherName	,Imprint_Publisher_AccountNo	,publisher_name,	d_agent_code	,d_royalty_percent	,LogDateTime	,Added_by) " +
-                                "values( " +
-                                   " @Parent_PublisherName," + // --Parent_PublisherName,
-                                   " @Imprint_Publisher_AccountNo," + // --Imprint_Publisher_AccountNo,
-                                   " @publisher_name," + // --publisher_name,
-                                   " @d_agent_code," + // --d_agent_code,
-                                   " @d_royalty_percent," + // --d_royalty_percent,
-
-                                  " @Timestmp," +
-                                  " @UserName )";
-                        }
-                        else
-                        {
-                            cmd.CommandText = "insert into trilogy_replica.dbo.RoyaltyRateDiscount(Parent_PublisherName	,Imprint_Publisher_AccountNo	,publisher_name,	d_agent_code	,d_royalty_percent	,LogDateTime	,Added_by) " +
-                                "values( " +
-                                   " @Parent_PublisherName," + // --Parent_PublisherName,
-                                   " @Imprint_Publisher_AccountNo," + // --Imprint_Publisher_AccountNo,
-                                   " @publisher_name," + // --publisher_name,
-                                   " @d_agent_code," + // --d_agent_code,
-                                   " @d_royalty_percent," + // --d_royalty_percent,
-
-                                  " @Timestmp," +
-                                  " @UserName )";
-                        }
-
-                      
-                        cmd.Parameters.Add("@Parent_PublisherName", SqlDbType.VarChar, 100);
-                        cmd.Parameters.Add("@Imprint_Publisher_AccountNo", SqlDbType.VarChar, 50);
-                        cmd.Parameters.Add("@publisher_name", SqlDbType.VarChar, 100);
-                        cmd.Parameters.Add("@d_agent_code", SqlDbType.VarChar, 100);
-                        cmd.Parameters.Add("@d_royalty_percent", SqlDbType.VarChar, 100);
-                        cmd.Parameters.Add("@Timestmp", SqlDbType.DateTime);
-                        cmd.Parameters.Add("@UserName", SqlDbType.VarChar, 50);
-
-
-                        cmd.Parameters["@Parent_PublisherName"].Value = parentaccountname;
-                        cmd.Parameters["@Imprint_Publisher_AccountNo"].Value =imprintaccountno ;
-                        cmd.Parameters["@publisher_name"].Value = imprintName;
-                        cmd.Parameters["@d_agent_code"].Value = AgentCode;
-                        cmd.Parameters["@d_royalty_percent"].Value = royaltypercent;
-                        cmd.Parameters["@Timestmp"].Value = System.DateTime.Now;
-                        cmd.Parameters["@UserName"].Value = username;
-
-                        cmd.ExecuteNonQuery();
-
-                        result = true;
-
-                        lbl_Message.Text = "Record ADDED Successfully.";
-
-
-                    }
-                    catch (Exception ex)
-                    {
-                        result = false;
-
-
-                        System.Windows.Forms.Application.DoEvents();
-
-                        lbl_Message.Text = "Unfortunately we encountered an error, please try again later.";
-                        lbl_Message.Refresh();
-                        System.Windows.Forms.Application.DoEvents();
-
-                        Insert_ErrorLog(GetConnectionString(Company), "Error at AddRoyaltyRecord(Add record):" + ex.ToString());
-                    }
-                    finally
-                    {
-                        cmd.Dispose();
-                        cmd = null;
-                        dbConnection.Close();
-                    }
-
-                }
-
-
-
-
-                #endregion
-            }
             return result;
 
         }
-
     }
 }

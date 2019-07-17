@@ -41,7 +41,10 @@ namespace TitleInjestion
         private void AddRoyaltyDetails_Load(object sender, EventArgs e)
         {
             lbl_Message.Text = "";
-        
+
+            lbl_failurerows.Text = "";
+            lbl_failure_rowsexists.Text = "";
+           
         }
 
         public void Display_ParentPublisher()
@@ -98,6 +101,8 @@ namespace TitleInjestion
 
         private void btn_submit_Click(object sender, EventArgs e)
         {
+            lbl_failurerows.Text = "";
+            lbl_failure_rowsexists.Text = "";
 
             string parent_publisher = "";
 
@@ -153,6 +158,91 @@ namespace TitleInjestion
             }
         }
 
+        private void btn_Upload_Click(object sender, EventArgs e)
+        {
+            lbl_failurerows.Text = "";
+            lbl_failure_rowsexists.Text = "";
 
+            string failure_rows = "Unsuccessful Rows : ";
+            string failure_existsrows = "Rows Exist in the table: ";
+            DataTable dt_Excel = new DataTable();
+
+            SQLFunction sqlfunction = new SQLFunction();
+
+            dt_Excel = sqlfunction.ReadExcel(@"\\Pfingestion01\Incoming\TitleManagement\Metadata_Prod\Reports\RoyaltyDetails\RRD.xlsx", dt_Excel);
+
+            if (
+                CheckIfColumnExist(dt_Excel, "Parent_PublisherName") &&
+                CheckIfColumnExist(dt_Excel, "Imprint_PublisherName") &&
+                CheckIfColumnExist(dt_Excel, "Imprint_Publisher_AccountNo") &&
+                CheckIfColumnExist(dt_Excel, "d_agent_code") &&
+                CheckIfColumnExist(dt_Excel, "d_royalty_percent")
+               )
+                {
+                    for (int i = 0; i < dt_Excel.Rows.Count; i++)
+                    {
+                        string Parent_PublisherName = dt_Excel.Rows[i]["Parent_PublisherName"].ToString();
+                        string Imprint_PublisherName = dt_Excel.Rows[i]["Imprint_PublisherName"].ToString();
+                        string Imprint_Publisher_AccountNo = dt_Excel.Rows[i]["Imprint_Publisher_AccountNo"].ToString();
+                        string d_agent_code = dt_Excel.Rows[i]["d_agent_code"].ToString();
+                        string d_royalty_percent = dt_Excel.Rows[i]["d_royalty_percent"].ToString();
+
+                        if (Parent_PublisherName.Trim().Length == 0 ||
+                         Imprint_PublisherName.Trim().Length == 0 ||
+                         Imprint_Publisher_AccountNo.Trim().Length == 0 ||
+                         d_agent_code.Trim().Length == 0 ||
+                         d_royalty_percent.Trim().Length == 0)
+                        {
+                            failure_rows += ", " + (i + 1);
+                        }
+                        else
+                        {
+                            int count = sqlfunction.CheckIfRoyaltyDetailsRecordExists(str_Company, d_agent_code, Imprint_PublisherName, Parent_PublisherName);
+                            if (count == 0)
+                            {
+                               if(!sqlfunction.AddRoyaltyRecord(str_Company, Parent_PublisherName, Imprint_Publisher_AccountNo, Imprint_PublisherName, d_agent_code, d_royalty_percent, System.Security.Principal.WindowsIdentity.GetCurrent().Name))
+                                {
+                                    failure_rows += ", " + (i + 1);
+                                }
+                            
+                            }
+                            else
+                            {
+                                failure_existsrows += ", " + (i + 1);
+                            }
+
+                        }
+                    }
+
+                }
+                else
+                {
+                    lbl_UploadMessage.Text = "The excel file is missing a column. Please check the column headers.";
+                }
+
+
+            lbl_failurerows.Text = failure_rows;
+            lbl_failure_rowsexists.Text = failure_existsrows;
+
+        }
+        private bool CheckIfColumnExist(DataTable dt_Excel, string Columnname)
+        {
+            bool result = false;
+
+            foreach (DataColumn dc in dt_Excel.Columns)
+            {
+                if (dc.ColumnName.ToLower() == Columnname)
+                {
+                    result = true;
+                    break;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+
+            return result;
+        }
     }
 }
