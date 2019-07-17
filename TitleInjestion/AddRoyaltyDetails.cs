@@ -36,48 +36,12 @@ namespace TitleInjestion
             str_Company = Company;
             
         }
-        private void btn_lookupimprintname_Click(object sender, EventArgs e)
-        {
-            SQLFunction sqlfunc = new SQLFunction();
-
-            lbl_imprintName.Text = sqlfunc.GetImprintPublisherName(str_Company, txt_imprintaccountno.Text, lbl_imprintName, lbl_parentaccountno);
-
-
-        }
-
-        private void btn_submit_Click(object sender, EventArgs e)
-        {
-
-            string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-            SQLFunction sqlfunc = new SQLFunction();
-
-            if (txt_AgentCode.Text.Length == 0)
-            {
-                lbl_Message.Text = "Please Enter the AGENT CODE.";
-            }
-            else if (txt_royaltypercent.Text.Length == 0)
-            {
-                lbl_Message.Text = "Please Enter the ROYALTY PERCENT.";
-            }
-            else
-            {
-
-                if (sqlfunc.AddRoyaltyRecord(str_Company, txt_imprintaccountno.Text, lbl_imprintName.Text, drpbx_parentaccountname.SelectedText, txt_AgentCode.Text, txt_royaltypercent.Text, txt_discountrate.Text, username))
-                {
-                    lbl_Message.Text = "Record successfully ADDED.";
-                }
-                else
-                {
-                    lbl_Message.Text = "There has been an error processing you request. Please check the error logs.";
-                }
-
-            }
-        }
+    
 
         private void AddRoyaltyDetails_Load(object sender, EventArgs e)
         {
             lbl_Message.Text = "";
-            Display_ParentPublisher();
+        
         }
 
         public void Display_ParentPublisher()
@@ -102,6 +66,93 @@ namespace TitleInjestion
                 this.Close();         
         }
 
-       
+        private void btn_lookupimprintname_Click(object sender, EventArgs e)
+        {
+            SQLFunction sqlfunc = new SQLFunction();
+
+            lbl_imprintName.Text = sqlfunc.GetImprintPublisherName(str_Company, txt_imprintaccountno.Text, lbl_imprintName, lbl_parentaccountno);
+
+
+        }
+
+        private void btn_lookupparentpub_Click(object sender, EventArgs e)
+        {
+            SQLFunction sqlfunc = new SQLFunction();
+
+            string parentpubname = sqlfunc.GetParentPublisherName(str_Company, txt_AgentCode.Text, lbl_parentpubname);
+
+            if(parentpubname.Length==0)
+            {
+                lbl_parentaccount.Enabled = true;
+                drpbx_parentaccountname.Enabled = true;
+                Display_ParentPublisher();
+            }
+            else
+            {
+                lbl_parentaccount.Enabled = false;
+                drpbx_parentaccountname.Enabled = false;
+            }
+
+        }
+
+
+        private void btn_submit_Click(object sender, EventArgs e)
+        {
+
+            string parent_publisher = "";
+
+            if (lbl_parentpubname.Text.Length > 0)
+            {
+                parent_publisher = lbl_parentpubname.Text;
+            }
+            else if (drpbx_parentaccountname.SelectedText.Length > 0)
+            {
+                parent_publisher = drpbx_parentaccountname.SelectedText;
+            }
+            else
+            {
+                lbl_Message.Text = "Please enter the PARENT PUBLISHER.";
+            }
+
+            string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            SQLFunction sqlfunc = new SQLFunction();
+
+            if (txt_AgentCode.Text.Length == 0)
+            {
+                lbl_Message.Text = "Please Enter the AGENT CODE.";
+            }
+            else if (txt_royaltypercent.Text.Length == 0)
+            {
+                lbl_Message.Text = "Please Enter the ROYALTY PERCENT.";
+            }
+
+            else
+            {
+
+
+                if (sqlfunc.AddRoyaltyRecord(str_Company, txt_imprintaccountno.Text, lbl_imprintName.Text, parent_publisher, txt_AgentCode.Text, txt_royaltypercent.Text, "", username, lbl_Message))
+                {
+                    txt_imprintaccountno.Text = "";
+                    lbl_imprintName.Text = "";
+                    lbl_parentaccountno.Text = "";
+                    txt_AgentCode.Text = "";
+
+                    if (lbl_parentpubname.Text.Length > 0)
+                    {
+                        lbl_parentpubname.Text = "";
+                    }else
+                    {
+                        Display_ParentPublisher();
+                    }
+
+
+                }
+
+
+
+            }
+        }
+
+
     }
 }

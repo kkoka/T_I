@@ -34,7 +34,7 @@
             this.btn_lookupimprintname = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_imprintName = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_parentaccount = new System.Windows.Forms.Label();
             this.drpbx_parentaccountname = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,6 +44,10 @@
             this.txt_discountrate = new System.Windows.Forms.TextBox();
             this.btn_submit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_parentpubname = new System.Windows.Forms.Label();
+            this.btn_lookupparentpub = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbl_parentaccountno = new System.Windows.Forms.Label();
             this.lbl_Message = new System.Windows.Forms.Label();
             this.btn_Home = new System.Windows.Forms.Button();
             this.btn_ErrorLog = new System.Windows.Forms.Button();
@@ -51,8 +55,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbl_parentaccountno = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -120,22 +123,24 @@
             this.lbl_imprintName.Size = new System.Drawing.Size(0, 15);
             this.lbl_imprintName.TabIndex = 25;
             // 
-            // label3
+            // lbl_parentaccount
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(83, 164);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(190, 15);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "Select the Parent Account :";
+            this.lbl_parentaccount.AutoSize = true;
+            this.lbl_parentaccount.Enabled = false;
+            this.lbl_parentaccount.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_parentaccount.Location = new System.Drawing.Point(83, 218);
+            this.lbl_parentaccount.Name = "lbl_parentaccount";
+            this.lbl_parentaccount.Size = new System.Drawing.Size(190, 15);
+            this.lbl_parentaccount.TabIndex = 26;
+            this.lbl_parentaccount.Text = "Select the Parent Account :";
             // 
             // drpbx_parentaccountname
             // 
             this.drpbx_parentaccountname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.drpbx_parentaccountname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.drpbx_parentaccountname.Enabled = false;
             this.drpbx_parentaccountname.FormattingEnabled = true;
-            this.drpbx_parentaccountname.Location = new System.Drawing.Point(290, 164);
+            this.drpbx_parentaccountname.Location = new System.Drawing.Point(290, 218);
             this.drpbx_parentaccountname.Name = "drpbx_parentaccountname";
             this.drpbx_parentaccountname.Size = new System.Drawing.Size(199, 20);
             this.drpbx_parentaccountname.TabIndex = 27;
@@ -144,7 +149,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(183, 206);
+            this.label4.Location = new System.Drawing.Point(183, 157);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 15);
             this.label4.TabIndex = 28;
@@ -154,7 +159,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(150, 246);
+            this.label5.Location = new System.Drawing.Point(150, 252);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(123, 15);
             this.label5.TabIndex = 29;
@@ -163,6 +168,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Enabled = false;
             this.label6.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(150, 286);
             this.label6.Name = "label6";
@@ -173,21 +179,22 @@
             // txt_AgentCode
             // 
             this.txt_AgentCode.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F);
-            this.txt_AgentCode.Location = new System.Drawing.Point(290, 206);
+            this.txt_AgentCode.Location = new System.Drawing.Point(290, 157);
             this.txt_AgentCode.Name = "txt_AgentCode";
-            this.txt_AgentCode.Size = new System.Drawing.Size(49, 20);
+            this.txt_AgentCode.Size = new System.Drawing.Size(199, 20);
             this.txt_AgentCode.TabIndex = 31;
             // 
             // txt_royaltypercent
             // 
             this.txt_royaltypercent.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F);
-            this.txt_royaltypercent.Location = new System.Drawing.Point(290, 246);
+            this.txt_royaltypercent.Location = new System.Drawing.Point(290, 252);
             this.txt_royaltypercent.Name = "txt_royaltypercent";
             this.txt_royaltypercent.Size = new System.Drawing.Size(49, 20);
             this.txt_royaltypercent.TabIndex = 32;
             // 
             // txt_discountrate
             // 
+            this.txt_discountrate.Enabled = false;
             this.txt_discountrate.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F);
             this.txt_discountrate.Location = new System.Drawing.Point(290, 286);
             this.txt_discountrate.Name = "txt_discountrate";
@@ -211,6 +218,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.lbl_parentpubname);
+            this.panel1.Controls.Add(this.btn_lookupparentpub);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.lbl_parentaccountno);
             this.panel1.Controls.Add(this.lbl_Message);
@@ -224,7 +234,7 @@
             this.panel1.Controls.Add(this.txt_AgentCode);
             this.panel1.Controls.Add(this.lbl_imprintName);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lbl_parentaccount);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.drpbx_parentaccountname);
             this.panel1.Controls.Add(this.label4);
@@ -232,6 +242,48 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(847, 393);
             this.panel1.TabIndex = 35;
+            // 
+            // lbl_parentpubname
+            // 
+            this.lbl_parentpubname.AutoSize = true;
+            this.lbl_parentpubname.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_parentpubname.Location = new System.Drawing.Point(287, 189);
+            this.lbl_parentpubname.Name = "lbl_parentpubname";
+            this.lbl_parentpubname.Size = new System.Drawing.Size(0, 15);
+            this.lbl_parentpubname.TabIndex = 39;
+            // 
+            // btn_lookupparentpub
+            // 
+            this.btn_lookupparentpub.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_lookupparentpub.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_lookupparentpub.Font = new System.Drawing.Font("MS Reference Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_lookupparentpub.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_lookupparentpub.Location = new System.Drawing.Point(512, 152);
+            this.btn_lookupparentpub.Name = "btn_lookupparentpub";
+            this.btn_lookupparentpub.Size = new System.Drawing.Size(191, 33);
+            this.btn_lookupparentpub.TabIndex = 38;
+            this.btn_lookupparentpub.Text = "LookUp Parent Publisher";
+            this.btn_lookupparentpub.UseVisualStyleBackColor = false;
+            this.btn_lookupparentpub.Click += new System.EventHandler(this.btn_lookupparentpub_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(133, 127);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(140, 15);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "Parent Account No :";
+            // 
+            // lbl_parentaccountno
+            // 
+            this.lbl_parentaccountno.AutoSize = true;
+            this.lbl_parentaccountno.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_parentaccountno.Location = new System.Drawing.Point(287, 127);
+            this.lbl_parentaccountno.Name = "lbl_parentaccountno";
+            this.lbl_parentaccountno.Size = new System.Drawing.Size(0, 15);
+            this.lbl_parentaccountno.TabIndex = 37;
             // 
             // lbl_Message
             // 
@@ -309,24 +361,15 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // label7
+            // label8
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(133, 127);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(140, 15);
-            this.label7.TabIndex = 36;
-            this.label7.Text = "Parent Account No :";
-            // 
-            // lbl_parentaccountno
-            // 
-            this.lbl_parentaccountno.AutoSize = true;
-            this.lbl_parentaccountno.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_parentaccountno.Location = new System.Drawing.Point(287, 127);
-            this.lbl_parentaccountno.Name = "lbl_parentaccountno";
-            this.lbl_parentaccountno.Size = new System.Drawing.Size(0, 15);
-            this.lbl_parentaccountno.TabIndex = 37;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(104, 189);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(169, 15);
+            this.label8.TabIndex = 40;
+            this.label8.Text = "Parent Publisher Name :";
             // 
             // AddRoyaltyDetails
             // 
@@ -356,10 +399,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label TitleIngestion;
         private System.Windows.Forms.TextBox txt_imprintaccountno;
-        private System.Windows.Forms.Button btn_lookupimprintname;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbl_imprintName;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_parentaccount;
         private System.Windows.Forms.ComboBox drpbx_parentaccountname;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -378,5 +420,9 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lbl_parentaccountno;
+        private System.Windows.Forms.Label lbl_parentpubname;
+        private System.Windows.Forms.Button btn_lookupparentpub;
+        private System.Windows.Forms.Button btn_lookupimprintname;
+        private System.Windows.Forms.Label label8;
     }
 }

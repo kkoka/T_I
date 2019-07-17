@@ -3049,7 +3049,7 @@ namespace TitleInjestion.CommonFunctions
 
         }
 
-        public string GetImprintPublisherName(string Company, string AccountNo, System.Windows.Forms.Label lbl_imprintName, System.Windows.Forms.Label lbl_parentaccountn)
+        public string GetImprintPublisherName(string Company, string AccountNo, System.Windows.Forms.Label lbl_imprintName, System.Windows.Forms.Label lbl_parentaccountno)
         {
             string imprintpublishername = "";
             string parentpublisheraccountno = "";
@@ -3088,7 +3088,7 @@ namespace TitleInjestion.CommonFunctions
                     reader.Close();
 
                     lbl_imprintName.Text = imprintpublishername;
-                    lbl_parentaccountn.Text = parentpublisheraccountno;
+                    lbl_parentaccountno.Text = parentpublisheraccountno;
 
                 }
                 catch (Exception ex)
@@ -3111,6 +3111,68 @@ namespace TitleInjestion.CommonFunctions
             return imprintpublishername;
 
         }
+         
+        public string GetParentPublisherName(string Company, string AgentCode, System.Windows.Forms.Label lbl_parentpubname )
+        {
+            string Parent_PublisherName = "";
+
+
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+
+                try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandType = CommandType.Text;
+
+                    if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
+                    {
+                        cmd.CommandText = "select distinct top 1 Parent_PublisherName From trilogy.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode +"'";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "select distinct top 1 Parent_PublisherName From trilogy_replica.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "'";
+                    }
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Parent_PublisherName = reader["Parent_PublisherName"].ToString();
+                    }
+
+                    reader.Close();
+
+                    lbl_parentpubname.Text = Parent_PublisherName;
+                   
+
+                }
+                catch (Exception ex)
+                {
+
+                    System.Windows.Forms.Application.DoEvents();
+
+
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at GetImprintPublisherName:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    dbConnection.Close();
+                }
+
+            }
+
+            return Parent_PublisherName;
+
+        }
+ 
 
         public DataTable Get_Parent_Publisher(string Company, System.Windows.Forms.Label lbl_Message)
         {
@@ -3160,10 +3222,162 @@ namespace TitleInjestion.CommonFunctions
             return dt;
         }
 
-        public bool AddRoyaltyRecord(string Company, string imprintaccountno, string imprintName, string parentaccountname, string AgentCode, string royaltypercent, string discountrate,string username)
+        public bool AddRoyaltyRecord(string Company, string imprintaccountno, string imprintName, string parentaccountname, string AgentCode, string royaltypercent, string discountrate,string username, System.Windows.Forms.Label lbl_Message)
         {
             bool result = false;
+            Int32 count = 0;
+            #region 'check if record exists'
 
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+
+                    cmd.CommandType = CommandType.Text;
+
+                    if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
+                    {
+                        cmd.CommandText = "select count(*) From trilogy.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "' and publisher_name = '"+ imprintName + "' and Parent_PublisherName = '"+ parentaccountname +"'";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "select count(*) From trilogy_replica.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "' and publisher_name = '" + imprintName + "' and Parent_PublisherName = '" + parentaccountname + "'";
+                    }
+                    count = (Int32)cmd.ExecuteScalar();
+                    if (count > 0)
+                    {
+                        lbl_Message.Text = "Record already exists, please check your entries.";
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+
+                   
+                    System.Windows.Forms.Application.DoEvents();
+
+                    lbl_Message.Text = "Unfortunately we encountered an error, please try again later.";
+                    lbl_Message.Refresh();
+                    System.Windows.Forms.Application.DoEvents();
+
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at AddRoyaltyRecord(check if record exists):" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    dbConnection.Close();
+                }
+
+            }
+
+            #endregion
+            if(count==0)
+            {
+                #region 'Add record'
+
+
+            
+
+             
+                using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+                {
+                    SqlCommand cmd = null;
+                    try
+                    {
+                        dbConnection.Open();
+
+                        cmd = dbConnection.CreateCommand();
+                        cmd.CommandTimeout = 0;
+
+                        cmd.CommandType = CommandType.Text;
+
+                        if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
+                        {
+                            cmd.CommandText = "insert into trilogy.dbo.RoyaltyRateDiscount(Parent_PublisherName	,Imprint_Publisher_AccountNo	,publisher_name,	d_agent_code	,d_royalty_percent	,LogDateTime	,Added_by) " +
+                                "values( " +
+                                   " @Parent_PublisherName," + // --Parent_PublisherName,
+                                   " @Imprint_Publisher_AccountNo," + // --Imprint_Publisher_AccountNo,
+                                   " @publisher_name," + // --publisher_name,
+                                   " @d_agent_code," + // --d_agent_code,
+                                   " @d_royalty_percent," + // --d_royalty_percent,
+
+                                  " @Timestmp," +
+                                  " @UserName )";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "insert into trilogy_replica.dbo.RoyaltyRateDiscount(Parent_PublisherName	,Imprint_Publisher_AccountNo	,publisher_name,	d_agent_code	,d_royalty_percent	,LogDateTime	,Added_by) " +
+                                "values( " +
+                                   " @Parent_PublisherName," + // --Parent_PublisherName,
+                                   " @Imprint_Publisher_AccountNo," + // --Imprint_Publisher_AccountNo,
+                                   " @publisher_name," + // --publisher_name,
+                                   " @d_agent_code," + // --d_agent_code,
+                                   " @d_royalty_percent," + // --d_royalty_percent,
+
+                                  " @Timestmp," +
+                                  " @UserName )";
+                        }
+
+                      
+                        cmd.Parameters.Add("@Parent_PublisherName", SqlDbType.VarChar, 100);
+                        cmd.Parameters.Add("@Imprint_Publisher_AccountNo", SqlDbType.VarChar, 50);
+                        cmd.Parameters.Add("@publisher_name", SqlDbType.VarChar, 100);
+                        cmd.Parameters.Add("@d_agent_code", SqlDbType.VarChar, 100);
+                        cmd.Parameters.Add("@d_royalty_percent", SqlDbType.VarChar, 100);
+                        cmd.Parameters.Add("@Timestmp", SqlDbType.DateTime);
+                        cmd.Parameters.Add("@UserName", SqlDbType.VarChar, 50);
+
+
+                        cmd.Parameters["@Parent_PublisherName"].Value = parentaccountname;
+                        cmd.Parameters["@Imprint_Publisher_AccountNo"].Value =imprintaccountno ;
+                        cmd.Parameters["@publisher_name"].Value = imprintName;
+                        cmd.Parameters["@d_agent_code"].Value = AgentCode;
+                        cmd.Parameters["@d_royalty_percent"].Value = royaltypercent;
+                        cmd.Parameters["@Timestmp"].Value = System.DateTime.Now;
+                        cmd.Parameters["@UserName"].Value = username;
+
+                        cmd.ExecuteNonQuery();
+
+                        result = true;
+
+                        lbl_Message.Text = "Record ADDED Successfully.";
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        result = false;
+
+
+                        System.Windows.Forms.Application.DoEvents();
+
+                        lbl_Message.Text = "Unfortunately we encountered an error, please try again later.";
+                        lbl_Message.Refresh();
+                        System.Windows.Forms.Application.DoEvents();
+
+                        Insert_ErrorLog(GetConnectionString(Company), "Error at AddRoyaltyRecord(Add record):" + ex.ToString());
+                    }
+                    finally
+                    {
+                        cmd.Dispose();
+                        cmd = null;
+                        dbConnection.Close();
+                    }
+
+                }
+
+
+
+
+                #endregion
+            }
             return result;
 
         }
