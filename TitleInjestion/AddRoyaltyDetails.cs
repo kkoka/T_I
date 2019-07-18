@@ -141,6 +141,7 @@ namespace TitleInjestion
                     lbl_imprintName.Text = "";
                     lbl_parentaccountno.Text = "";
                     txt_AgentCode.Text = "";
+                    txt_royaltypercent.Text = "";
 
                     if (lbl_parentpubname.Text.Length > 0)
                     {
@@ -169,7 +170,7 @@ namespace TitleInjestion
 
             SQLFunction sqlfunction = new SQLFunction();
 
-            dt_Excel = sqlfunction.ReadExcel(@"\\Pfingestion01\Incoming\TitleManagement\Metadata_Prod\Reports\RoyaltyDetails\RRD.xlsx", dt_Excel);
+            dt_Excel = sqlfunction.ReadExcel(str_Company ,@"\\Pfingestion01\Incoming\TitleManagement\Metadata_Prod\Reports\RoyaltyDetails\RRD.xlsx");
 
             if (
                 CheckIfColumnExist(dt_Excel, "Parent_PublisherName") &&
@@ -220,9 +221,18 @@ namespace TitleInjestion
                     lbl_UploadMessage.Text = "The excel file is missing a column. Please check the column headers.";
                 }
 
+            lbl_UploadMessage.Text = "Batch Upload process Completed.";
 
-            lbl_failurerows.Text = failure_rows;
-            lbl_failure_rowsexists.Text = failure_existsrows;
+            if (failure_rows != "Unsuccessful Rows : ")
+            {
+                 lbl_failurerows.Text = failure_rows;
+         
+            }
+            if (failure_existsrows != "Rows Exist in the table: ")
+            {
+
+                lbl_failure_rowsexists.Text = failure_existsrows;
+            }
 
         }
         private bool CheckIfColumnExist(DataTable dt_Excel, string Columnname)
@@ -231,7 +241,7 @@ namespace TitleInjestion
 
             foreach (DataColumn dc in dt_Excel.Columns)
             {
-                if (dc.ColumnName.ToLower() == Columnname)
+                if (dc.ColumnName.ToLower() == Columnname.ToLower())
                 {
                     result = true;
                     break;
