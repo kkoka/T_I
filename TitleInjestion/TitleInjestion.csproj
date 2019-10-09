@@ -288,6 +288,10 @@
     <Compile Include="Company\RecordedBooks\Publisher\EBook\BloomsburyUSA\Bloomsbury_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\ChildsWorld\ChildsWorld_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\ChronicleBooks\ChronicleBooks_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\CoreSourcePlus30\CoreSourcePlus30_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\CoreSourcePlus40\CoreSourcePlus40_Extraction.cs.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\CoreSourcePlus50\CoreSourcePlus50_Extraction.cs" />
+    <Compile Include="Company\RecordedBooks\Publisher\EBook\CoreSourcePlus53_5\CoreSourcePlus53_5_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\DKPublishing\DKPublishing_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\ECWPress\ECW Press_Extraction.cs" />
     <Compile Include="Company\RecordedBooks\Publisher\EBook\GalaxyPress\GalaxyPress_Extraction.cs" />
@@ -422,7 +426,10 @@
     <Compile Include="Company\WFHowes\Onix_CleanUP.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Andrews_UK\Andrews_UK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Blackstone_RB\BlackstoneRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\DorlingKindersley\DorlingKindersley_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Dreamscape_RB\DreamscapeRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\eChristian_WFH\eChristianWFH_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Gardners\Gardners_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Gildan_WFH\GildanWFH_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\HarperCollins_UK\HarperUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\HarperCollinsUS_RB\HarperCollinsUS_RB_Extraction.cs" />
@@ -430,21 +437,27 @@
     <Compile Include="Company\WFHowes\Publisher\EAudio\LATheatreWorks_RB\LATheatreWorksRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Lerner_RB\LernerRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\ListenLive_RB\ListenLiveRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\LiveOak_RB\LiveOakRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Michael_OMara\Michael_OMara_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\MyBooks_RB\MyBooksRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Oasis_RB\OasisRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\OrcaBook_RB\OrcaBookRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Penguin_AU\PenguinAU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Penguin_UK\PenguinUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Pottermore_UK\PottermoreUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\RandomHouse_AU\RandomHouseAU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\RandomHouse_UK\RandomHouseUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\RecordedBooks_UK\RecordedBooksUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\SimonSchuster_Pimsleur\SimonSchusterPimsleur_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Sodalite_UK\Sodalite_UK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Tantor_WFH\TantorWFH_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\ThomasNelson_RB\ThomasNelsonRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\Zondervan_RB\ZondervanRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\AccentPress\AccentPressUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Allen_Unwin\Allen_Unwin_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Alnpete_Limited\AlnpeteLimited_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Andrews_UK\Andrews_UK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\BeyondThePage\BeyondThePage_UK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\BlackBooks_UK\BlackBooks_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Bloomsbury_UK\Bloomsbury_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Canongate\CanongateUK_Extraction.cs" />
@@ -489,6 +502,12 @@
     </Compile>
     <Compile Include="DeleteIds.Designer.cs">
       <DependentUpon>DeleteIds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetectTitlesWithContribErrors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetectTitlesWithContribErrors.Designer.cs">
+      <DependentUpon>DetectTitlesWithContribErrors.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorLogScreen.cs">
       <SubType>Form</SubType>
@@ -548,6 +567,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteIds.resx">
       <DependentUpon>DeleteIds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetectTitlesWithContribErrors.resx">
+      <DependentUpon>DetectTitlesWithContribErrors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorLogScreen.resx">
       <DependentUpon>ErrorLogScreen.cs</DependentUpon>

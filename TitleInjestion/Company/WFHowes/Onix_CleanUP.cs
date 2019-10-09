@@ -338,6 +338,7 @@ namespace TitleInjestion.Company.WFHowes
                 }
             }
             //  buffer.Replace("&lt;", "<");
+            buffer.Replace(" <?xml version=\"1.0\" encoding=\"utf-8\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 
             buffer.Replace("<!DOCTYPE ONIXmessage SYSTEM \"http://www.editeur.org/onix/2.1/short/onix-international.dtd\">", "");
             buffer.Replace("<!DOCTYPE ONIXmessage SYSTEM \"http://www.editeur.org/onix/2.1/short/onix-international.dtd\">", "");

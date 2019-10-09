@@ -164,8 +164,8 @@ namespace TitleInjestion
             lbl_failurerows.Text = "";
             lbl_failure_rowsexists.Text = "";
 
-            string failure_rows = "Unsuccessful Rows : ";
-            string failure_existsrows = "Rows Exist in the table: ";
+            string failure_rows = "Unable to Upload Records (Rows No): ";
+            string failure_existsrows = "Records already Exists (Row No): ";
             DataTable dt_Excel = new DataTable();
 
             SQLFunction sqlfunction = new SQLFunction();
@@ -194,7 +194,7 @@ namespace TitleInjestion
                          d_agent_code.Trim().Length == 0 ||
                          d_royalty_percent.Trim().Length == 0)
                         {
-                            failure_rows += ", " + (i + 1);
+                            failure_rows += ", " + (i + 2);
                         }
                         else
                         {
@@ -203,13 +203,13 @@ namespace TitleInjestion
                             {
                                if(!sqlfunction.AddRoyaltyRecord(str_Company, Parent_PublisherName, Imprint_Publisher_AccountNo, Imprint_PublisherName, d_agent_code, d_royalty_percent, System.Security.Principal.WindowsIdentity.GetCurrent().Name))
                                 {
-                                    failure_rows += ", " + (i + 1);
+                                    failure_rows += ", " + (i + 2);
                                 }
                             
                             }
                             else
                             {
-                                failure_existsrows += ", " + (i + 1);
+                                failure_existsrows += ", " + (i + 2);
                             }
 
                         }
@@ -223,12 +223,12 @@ namespace TitleInjestion
 
             lbl_UploadMessage.Text = "Batch Upload process Completed.";
 
-            if (failure_rows != "Unsuccessful Rows : ")
+            if (failure_rows != "Unable to Upload Records (Rows No): ")
             {
                  lbl_failurerows.Text = failure_rows;
          
             }
-            if (failure_existsrows != "Rows Exist in the table: ")
+            if (failure_existsrows != "Records already Exists (Row No): ")
             {
 
                 lbl_failure_rowsexists.Text = failure_existsrows;

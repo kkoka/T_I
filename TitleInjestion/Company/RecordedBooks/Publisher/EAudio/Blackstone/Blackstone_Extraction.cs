@@ -1282,20 +1282,24 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.Blackstone
             //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
             #region 'Publisher'
-            //for (int a = 0; a < product.obj_productpublishingdetail_List.Count; a++)
-            //{
-            //    for (int b = 0; b < product.obj_productpublishingdetail_List[a].obj_productpublishingdetail_publisher_List.Count; b++)
-            //    {
-            DataRow dr = dt_Publisher.NewRow();
+            for (int a = 0; a < product.obj_productpublishingdetail_List.Count; a++)
+            {
+                for (int b = 0; b < product.obj_productpublishingdetail_List[a].obj_productpublishingdetail_publisher_List.Count; b++)
+                {
 
-            dr["MetaDataID"] = MetaDataID;
-            dr["ProductID"] = productCount;
-            dr["RowCnt"] = "1";
-            dr["Publisher_b081"] = "Blackstone Audio, Inc."; //product.obj_product_publisher_List[a].b081_product_publisher;
+                    if(product.obj_productpublishingdetail_List[a].obj_productpublishingdetail_publisher_List[b].b291=="01")
+                    { 
+                        DataRow dr = dt_Publisher.NewRow();
 
-            dt_Publisher.Rows.Add(dr);
-            //    }
-            //}
+                        dr["MetaDataID"] = MetaDataID;
+                        dr["ProductID"] = productCount;
+                        dr["RowCnt"] = "1";
+                        dr["Publisher_b081"] = product.obj_productpublishingdetail_List[a].obj_productpublishingdetail_publisher_List[b].b081;// "Blackstone Audio, Inc."; 
+
+                        dt_Publisher.Rows.Add(dr);
+                    }
+                }
+            }
             #endregion
 
 

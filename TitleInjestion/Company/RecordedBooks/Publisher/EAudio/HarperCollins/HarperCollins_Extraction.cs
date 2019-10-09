@@ -100,15 +100,15 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                 //#endregion
 
-                //DataTable dt_Imprint = new DataTable("Imprint");
-                //#region 'Columns Declaration'
+                DataTable dt_Imprint = new DataTable("Imprint");
+                #region 'Columns Declaration'
 
-                //dt_Imprint.Columns.Add("MetaDataID", typeof(int));
-                //dt_Imprint.Columns.Add("ProductID", typeof(int));
-                //dt_Imprint.Columns.Add("RowCnt", typeof(int));
-                //dt_Imprint.Columns.Add("Imprint_b079", typeof(string));
+                dt_Imprint.Columns.Add("MetaDataID", typeof(int));
+                dt_Imprint.Columns.Add("ProductID", typeof(int));
+                dt_Imprint.Columns.Add("RowCnt", typeof(int));
+                dt_Imprint.Columns.Add("Imprint_b079", typeof(string));
 
-              //  #endregion
+                #endregion
 
                 //DataTable dt_DigitalFormat_b333 = new DataTable("DigitalFormat");
                 //#region 'Columns Declaration'
@@ -507,10 +507,10 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
                         //dt_Publisher2 = Publisher2(fileinfo_1.obj_product_List[i], dt_Publisher2, MetaDataID, (i + 1));
                         //#endregion
 
-                        //#region 'Imprint'
-                        //Step = "Imprint";
-                        //dt_Imprint = Imprint(fileinfo_1.obj_product_List[i], dt_Imprint, MetaDataID, (i + 1));
-                        //#endregion
+                        #region 'Imprint'
+                        Step = "Imprint";
+                        dt_Imprint = Imprint(fileinfo_1.obj_product_List[i], dt_Imprint, MetaDataID, (i + 1));
+                        #endregion
 
                         #region 'UnAbridged'
                         Step = "UnAbridged";
@@ -713,7 +713,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                     #region 'Insert the Data into the SQL Table'
 
-                    int count = 24;
+                    int count = 25;
 
                     result = InsertRecords(dt_ISBN, "RB");
                     Insertion_Label(lbl_Insert, count);
@@ -739,12 +739,12 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
                     //InsertRecords(dt_Publisher2);
 
-                    //if (result)
-                    //{
-                    //    result = InsertRecords(dt_Imprint, "RB");
-                    //    Insertion_Label(lbl_Insert, count);
-                    //}
-                    //count--;
+                    if (result)
+                    {
+                        result = InsertRecords(dt_Imprint, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
 
                     if (result)
                     {
@@ -1224,36 +1224,36 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EAudio.HarperCollins
 
         //}    
 
-        //public DataTable Imprint(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Imprint, int MetaDataID, int productCount)
-        //{
+        public DataTable Imprint(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Imprint, int MetaDataID, int productCount)
+        {
 
 
-        //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-        //    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-        //    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-        //    #region 'Imprint'
-        //    for (int a = 0; a < product.obj_imprint_List.Count; a++)
-        //    {
+            #region 'Imprint'
+            for (int a = 0; a < product.obj_imprint_List.Count; a++)
+            {
 
-        //        DataRow dr = dt_Imprint.NewRow();
+                DataRow dr = dt_Imprint.NewRow();
 
-        //        dr["MetaDataID"] = MetaDataID;
-        //        dr["ProductID"] = productCount;
-        //        dr["RowCnt"] = a;
-        //        dr["Imprint_b079"] = product.obj_imprint_List[a].b079_product_imprint;
+                dr["MetaDataID"] = MetaDataID;
+                dr["ProductID"] = productCount;
+                dr["RowCnt"] = a;
+                dr["Imprint_b079"] = product.obj_imprint_List[a].b079_product_imprint;
 
-        //        dt_Imprint.Rows.Add(dr);
+                dt_Imprint.Rows.Add(dr);
 
-        //    }
-        //    #endregion
-
-
-
-        //    return dt_Imprint;
+            }
+            #endregion
 
 
-        //}
+
+            return dt_Imprint;
+
+
+        }
         public DataTable UnAbridged(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_UnAbridged, int MetaDataID, int productCount)
         {
 

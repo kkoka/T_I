@@ -210,16 +210,16 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Pottermore
 
                 #endregion
 
-                DataTable dt_MainBisacBic = new DataTable("MainBisacBic");
-                #region 'Columns Declaration'
+                //DataTable dt_MainBisacBic = new DataTable("MainBisacBic");
+                //#region 'Columns Declaration'
 
-                dt_MainBisacBic.Columns.Add("MetaDataID", typeof(int));
-                dt_MainBisacBic.Columns.Add("ProductID", typeof(int));
-                dt_MainBisacBic.Columns.Add("RowCnt", typeof(int));
-                dt_MainBisacBic.Columns.Add("Bisac_b191", typeof(string));
-                dt_MainBisacBic.Columns.Add("Bisac_b069", typeof(string));
+                //dt_MainBisacBic.Columns.Add("MetaDataID", typeof(int));
+                //dt_MainBisacBic.Columns.Add("ProductID", typeof(int));
+                //dt_MainBisacBic.Columns.Add("RowCnt", typeof(int));
+                //dt_MainBisacBic.Columns.Add("Bisac_b191", typeof(string));
+                //dt_MainBisacBic.Columns.Add("Bisac_b069", typeof(string));
 
-                #endregion
+                //#endregion
 
                 DataTable dt_Bisac_b064 = new DataTable("Bisac_b064");
                 #region 'Columns Declaration'
@@ -553,7 +553,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Pottermore
 
 
                         //Step = "dt_MainBisacBic";
-                        dt_MainBisacBic = MainBisacBic(fileinfo_1.obj_product_List[i], dt_MainBisacBic, MetaDataID, (i + 1));
+                        //dt_MainBisacBic = MainBisacBic(fileinfo_1.obj_product_List[i], dt_MainBisacBic, MetaDataID, (i + 1));
 
                         Step = "dt_Bisac_b064";
                         dt_Bisac_b064 = Bisac_b064(fileinfo_1.obj_product_List[i], dt_Bisac_b064, MetaDataID, (i + 1));
@@ -697,7 +697,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Pottermore
 
                     #region 'Insert the Data into the SQL Table'
 
-                    int count = 24;
+                    int count = 23;
 
                     result = InsertRecords(dt_ISBN, "RB");
                     Insertion_Label(lbl_Insert, count);
@@ -795,12 +795,12 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Pottermore
                     }
                     count--;
 
-                    if (result)
-                    {
-                        result = InsertRecords(dt_MainBisacBic, "RB");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
+                    //if (result)
+                    //{
+                    //    result = InsertRecords(dt_MainBisacBic, "RB");
+                    //    Insertion_Label(lbl_Insert, count);
+                    //}
+                    //count--;
 
                     if (result)
                     {
@@ -1732,41 +1732,44 @@ result = sqlfunction.ExecuteProc("RB", ConfigurationSettings.AppSettings["RB_Pro
         }
 
 
-        public DataTable MainBisacBic(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_MainBisacBic, int MetaDataID, int productCount)
-        {
-            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+        //public DataTable MainBisacBic(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_MainBisacBic, int MetaDataID, int productCount)
+        //{
+        //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+        //    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+        //    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-            #region 'Bisac'
+        //    #region 'Bisac'
 
-            for (int a = 0; a < product.obj_product_mainsubject_List.Count; a++)
-            {
-                //if (!string.IsNullOrEmpty(product.obj_product_mainsubject_List[a].b191_product_mainsubject.ToString()))
-                //{
-                //    if (product.obj_product_mainsubject_List[a].b191_product_mainsubject == "10")
-                //    {
-                        DataRow dr = dt_MainBisacBic.NewRow();
+        //    for (int a = 0; a < product.obj_product_mainsubject_List.Count; a++)
+        //    {
+        //        //if (!string.IsNullOrEmpty(product.obj_product_mainsubject_List[a].b191_product_mainsubject.ToString()))
+        //        //{
+        //        //    if (product.obj_product_mainsubject_List[a].b191_product_mainsubject == "10")
+        //        //    {
+        //                DataRow dr = dt_MainBisacBic.NewRow();
+        //        //if(product.obj_product_mainsubject_List[a].b191_product_mainsubject.Length>50 || product.obj_product_mainsubject_List[a].b070_product_mainsubject.Length > 50)
+        //        //{
+        //        //    string asdfasdf = "asfads";
+        //        //}
+        //                dr["MetaDataID"] = MetaDataID;
+        //                dr["ProductID"] = productCount;
+        //                dr["RowCnt"] = (a + 1);
+        //                dr["Bisac_b191"] = product.obj_product_mainsubject_List[a].b191_product_mainsubject;
+        //                dr["Bisac_b069"] = product.obj_product_mainsubject_List[a].b070_product_mainsubject;
 
-                        dr["MetaDataID"] = MetaDataID;
-                        dr["ProductID"] = productCount;
-                        dr["RowCnt"] = (a + 1);
-                        dr["Bisac_b191"] = product.obj_product_mainsubject_List[a].b191_product_mainsubject;
-                        dr["Bisac_b069"] = product.obj_product_mainsubject_List[a].b070_product_mainsubject;
+        //                dt_MainBisacBic.Rows.Add(dr);
+        //        //    }
+        //        //}
+        //    }
 
-                        dt_MainBisacBic.Rows.Add(dr);
-                //    }
-                //}
-            }
-
-            #endregion
+        //    #endregion
 
 
 
-            return dt_MainBisacBic;
+        //    return dt_MainBisacBic;
 
 
-        }
+        //}
         public DataTable Bisac_b064(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Bisac_b064, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;

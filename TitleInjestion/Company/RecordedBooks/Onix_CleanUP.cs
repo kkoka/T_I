@@ -50,7 +50,11 @@ namespace TitleInjestion.Company.RecordedBooks
             xmlText = xmlText.Replace("<d104  textformat=\"04\">", "<d104 textformat=\"04\"><![CDATA[").Replace("<d104 textformat=\"04\">", "<d104 textformat=\"04\"><![CDATA[").Replace("<d104 textformat=\"02\" refname=\"Text\" ><![CDATA[<![CDATA[", "<d104 textformat=\"02\" refname=\"Text\" ><![CDATA[");
             xmlText = xmlText.Replace("<b070>", "<b070><![CDATA[").Replace("<b070><![CDATA[<![CDATA[", "<b070><![CDATA[").Replace("</b070>", "]]></b070>").Replace("]]>]]></b070>", "]]></b070>");
             xmlText = xmlText.Replace("]]>\n]]>", "\n]]>").Replace("]]>\r\n]]>", "\r\n]]>");
-            
+
+            xmlText = xmlText.Replace("&amp;lt;/P&amp;gt;", "").Replace("&amp;lt;P&amp;gt;", "");
+            xmlText = xmlText.Replace("<![CDATA[\"<![CDATA[", "<![CDATA[").Replace("]]>\"]]>", "]]>");
+
+
             return xmlText;
         }
 

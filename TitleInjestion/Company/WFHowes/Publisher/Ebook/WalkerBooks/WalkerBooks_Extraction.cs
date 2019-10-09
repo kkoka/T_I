@@ -1053,7 +1053,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.WalkerBooks
             {
 
 
-                if (string.IsNullOrEmpty(product.obj_ProductImprint_List[a].NameCodeType_ProductImprint))
+                if (!string.IsNullOrEmpty(product.obj_ProductImprint_List[a].NameCodeType_ProductImprint))
                 {
                     if (product.obj_ProductImprint_List[a].NameCodeType_ProductImprint == "01")
                     {

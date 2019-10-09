@@ -363,6 +363,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Window;
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -370,10 +371,10 @@
             this.tabPage1.Size = new System.Drawing.Size(1062, 424);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Single Entry";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.lbl_failure_rowsexists);
             this.tabPage2.Controls.Add(this.lbl_failurerows);
             this.tabPage2.Controls.Add(this.lbl_UploadMessage);
@@ -394,7 +395,6 @@
             this.tabPage2.Size = new System.Drawing.Size(1062, 424);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Bulk Upload";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // lbl_failure_rowsexists
             // 
@@ -557,14 +557,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btn_ErrorLog);
             this.Controls.Add(this.btn_Home);
             this.Controls.Add(this.TitleIngestion);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddRoyaltyDetails";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Title Ingestion:  AddRoyaltyDetails";
             this.Load += new System.EventHandler(this.AddRoyaltyDetails_Load);
             this.panel1.ResumeLayout(false);

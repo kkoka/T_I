@@ -1953,22 +1953,67 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.HarperCollins_UK
 
             #region 'SalesRestriction'
 
-            for (int a = 0; a < product.obj_product_salesrestriction_List.Count; a++)
+            if (product.obj_product_salesrestriction_List.Count > 0)
+            {
+                for (int a = 0; a < product.obj_product_salesrestriction_List.Count; a++)
+                {
+                    if (!string.IsNullOrEmpty(product.obj_product_salesrestriction_List[a].b381_product_salesrestriction))
+                    {
+                        if (product.obj_product_salesrestriction_List[a].b381_product_salesrestriction == "00" ||
+                            product.obj_product_salesrestriction_List[a].b381_product_salesrestriction == "06" ||
+                            product.obj_product_salesrestriction_List[a].b381_product_salesrestriction == "12")
+                        {
+
+                            DataRow dr = dt_RH_SalesRestriction.NewRow();
+
+                            dr["MetaDataID"] = MetaDataID;
+                            dr["ProductID"] = productCount;
+                            dr["RowCnt"] = (a + 1);
+                            dr["SalesRestriction_b383"] = "1";
+
+                            dt_RH_SalesRestriction.Rows.Add(dr);
+                        }
+                        else
+                        {
+                            DataRow dr = dt_RH_SalesRestriction.NewRow();
+
+                            dr["MetaDataID"] = MetaDataID;
+                            dr["ProductID"] = productCount;
+                            dr["RowCnt"] = (a + 1);
+                            dr["SalesRestriction_b383"] = "0";
+
+                            dt_RH_SalesRestriction.Rows.Add(dr);
+                        }
+                    }
+                    else
+                    {
+                        DataRow dr = dt_RH_SalesRestriction.NewRow();
+
+                        dr["MetaDataID"] = MetaDataID;
+                        dr["ProductID"] = productCount;
+                        dr["RowCnt"] = (1);
+                        dr["SalesRestriction_b383"] = "1";
+
+                        dt_RH_SalesRestriction.Rows.Add(dr);
+                    }
+                }
+            }
+            else
             {
                 DataRow dr = dt_RH_SalesRestriction.NewRow();
 
                 dr["MetaDataID"] = MetaDataID;
                 dr["ProductID"] = productCount;
-                dr["RowCnt"] = (a + 1);
-                dr["SalesRestriction_b383"] = product.obj_product_salesrestriction_List[a].b383_product_salesrestriction;
+                dr["RowCnt"] = (1);
+                dr["SalesRestriction_b383"] = "1";
 
                 dt_RH_SalesRestriction.Rows.Add(dr);
             }
-            
-            #endregion
+
+                #endregion
 
 
-            return dt_RH_SalesRestriction;
+                return dt_RH_SalesRestriction;
 
 
         }

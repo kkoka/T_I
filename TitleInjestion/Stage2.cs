@@ -265,6 +265,14 @@ namespace TitleInjestion
             Showtitles.ShowDialog();
 
         }
+
+        private void btn_ContribErrors_Click(object sender, EventArgs e)
+        {
+
+            DetectTitlesWithContribErrors Showtitles = new DetectTitlesWithContribErrors(str_Company);
+            Showtitles.ShowDialog();
+
+        }
     }
 }
 

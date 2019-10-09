@@ -3,24 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Data;
 using System.Configuration;
 
-
-using TitleInjestion.Company.WFHowes.Onix_2_Short_Definition;
+using TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition;
 
 using TitleInjestion.CommonFunctions;
 
 
-
-namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
+namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.CoreSourcePlus53_5
 {
-    class Gardners_Extraction
+    class CoreSourcePlus53_5_Extraction
     {
         public List<string> d101_productID = new List<string>();
 
-        public bool Gardners_UK_Extraction(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.ONIXmessage fileinfo_1, int pubid, string FileName, string MediaType,
+        public bool RB_CoreSourcePlus53_5_Extraction(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.ONIXmessage fileinfo_1, int pubid, string FileName, string MediaType,
             System.Windows.Forms.Label lbl_Extraction,
             System.Windows.Forms.Label lbl_Insert,
             System.Windows.Forms.Label lbl_Message)
@@ -36,12 +33,12 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                 #region 'DataTable Creation'
 
 
-                //DataTable dt_RH_MetaDataInfo = new DataTable("MetaDataInfo");
+                //DataTable dt_MetaDataInfo = new DataTable("MetaDataInfo");
                 //#region 'Columns Declaration'
 
-                //dt_RH_MetaDataInfo.Columns.Add("Pub_ID", typeof(int));
-                //dt_RH_MetaDataInfo.Columns.Add("FileName", typeof(string));
-                //dt_RH_MetaDataInfo.Columns.Add("FileType", typeof(string));
+                //dt_MetaDataInfo.Columns.Add("Pub_ID", typeof(int));
+                //dt_MetaDataInfo.Columns.Add("FileName", typeof(string));
+                //dt_MetaDataInfo.Columns.Add("FileType", typeof(string));
 
                 //#endregion
 
@@ -56,11 +53,13 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
                 #endregion
 
-                //DataTable dt_RH_b213 = new DataTable("b213");
+                //DataTable dt_b213 = new DataTable("b213");
                 //#region 'Columns Declaration'
 
-                //dt_RH_b213.Columns.Add("ProductID", typeof(int));
-                //dt_RH_b213.Columns.Add("b213", typeof(string));
+                //dt_b213.Columns.Add("MetaDataID", typeof(int));
+                //dt_b213.Columns.Add("ProductID", typeof(int));
+                //dt_b213.Columns.Add("RowCnt", typeof(int));
+                //dt_b213.Columns.Add("b213", typeof(string));
 
                 //#endregion
 
@@ -86,12 +85,12 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
                 #endregion
 
-                //DataTable dt_RH_Publisher2 = new DataTable("Publisher2");
+                //DataTable dt_Publisher2 = new DataTable("Publisher2");
                 //#region 'Columns Declaration'
 
-                //dt_RH_Publisher2.Columns.Add("ProductID", typeof(int));
-                //dt_RH_Publisher2.Columns.Add("RowCnt", typeof(int));
-                //dt_RH_Publisher2.Columns.Add("Publisher_b081", typeof(string));
+                //dt_Publisher2.Columns.Add("ProductID", typeof(int));
+                //dt_Publisher2.Columns.Add("RowCnt", typeof(int));
+                //dt_Publisher2.Columns.Add("Publisher_b081", typeof(string));
 
                 //#endregion
 
@@ -142,6 +141,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                 dt_Price.Columns.Add("ProductID", typeof(int));
                 dt_Price.Columns.Add("RowCnt", typeof(int));
                 dt_Price.Columns.Add("PriceType_j148", typeof(string));
+                //   dt_Price.Columns.Add("ClassOfTrade_j149", typeof(string));
                 dt_Price.Columns.Add("LibraryPrice_j151", typeof(string));
                 dt_Price.Columns.Add("CurrencyCode_j152", typeof(string));
                 dt_Price.Columns.Add("j261", typeof(string));
@@ -171,7 +171,6 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
                 #endregion
 
-
                 DataTable dt_Bisac = new DataTable("Bisac");
                 #region 'Columns Declaration'
 
@@ -194,13 +193,13 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
                 #endregion
 
-                DataTable dt_BisacBic_b064_b065 = new DataTable("BisacBic");
+                DataTable dt_Bisac_b064 = new DataTable("Bisac_b064");
                 #region 'Columns Declaration'
 
-                dt_BisacBic_b064_b065.Columns.Add("MetaDataID", typeof(int));
-                dt_BisacBic_b064_b065.Columns.Add("ProductID", typeof(int));
-                dt_BisacBic_b064_b065.Columns.Add("RowCnt", typeof(int));
-                dt_BisacBic_b064_b065.Columns.Add("BisacBic", typeof(string));
+                dt_Bisac_b064.Columns.Add("MetaDataID", typeof(int));
+                dt_Bisac_b064.Columns.Add("ProductID", typeof(int));
+                dt_Bisac_b064.Columns.Add("RowCnt", typeof(int));
+                dt_Bisac_b064.Columns.Add("Bisac_b064", typeof(string));
 
                 #endregion
 
@@ -214,13 +213,34 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
                 //#endregion
 
-                DataTable dt_Audience = new DataTable("Audience");
+                //DataTable dt_Audience = new DataTable("Audience");
+                //#region 'Columns Declaration'
+
+                //dt_Audience.Columns.Add("MetaDataID", typeof(int));
+                //dt_Audience.Columns.Add("ProductID", typeof(int));
+                //dt_Audience.Columns.Add("RowCnt", typeof(int));
+                //dt_Audience.Columns.Add("Audience", typeof(string));
+
+                //#endregion
+
+                DataTable dt_AudienceCode_b073 = new DataTable("AudienceCode_b073");
                 #region 'Columns Declaration'
 
-                dt_Audience.Columns.Add("MetaDataID", typeof(int));
-                dt_Audience.Columns.Add("ProductID", typeof(int));
-                dt_Audience.Columns.Add("RowCnt", typeof(int));
-                dt_Audience.Columns.Add("Audience", typeof(string));
+                dt_AudienceCode_b073.Columns.Add("MetaDataID", typeof(int));
+                dt_AudienceCode_b073.Columns.Add("ProductID", typeof(int));
+                dt_AudienceCode_b073.Columns.Add("RowCnt", typeof(int));
+                dt_AudienceCode_b073.Columns.Add("AudienceCode_b073", typeof(string));
+
+                #endregion
+
+
+                DataTable dt_AudienceCode_b206 = new DataTable("AudienceCode_b206");
+                #region 'Columns Declaration'
+
+                dt_AudienceCode_b206.Columns.Add("MetaDataID", typeof(int));
+                dt_AudienceCode_b206.Columns.Add("ProductID", typeof(int));
+                dt_AudienceCode_b206.Columns.Add("RowCnt", typeof(int));
+                dt_AudienceCode_b206.Columns.Add("AudienceCode_b206", typeof(string));
 
                 #endregion
 
@@ -260,7 +280,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                 dt_Status_b394.Columns.Add("ProductID", typeof(int));
                 dt_Status_b394.Columns.Add("RowCnt", typeof(int));
                 dt_Status_b394.Columns.Add("Status_b394", typeof(string));
-                //dt_RH_Status_b394.Columns.Add("Status_j141", typeof(string));
+                //dt_Status_b394.Columns.Add("Status_j141", typeof(string));
 
                 #endregion
 
@@ -308,8 +328,6 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
                 #endregion
 
-
-
                 DataTable dt_PageCount = new DataTable("PageCount");
                 #region 'Columns Declaration'
 
@@ -320,15 +338,15 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
                 #endregion
 
-                DataTable dt_SalesRestriction = new DataTable("SalesRestriction");
-                #region 'Columns Declaration'
+                //DataTable dt_SalesRestriction = new DataTable("SalesRestriction");
+                //#region 'Columns Declaration'
 
-                dt_SalesRestriction.Columns.Add("MetaDataID", typeof(int));
-                dt_SalesRestriction.Columns.Add("ProductID", typeof(int));
-                dt_SalesRestriction.Columns.Add("RowCnt", typeof(int));
-                dt_SalesRestriction.Columns.Add("SalesRestriction_b383", typeof(string));
+                //dt_SalesRestriction.Columns.Add("MetaDataID", typeof(int));
+                //dt_SalesRestriction.Columns.Add("ProductID", typeof(int));
+                //dt_SalesRestriction.Columns.Add("RowCnt", typeof(int));
+                //dt_SalesRestriction.Columns.Add("SalesRestriction_b383", typeof(string));
 
-                #endregion
+                //#endregion
 
                 DataTable dt_ReleaseDate_b003 = new DataTable("ReleaseDate_b003");
                 #region 'Columns Declaration'
@@ -351,16 +369,16 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                 #endregion
 
 
-                DataTable dt_MinAge = new DataTable("MinAge");
-                #region 'Columns Declaration'
+                //DataTable dt_MinAge = new DataTable("MinAge");
+                //#region 'Columns Declaration'
 
-                dt_MinAge.Columns.Add("MetaDataID", typeof(int));
-                dt_MinAge.Columns.Add("ProductID", typeof(int));
-                dt_MinAge.Columns.Add("RowCnt", typeof(int));
-                dt_MinAge.Columns.Add("b075", typeof(string));
-                dt_MinAge.Columns.Add("b076", typeof(string));
+                //dt_MinAge.Columns.Add("MetaDataID", typeof(int));
+                //dt_MinAge.Columns.Add("ProductID", typeof(int));
+                //dt_MinAge.Columns.Add("RowCnt", typeof(int));
+                //dt_MinAge.Columns.Add("b075", typeof(string));
+                //dt_MinAge.Columns.Add("b076", typeof(string));
 
-                #endregion
+                //#endregion
 
                 //DataTable dt_b211 = new DataTable("b211");
                 //#region 'Columns Declaration'
@@ -392,23 +410,9 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
                 #endregion
 
-
-                
-                DataTable dt_DiscountPercent_j267 = new DataTable("DiscountPercent_j267");
-                #region 'Columns Declaration'
-
-                dt_DiscountPercent_j267.Columns.Add("MetaDataID", typeof(int));
-                dt_DiscountPercent_j267.Columns.Add("ProductID", typeof(int));
-                dt_DiscountPercent_j267.Columns.Add("RowCnt", typeof(int));
-                dt_DiscountPercent_j267.Columns.Add("DiscountPercent_j267", typeof(string));
-
                 #endregion
 
-
-
-                #endregion
-
-                int MetaDataID = InsertMetaData_Info(pubid, FileName, MediaType, "WFH");
+                int MetaDataID = InsertMetaData_Info(pubid, FileName, MediaType, "RB");
 
                 if (MetaDataID > 0)
                 {
@@ -429,9 +433,9 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
                         // for each product
-                        #region 'ISBN'
+                        #region 'b213'
                         //Step = "b213";
-                        //dt_RH_b213 = b213(fileinfo_1.obj_product_List[i], dt_RH_b213, MetaDataID, (i + 1));
+                        //dt_b213 = b213(fileinfo_1.obj_product_List[i], dt_b213, MetaDataID, (i + 1));
                         #endregion
 
 
@@ -449,7 +453,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                         #endregion
 
                         //#region 'Publisher2'
-                        //dt_RH_Publisher2 = Publisher2(fileinfo_1.obj_product_List[i], dt_RH_Publisher, (i + 1));
+                        //dt_Publisher2 = Publisher2(fileinfo_1.obj_product_List[i], dt_Publisher2, MetaDataID, (i + 1));
                         //#endregion
 
                         #region 'Imprint'
@@ -489,40 +493,53 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                         #endregion
 
                         #region 'Bisac'
-                        Step = "dt_RH_Bisac";
+                        Step = "dt_Bisac";
                         dt_Bisac = Bisac(fileinfo_1.obj_product_List[i], dt_Bisac, MetaDataID, (i + 1));
 
-                        Step = "dt_RH_MainBisacBic";
+
+
+
+
+                        Step = "dt_MainBisacBic";
                         dt_MainBisacBic = MainBisacBic(fileinfo_1.obj_product_List[i], dt_MainBisacBic, MetaDataID, (i + 1));
 
-                        Step = "dt_BisacBic_b064_b065";
-                        dt_BisacBic_b064_b065 = BisacBic_b064_b065(fileinfo_1.obj_product_List[i], dt_BisacBic_b064_b065, MetaDataID, (i + 1));
+                        Step = "dt_Bisac_b064";
+                        dt_Bisac_b064 = Bisac_b064(fileinfo_1.obj_product_List[i], dt_Bisac_b064, MetaDataID, (i + 1));
 
-                        //Step = "dt_RH_Bic_b065";
-                        //dt_RH_Bic_b065 = Bic_b065(fileinfo_1.obj_product_List[i], dt_RH_Bic_b065, (i + 1));
+                        //Step = "dt_Bic_b065";
+                        //dt_Bic_b065 = Bic_b065(fileinfo_1.obj_product_List[i], dt_Bic_b065, (i + 1));
 
 
                         #endregion
 
                         #region 'Audience'
-                        //Step = "dt_RH_Bisac";
-                        //dt_RH_Bisac = Bisac(fileinfo_1.obj_product_List[i], dt_RH_Bisac, (i + 1));
+                        //Step = "dt_Bisac";
+                        //dt_Bisac = Bisac(fileinfo_1.obj_product_List[i], dt_Bisac, (i + 1));
 
-                        Step = "dt_RH_Audience";
-                        dt_Audience = Audience(fileinfo_1.obj_product_List[i], dt_Audience, MetaDataID, (i + 1));
-                        Step = "dt_RH_Audience";
+                        //Step = "dt_Audience";
+                        //dt_Audience = Audience(fileinfo_1.obj_product_List[i], dt_Audience, MetaDataID, (i + 1));
+                        //Step = "dt_Audience";
+
+                        Step = "dt_AudienceCode_b073";
+                        dt_AudienceCode_b073 = AudienceCode_b073(fileinfo_1.obj_product_List[i], dt_AudienceCode_b073, MetaDataID, (i + 1));
+                        Step = "dt_AudienceCode_b073";
+
+                        Step = "dt_AudienceCode_b206";
+                        dt_AudienceCode_b206 = AudienceCode_b206(fileinfo_1.obj_product_List[i], dt_AudienceCode_b206, MetaDataID, (i + 1));
+                        Step = "dt_AudienceCode_b206";
+
 
 
 
                         #endregion
 
                         #region 'MinAge'
-                        //Step = "dt_RH_Bisac";
-                        //dt_RH_Bisac = Bisac(fileinfo_1.obj_product_List[i], dt_RH_Bisac, (i + 1));
+                        //Step = "dt_Bisac";
+                        //dt_Bisac = Bisac(fileinfo_1.obj_product_List[i], dt_Bisac, (i + 1));
 
-                        Step = "dt_RH_MinAge";
-                        dt_MinAge = MinAge(fileinfo_1.obj_product_List[i], dt_MinAge, MetaDataID, (i + 1));
-                        Step = "dt_RH_MinAge";
+                        //Step = "dt_MinAge";
+                        //dt_MinAge = MinAge(fileinfo_1.obj_product_List[i], dt_MinAge, MetaDataID, (i + 1));
+                        //Step = "dt_MinAge";
 
 
 
@@ -564,23 +581,23 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                         dt_PageCount = PageCount(fileinfo_1.obj_product_List[i], dt_PageCount, MetaDataID, (i + 1));
                         #endregion
 
-                        #region 'SalesRestriction'
-                        Step = "SalesRestriction";
-                        dt_SalesRestriction = SalesRestriction(fileinfo_1.obj_product_List[i], dt_SalesRestriction, MetaDataID, (i + 1));
-                        #endregion
+                        //#region 'SalesRestriction'
+                        //Step = "SalesRestriction";
+                        //dt_SalesRestriction = SalesRestriction(fileinfo_1.obj_product_List[i], dt_SalesRestriction, MetaDataID, (i + 1));
+                        //#endregion
 
                         #region 'ReleaseDate'
-                        Step = "ReleaseDate";
+                        Step = "dt_ReleaseDate_b003";
                         dt_ReleaseDate_b003 = ReleaseDate_b003(fileinfo_1.obj_product_List[i], dt_ReleaseDate_b003, MetaDataID, (i + 1));
 
-                        Step = "Page Count";
+                        Step = "dt_ReleaseDate_j143 Count";
                         dt_ReleaseDate_j143 = ReleaseDate_j143(fileinfo_1.obj_product_List[i], dt_ReleaseDate_j143, MetaDataID, (i + 1));
                         #endregion
 
                         //#region 'b211'
 
                         //Step = "b211";
-                        //dt_RH_b211 = b211(fileinfo_1.obj_product_List[i], dt_RH_b211, (i + 1));
+                        //dt_b211 = b211(fileinfo_1.obj_product_List[i], dt_b211, (i + 1));
 
                         //#endregion
 
@@ -599,16 +616,6 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                         #endregion
 
 
-                        #region 'DiscountPercent_j267'
-
-                        Step = "DiscountPercent_j267";
-                        dt_DiscountPercent_j267 = DiscountPercent_j267(fileinfo_1.obj_product_List[i], dt_DiscountPercent_j267, MetaDataID, (i + 1));
-
-                        #endregion
-                     
-
-
-
                         #endregion
                     }
 
@@ -625,226 +632,227 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
                     #region 'Insert the Data into the SQL Table'
 
-                    int count = 26;
+                    int count = 25;
 
-                    result = InsertRecords(dt_ISBN, "WFH");
+                    result = InsertRecords(dt_ISBN, "RB");
                     Insertion_Label(lbl_Insert, count);
 
-                    //result = InsertRecords(dt_RH_b213, "WFH");
+                    //result = InsertRecords(dt_b213, "RB");
                     //Insertion_Label(lbl_Insert, count);
 
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_Title_Subtitle, "WFH");
+                        result = InsertRecords(dt_Title_Subtitle, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_Publisher, "WFH");
+                        result = InsertRecords(dt_Publisher, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
-                    //InsertRecords(dt_RH_Publisher2);
+                    //InsertRecords(dt_Publisher2);
 
                     if (result)
                     {
-                        result = InsertRecords(dt_Imprint, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_UnAbridged, "WFH");
+                        result = InsertRecords(dt_Imprint, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_Language, "WFH");
+                        result = InsertRecords(dt_UnAbridged, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_Price, "WFH");
+                        result = InsertRecords(dt_Language, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_Description, "WFH");
+                        result = InsertRecords(dt_Price, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_Description_d101, "WFH");
+                        result = InsertRecords(dt_Description, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_DigitalFormat_b333, "WFH");
+                        result = InsertRecords(dt_Description_d101, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_Bisac, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_MainBisacBic, "WFH");
+                        result = InsertRecords(dt_DigitalFormat_b333, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_BisacBic_b064_b065, "WFH");
+                        result = InsertRecords(dt_Bisac, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_Audience, "WFH");
+                        result = InsertRecords(dt_MainBisacBic, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_MinAge, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-
-                    //if (result)
-                    //{
-                    //    result = InsertRecords(dt_Bisac2, "WFH");
-                    //    Insertion_Label(lbl_Insert, count);
-                    //}
-                    //count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_contributor, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_Series, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_Status_b394, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_Status_j141, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_SalesRights, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_SalesRights_NotForSale, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_PageCount, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_SalesRestriction, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_ReleaseDate_b003, "WFH");
-                        Insertion_Label(lbl_Insert, count);
-                    }
-                    count--;
-
-                    if (result)
-                    {
-                        result = InsertRecords(dt_ReleaseDate_j143, "WFH");
+                        result = InsertRecords(dt_Bisac_b064, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     //if (result)
                     //{
-                    //    result = InsertRecords(dt_RH_b211, "WFH");
+                    //    result = InsertRecords(dt_Audience, "RB");
                     //    Insertion_Label(lbl_Insert, count);
                     //}
                     //count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_EditionNumber_b057, "WFH");
+                        result = InsertRecords(dt_AudienceCode_b073, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
                     count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_ProductFormCode_b012, "WFH");
+                        result = InsertRecords(dt_AudienceCode_b206, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
+                    count--;
 
+                    //if (result)
+                    //{
+                    //    result = InsertRecords(dt_MinAge, "RB");
+                    //    Insertion_Label(lbl_Insert, count);
+                    //}
+                    //count--;
+
+
+                    //if (result)
+                    //{
+                    //    result = InsertRecords(dt_Bisac2, "RB");
+                    //    Insertion_Label(lbl_Insert, count);
+                    //}
+                    //count--;
 
                     if (result)
                     {
-                        result = InsertRecords(dt_DiscountPercent_j267, "WFH");
+                        result = InsertRecords(dt_contributor, "RB");
                         Insertion_Label(lbl_Insert, count);
                     }
+                    count--;
 
+                    if (result)
+                    {
+                        result = InsertRecords(dt_Series, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
 
+                    if (result)
+                    {
+                        result = InsertRecords(dt_Status_b394, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
 
+                    if (result)
+                    {
+                        result = InsertRecords(dt_Status_j141, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
 
+                    if (result)
+                    {
+                        result = InsertRecords(dt_SalesRights, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
 
+                    if (result)
+                    {
+                        result = InsertRecords(dt_SalesRights_NotForSale, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
+
+                    if (result)
+                    {
+                        result = InsertRecords(dt_PageCount, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
+
+                    //if (result)
+                    //{
+                    //    result = InsertRecords(dt_SalesRestriction, "RB");
+                    //    Insertion_Label(lbl_Insert, count);
+                    //}
+                    //count--;
+
+                    if (result)
+                    {
+                        result = InsertRecords(dt_ReleaseDate_b003, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
+
+                    if (result)
+                    {
+                        result = InsertRecords(dt_ReleaseDate_j143, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
+
+                    //if (result)
+                    //{
+                    //    result = InsertRecords(dt_b211, "RB");
+                    //    Insertion_Label(lbl_Insert, count);
+                    //}
+                    //count--;
+
+                    if (result)
+                    {
+                        result = InsertRecords(dt_EditionNumber_b057, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
+                    count--;
+
+                    if (result)
+                    {
+                        result = InsertRecords(dt_ProductFormCode_b012, "RB");
+                        Insertion_Label(lbl_Insert, count);
+                    }
 
 
                     if (result)
@@ -866,7 +874,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
             {
                 result = false;
                 SQLFunction sqlfnction = new SQLFunction();
-                sqlfnction.Insert_ErrorLog(sqlfnction.GetConnectionString("WFH"), "Error at " + Step + " : " + ex.ToString());
+                sqlfnction.Insert_ErrorLog(sqlfnction.GetConnectionString("RB"), "Error at " + Step + " : " + ex.ToString());
             }
 
             return result;
@@ -914,7 +922,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
             return ID;
         }
-        public bool Process_Gardners(string Company, System.Windows.Forms.Label lbl_Processing)
+        public bool Process_CoreSourcePlus53_5(string Company, System.Windows.Forms.Label lbl_Processing)
         {
             bool result = false;
 
@@ -926,7 +934,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
             SQLFunction sqlfunction = new SQLFunction();
-            result = sqlfunction.ExecuteProc("WFH", ConfigurationSettings.AppSettings["WFH_Process_Gardners_Ebook_UK"].ToString());
+            result = sqlfunction.ExecuteProc("RB", ConfigurationSettings.AppSettings["RB_Process_CoreSourcePlus53_5_Ebook"].ToString());
 
             if (result)
             {
@@ -949,37 +957,38 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
         #region 'Approved and Confirmed Extraction Rules'
 
-        public DataTable b213(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_b213, int MetaDataID, int productCount)
-        {
-            DataRow dr = dt_b213.NewRow();
+        //public DataTable b213(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_b213, int MetaDataID, int productCount)
+        //{
+        //    DataRow dr = dt_b213.NewRow();
 
-            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+        //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+        //    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+        //    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-            #region 'dt_b213'
-            int i = 0;
-            for (int a = 0; a < product.obj_b213_List.Count; a++)
-            {
+        //    #region 'dt_b213'
+        //    int i = 0;
+        //    for (int a = 0; a < product.obj_b213_List.Count; a++)
+        //    {
 
+        //        dr["MetaDataID"] = MetaDataID;
+        //        dr["ProductID"] = productCount;
+        //        dr["RowCnt"] = i;
+        //        dr["b213"] = product.obj_b213_List[a].ToString();
 
-                dr["ProductID"] = productCount;
-                //   dr["RowCnt"] = i;
-                dr["b213"] = product.obj_b213_List[a].ToString();
-                dt_b213.Rows.Add(dr);
+        //        dt_b213.Rows.Add(dr);
 
-
-            }
-            #endregion
-
-
-
-            return dt_b213;
+        //    }
+        //    #endregion
 
 
-        }
 
-        public DataTable ISBN(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_ISBN, int MetaDataID, int productCount)
+        //    return dt_b213;
+
+
+        //}
+
+
+        public DataTable ISBN(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_ISBN, int MetaDataID, int productCount)
         {
 
 
@@ -1014,7 +1023,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable TitleSubtitle(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Title_Subtitle, int MetaDataID, int productCount)
+        public DataTable TitleSubtitle(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Title_Subtitle, int MetaDataID, int productCount)
         {
 
 
@@ -1050,7 +1059,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable Publisher(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Publisher, int MetaDataID, int productCount)
+        public DataTable Publisher(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Publisher, int MetaDataID, int productCount)
         {
 
 
@@ -1078,7 +1087,37 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable Imprint(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Imprint, int MetaDataID, int productCount)
+
+        //public DataTable Publisher2(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Publisher2, int MetaDataID, int productCount)
+        //{
+
+
+        //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+        //    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+        //    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+
+        //    #region 'Publisher'
+        //    for (int a = 0; a < product.obj_b081_List.Count; a++)
+        //    {
+        //        DataRow dr = dt_Publisher2.NewRow();
+
+        //        dr["MetaDataID"] = MetaDataID;
+        //        dr["ProductID"] = productCount;
+        //        dr["RowCnt"] = (a + 1);
+        //        dr["Publisher_b081"] = product.obj_b081_List[a].ToString();
+
+        //        dt_Publisher2.Rows.Add(dr);
+        //    }
+        //    #endregion
+
+
+
+        //    return dt_Publisher2;
+
+
+        //}    
+
+        public DataTable Imprint(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Imprint, int MetaDataID, int productCount)
         {
 
 
@@ -1090,23 +1129,14 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
             for (int a = 0; a < product.obj_imprint_List.Count; a++)
             {
 
-                //if (string.IsNullOrEmpty(product.obj_imprint_List[a].b241_product_imprint))
-                //{
-                if (!string.IsNullOrEmpty(product.obj_imprint_List[a].b079_product_imprint))
-                {
-                    //if (product.obj_imprint_List[a].b241_product_imprint == "01")
-                    //{
-                    DataRow dr = dt_Imprint.NewRow();
+                DataRow dr = dt_Imprint.NewRow();
 
-                    dr["MetaDataID"] = MetaDataID;
-                    dr["ProductID"] = productCount;
-                    dr["RowCnt"] = a;
-                    dr["Imprint_b079"] = product.obj_imprint_List[a].b079_product_imprint;
+                dr["MetaDataID"] = MetaDataID;
+                dr["ProductID"] = productCount;
+                dr["RowCnt"] = a;
+                dr["Imprint_b079"] = product.obj_imprint_List[a].b079_product_imprint;
 
-                    dt_Imprint.Rows.Add(dr);
-                    //}
-                }
-                //}
+                dt_Imprint.Rows.Add(dr);
 
             }
             #endregion
@@ -1117,7 +1147,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable UnAbridged(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_UnAbridged, int MetaDataID, int productCount)
+        public DataTable UnAbridged(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_UnAbridged, int MetaDataID, int productCount)
         {
 
 
@@ -1145,7 +1175,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable Language(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Language, int MetaDataID, int productCount)
+        public DataTable Language(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Language, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1173,7 +1203,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable Price(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Price, int MetaDataID, int productCount)
+        public DataTable Price(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Price, int MetaDataID, int productCount)
         {
 
 
@@ -1189,17 +1219,20 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                 {
 
 
-                    #region 'GBP'
+                    #region 'USD'
 
-                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "gbp")
+                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "usd")
                     {
-                        //if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                        //{
-                        //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
-                        //    {
+                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                        {
+                            if ((product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                                ||
+                                (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "10")
+                                    )
+                            {
                                 if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
                                 {
-                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "02")
+                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
                                     {
 
                                         //for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
@@ -1207,106 +1240,132 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                                         //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "gb")
                                         //    {
 
-                                                DataRow dr = dt_Price.NewRow();
+                                        DataRow dr = dt_Price.NewRow();
 
-                                                dr["MetaDataID"] = MetaDataID;
-                                                dr["ProductID"] = productCount;
-                                                dr["RowCnt"] = (b + 1);
-                                                dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                                                dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
-                                                dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
-                                                dr["j261"] = ""; // product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+                                        dr["MetaDataID"] = MetaDataID;
+                                        dr["ProductID"] = productCount;
+                                        dr["RowCnt"] = (b + 1);
+                                        dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                                        //     dr["ClassOfTrade_j149"] = ""; //  product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j149_product_supplydetail_price;
+                                        dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                                        dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                                        dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
 
-                                                dt_Price.Rows.Add(dr);
+                                        dt_Price.Rows.Add(dr);
+
                                         //    }
                                         //}
                                     }
                                 }
-                        //    }
-                        //}
+                            }
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
+                            {
+                                if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
+                                {
+
+                                    //for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
+                                    //{
+                                    //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "gb")
+                                    //    {
+
+                                    DataRow dr = dt_Price.NewRow();
+
+                                    dr["MetaDataID"] = MetaDataID;
+                                    dr["ProductID"] = productCount;
+                                    dr["RowCnt"] = (b + 1);
+                                    dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                                    //     dr["ClassOfTrade_j149"] = ""; //  product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j149_product_supplydetail_price;
+                                    dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                                    dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                                    dr["j261"] = "";// product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+
+                                    dt_Price.Rows.Add(dr);
+
+                                    //    }
+                                    //}
+                                }
+                            }
+                        }
                     }
 
                     #endregion
 
-                    #region 'EUR - commented out'
+                    #region 'CAD'
 
-                    //if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "eur")
-                    //{
-                    //    if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                    //    {
-                    //        if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
-                    //        {
-                    //            if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
-                    //            {
-                    //                if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
-                    //                {
+                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "cad")
+                    {
+                        if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
+                        {
+                            if ((product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
+                                ||
+                                (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "10")
+                                )
+                            {
+                                if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
+                                {
+                                    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
+                                    {
 
-                    //                    for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
-                    //                    {
-                    //                        if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "ie")
-                    //                        {
+                                        //for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
+                                        //{
+                                        //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "ie")
+                                        //    {
 
-                    //                            DataRow dr = dt_Price.NewRow();
+                                        DataRow dr = dt_Price.NewRow();
 
-                    //                            dr["MetaDataID"] = MetaDataID;
-                    //                            dr["ProductID"] = productCount;
-                    //                            dr["RowCnt"] = (b + 1);
-                    //                            dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                    //                            dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
-                    //                            dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
-                    //                            dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+                                        dr["MetaDataID"] = MetaDataID;
+                                        dr["ProductID"] = productCount;
+                                        dr["RowCnt"] = (b + 1);
+                                        dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                                        //    dr["ClassOfTrade_j149"] = ""; //  product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j149_product_supplydetail_price;
+                                        dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                                        dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                                        dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
 
-                    //                            dt_Price.Rows.Add(dr);
-                    //                        }
-                    //                    }
-                    //                }
-                    //            }
+                                        dt_Price.Rows.Add(dr);
+                                        //    }
+                                        //}
+                                    }
+                                }
+                            }
 
-                    //        }
-                    //    }
-                    //}
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
+                            {
+                                if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
+                                {
 
-                    #endregion
+                                    //for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
+                                    //{
+                                    //    if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "ie")
+                                    //    {
 
-                    #region 'AUD - commented out'
+                                    DataRow dr = dt_Price.NewRow();
 
-                    //if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price.ToLower() == "aud")
-                    //{
-                    //    if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                    //    {
-                    //        if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price.ToLower() == "06")
-                    //        {
+                                    dr["MetaDataID"] = MetaDataID;
+                                    dr["ProductID"] = productCount;
+                                    dr["RowCnt"] = (b + 1);
+                                    dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
+                                    //    dr["ClassOfTrade_j149"] = ""; //  product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j149_product_supplydetail_price;
+                                    dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
+                                    dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
+                                    dr["j261"] = ""; // product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
 
-                    //            if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price))
-                    //            {
-                    //                if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price.ToLower() == "01")
-                    //                {
-
-                    //                    for (int c = 0; c < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List.Count; c++)
-                    //                    {
-                    //                        if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].obj_b251_List[c].ToString().ToLower() == "au")
-                    //                        {
-
-                    //                            DataRow dr = dt_Price.NewRow();
-
-                    //                            dr["MetaDataID"] = MetaDataID;
-                    //                            dr["ProductID"] = productCount;
-                    //                            dr["RowCnt"] = (b + 1);
-                    //                            dr["PriceType_j148"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j148_product_supplydetail_price;
-                    //                            dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
-                    //                            dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
-                    //                            dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
-
-                    //                            dt_Price.Rows.Add(dr);
-                    //                        }
-                    //                    }
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //}
+                                    dt_Price.Rows.Add(dr);
+                                    //    }
+                                    //}
+                                }
+                            }
+                        }
+                    }
 
                     #endregion
+
 
                 }
             }
@@ -1317,7 +1376,8 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable Description_d101(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Description_d101, int MetaDataID, int productCount)
+
+        public DataTable Description_d101(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Description_d101, int MetaDataID, int productCount)
         {
 
 
@@ -1369,7 +1429,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable Description(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Description, int MetaDataID, int productCount)
+        public DataTable Description(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Description, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1423,7 +1483,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable Contributor(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_contributor, int MetaDataID, int productCount)
+        public DataTable Contributor(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_contributor, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1461,10 +1521,18 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable DigitalFormat_b333(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_DigitalFormat_b333, int MetaDataID, int productCount)
+
+        public DataTable DigitalFormat_b333(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_DigitalFormat_b333, int MetaDataID, int productCount)
         {
 
+            /*
+            
+                if b333 = e200 then  'REFLOWABLE'
+                if b333 = e201, e202, e210,  e211,  e221, e222, e223, e224, e225 then  'Fixed Layout'
+                if b333  is not found then  'REFLOWABLE'
+                if b333 is any value other than e201, e202, e210,  e211,  e221, e222, e223, e224, e225 then  'REFLOWABLE'
 
+            */
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
             //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
@@ -1505,13 +1573,17 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                         // dr["DigitalFormat_b333"] = product.obj_b333_List[a]; 
                         dr["DigitalFormat_b333"] = "Reflowable";
                     }
-                    else if (product.obj_b333_List[a].ToString().ToLower() == "e101")
-                    {
-                        //string asdf = product.obj_product_othertext_List[a].d104_product_othertext.Substring(0, 3500);
-                        // dr["DigitalFormat_b333"] = product.obj_b333_List[a]; 
-                        dr["DigitalFormat_b333"] = "Reflowable";
-                    }
-                    else if (product.obj_b333_List[a].ToString().ToLower() == "e201")
+                    else if (product.obj_b333_List[a].ToString().ToLower() == "e201" ||
+                        product.obj_b333_List[a].ToString().ToLower() == "e202" ||
+                        product.obj_b333_List[a].ToString().ToLower() == "e210" ||
+                        product.obj_b333_List[a].ToString().ToLower() == "e211" ||
+                        product.obj_b333_List[a].ToString().ToLower() == "e221" ||
+                           product.obj_b333_List[a].ToString().ToLower() == "e222" ||
+                              product.obj_b333_List[a].ToString().ToLower() == "e223" ||
+                                 product.obj_b333_List[a].ToString().ToLower() == "e224" ||
+                                    product.obj_b333_List[a].ToString().ToLower() == "e225"
+
+                        )
                     {
                         //string asdf = product.obj_product_othertext_List[a].d104_product_othertext.Substring(0, 3500);
                         // dr["DigitalFormat_b333"] = product.obj_b333_List[a]; 
@@ -1519,18 +1591,10 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                     }
                     else
                     {
-                        if (product.obj_b333_List[a].Trim().Length > 0)
-                        {
-                            dr["DigitalFormat_b333"] = product.obj_b333_List[a].Trim();
-                        }
-                        else
-                        {
-                            dr["DigitalFormat_b333"] = "Reflowable";
-                        }
+
+                        dr["DigitalFormat_b333"] = "Reflowable";
+
                     }
-
-
-
                 }
                 else
                 {
@@ -1550,7 +1614,45 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable MainBisacBic(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_MainBisacBic, int MetaDataID, int productCount)
+
+
+
+
+        public DataTable Bisac(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Bisac, int MetaDataID, int productCount)
+        {
+            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+
+            #region 'Bisac'
+
+            for (int a = 0; a < product.obj_product_subject_List.Count; a++)
+            {
+                if (product.obj_product_subject_List[a].b067_product_subject == "10")
+                {
+                    DataRow dr = dt_Bisac.NewRow();
+
+                    dr["MetaDataID"] = MetaDataID;
+                    dr["ProductID"] = productCount;
+                    dr["RowCnt"] = (a + 1);
+                    dr["Bisac_b067"] = product.obj_product_subject_List[a].b067_product_subject;
+                    dr["Bisac_b069"] = product.obj_product_subject_List[a].b069_product_subject;
+
+                    dt_Bisac.Rows.Add(dr);
+                }
+            }
+
+            #endregion
+
+
+
+            return dt_Bisac;
+
+
+        }
+
+
+        public DataTable MainBisacBic(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_MainBisacBic, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1560,18 +1662,18 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
             for (int a = 0; a < product.obj_product_mainsubject_List.Count; a++)
             {
-                if (product.obj_product_mainsubject_List[a].b191_product_mainsubject == "10" || product.obj_product_mainsubject_List[a].b191_product_mainsubject == "12")
-                {
-                    DataRow dr = dt_MainBisacBic.NewRow();
+                //if (product.obj_product_mainsubject_List[a].b191_product_mainsubject == "10" || product.obj_product_mainsubject_List[a].b191_product_mainsubject == "12")
+                //{
+                DataRow dr = dt_MainBisacBic.NewRow();
 
-                    dr["MetaDataID"] = MetaDataID;
-                    dr["ProductID"] = productCount;
-                    dr["RowCnt"] = (a + 1);
-                    dr["Bisac_b191"] = product.obj_product_mainsubject_List[a].b191_product_mainsubject;
-                    dr["Bisac_b069"] = product.obj_product_mainsubject_List[a].b069_product_mainsubject;
+                dr["MetaDataID"] = MetaDataID;
+                dr["ProductID"] = productCount;
+                dr["RowCnt"] = (a + 1);
+                dr["Bisac_b191"] = product.obj_product_mainsubject_List[a].b191_product_mainsubject;
+                dr["Bisac_b069"] = product.obj_product_mainsubject_List[a].b069_product_mainsubject;
 
-                    dt_MainBisacBic.Rows.Add(dr);
-                }
+                dt_MainBisacBic.Rows.Add(dr);
+                //}
             }
 
             #endregion
@@ -1582,200 +1684,283 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable Bisac(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Bisac, int MetaDataID, int productCount)
-        {
-
-
-            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
-
-            #region 'Bisac'
-
-            for (int a = 0; a < product.obj_product_subject_List.Count; a++)
-            {
-                if (product.obj_product_subject_List[a].b067_product_subject == "10" || product.obj_product_subject_List[a].b067_product_subject == "12")
-                {
-                    DataRow dr = dt_Bisac.NewRow();
-                    dr["MetaDataID"] = MetaDataID;
-
-                    dr["ProductID"] = productCount;
-                    dr["RowCnt"] = (a + 1);
-                    dr["Bisac_b067"] = product.obj_product_subject_List[a].b067_product_subject;
-                    dr["Bisac_b069"] = product.obj_product_subject_List[a].b069_product_subject;
-
-                    dt_Bisac.Rows.Add(dr);
-                }
-            }
-
-            return dt_Bisac;
-
-            #endregion
-
-        }
-        public DataTable BisacBic_b064_b065(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_BisacBic_b064_b065, int MetaDataID, int productCount)
+        public DataTable Bisac_b064(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Bisac_b064, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
             //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-            #region 'BisacBic_b064_b065'
+            #region 'Bisac_b064'
 
-            string Bisac_Bic = "";
+            string Bisac = "";
             for (int a = 0; a < product.obj_b064_List.Count; a++)
             {
-                if ((product.obj_b064_List[a].ToString().Length > 0) && (Bisac_Bic.Length == 0))
+
+
+                if (product.obj_b064_List[a].ToString().Trim().Length > 0)
                 {
-                    Bisac_Bic = product.obj_b064_List[a];
+                    DataRow dr = dt_Bisac_b064.NewRow();
+
+                    dr["MetaDataID"] = MetaDataID;
+                    dr["ProductID"] = productCount;
+                    dr["RowCnt"] = 1;
+                    dr["Bisac_b064"] = product.obj_b064_List[a].Trim();
+
+                    dt_Bisac_b064.Rows.Add(dr);
                 }
             }
-            for (int a = 0; a < product.obj_b065_List.Count; a++)
-            {
-                if ((product.obj_b065_List[a].ToString().Length > 0) && (Bisac_Bic.Length == 0))
-                {
-                    Bisac_Bic = product.obj_b065_List[a];
-                }
-            }
-            if (Bisac_Bic.Length > 0)
-            {
-                DataRow dr = dt_BisacBic_b064_b065.NewRow();
 
-                dr["MetaDataID"] = MetaDataID;
-                dr["ProductID"] = productCount;
-                dr["RowCnt"] = 1;
-                dr["BisacBic"] = Bisac_Bic;
 
-                dt_BisacBic_b064_b065.Rows.Add(dr);
-
-            }
 
             #endregion
 
 
 
-            return dt_BisacBic_b064_b065;
+            return dt_Bisac_b064;
 
 
         }
-        public DataTable Audience(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Audience, int MetaDataID, int productCount)
+        //public DataTable Audience(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Audience, int MetaDataID, int productCount)
+        //{
+        //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+        //    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+        //    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+
+        //    #region 'Audience'
+
+        //    string Audience = "";
+        //    for (int a = 0; a < product.obj_productaudience_List.Count; a++)
+        //    {
+        //        if (!string.IsNullOrEmpty(product.obj_productaudience_List[a].b204_product.ToString()))
+        //        {
+        //            if (Convert.ToInt32(product.obj_productaudience_List[a].b204_product.ToString()) == 1)
+        //            {
+        //                if (!string.IsNullOrEmpty(product.obj_productaudience_List[a].b206_product.ToString()))
+        //                {
+
+        //                    if (Convert.ToInt32(product.obj_productaudience_List[a].b206_product.ToString()) == 1)
+        //                    {
+        //                        Audience = "Adult";
+        //                    }
+        //                    else if (Convert.ToInt32(product.obj_productaudience_List[a].b206_product.ToString()) == 2 ||
+        //                             Convert.ToInt32(product.obj_productaudience_List[a].b206_product.ToString()) == 3 ||
+        //                             Convert.ToInt32(product.obj_productaudience_List[a].b206_product.ToString()) == 4)
+        //                    {
+        //                        Audience = "Children/YA";
+        //                    }
+        //                    else
+        //                    {
+        //                        Audience = "";
+        //                    }
+
+        //                    if (Audience.Length > 0)
+        //                    {
+        //                        DataRow dr = dt_Audience.NewRow();
+
+        //                        dr["MetaDataID"] = MetaDataID;
+        //                        dr["ProductID"] = productCount;
+        //                        dr["RowCnt"] = (a + 1);
+        //                        dr["Audience"] = Audience;
+
+        //                        dt_Audience.Rows.Add(dr);
+        //                    }
+
+        //                }
+        //            }
+        //        }
+        //    }
+
+
+
+        //    #endregion
+
+
+
+        //    return dt_Audience;
+
+
+        //}
+        public DataTable AudienceCode_b073(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_AudienceCode_b073, int MetaDataID, int productCount)
         {
+
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
             //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-            #region 'Audience'
+            #region 'AudienceCode_b073'
 
-            string Audience = "";
+            for (int a = 0; a < product.obj_b073_List.Count; a++)
+            {
+                if (!string.IsNullOrEmpty(product.obj_b073_List[a]))
+                {
+                    if (product.obj_b073_List[a].Trim().Length > 0)
+                    {
+                        DataRow dr = dt_AudienceCode_b073.NewRow();
+
+                        dr["MetaDataID"] = MetaDataID;
+                        dr["ProductID"] = productCount;
+                        dr["RowCnt"] = (a + 1);
+
+                        string b073 = product.obj_b073_List[a];
+
+                        if (b073 == "01" || b073 == "05" || b073 == "06" || b073 == "07" || b073 == "08" || b073 == "09")
+                        {
+                            dr["AudienceCode_b073"] = "Adult";
+                        }
+                        else if (b073 == "02")
+                        {
+                            dr["AudienceCode_b073"] = "Childrens";
+                        }
+                        else if (b073 == "03")
+                        {
+                            dr["AudienceCode_b073"] = "Young Adult";
+                        }
+                        else
+                        {
+                            dr["AudienceCode_b073"] = b073;
+                        }
+
+                        dt_AudienceCode_b073.Rows.Add(dr);
+
+
+
+                        break;
+                    }
+                }
+            }
+
+            #endregion
+
+            return dt_AudienceCode_b073;
+
+
+        }
+
+        public DataTable AudienceCode_b206(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_AudienceCode_b206, int MetaDataID, int productCount)
+        {
+
+            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+
+            #region 'AudienceCode_b206'
+            string audiencecode = "";
+
             for (int a = 0; a < product.obj_productaudience_List.Count; a++)
             {
-                if (!string.IsNullOrEmpty(product.obj_productaudience_List[a].b204_product.ToString()))
+                if (audiencecode.Length == 0)
                 {
-                    if (Convert.ToInt32(product.obj_productaudience_List[a].b204_product.ToString()) == 1)
+                    for (int b = 0; b < product.obj_productaudience_List[a].obj_b206_List.Count; b++)
                     {
-                        if (!string.IsNullOrEmpty(product.obj_productaudience_List[a].b206_product.ToString()))
-                        {
 
-                            if (Convert.ToInt32(product.obj_productaudience_List[a].b206_product.ToString()) == 1)
+                        if (product.obj_productaudience_List[a].obj_b206_List[b].Trim().Length > 0)
+                        {
+                            DataRow dr = dt_AudienceCode_b206.NewRow();
+
+                            dr["MetaDataID"] = MetaDataID;
+                            dr["ProductID"] = productCount;
+                            dr["RowCnt"] = (a + 1);
+
+
+                            string b206 = product.obj_productaudience_List[a].obj_b206_List[b].ToString();
+
+                            if (b206 == "01" || b206 == "05" || b206 == "06" || b206 == "07" || b206 == "08" || b206 == "09")
                             {
-                                Audience = "Adult";
+                                dr["AudienceCode_b206"] = "Adult";
                             }
-                            else if (Convert.ToInt32(product.obj_productaudience_List[a].b206_product.ToString()) == 2 ||
-                                     Convert.ToInt32(product.obj_productaudience_List[a].b206_product.ToString()) == 3 ||
-                                     Convert.ToInt32(product.obj_productaudience_List[a].b206_product.ToString()) == 4)
+                            else if (b206 == "02")
                             {
-                                Audience = "Children/YA";
+                                dr["AudienceCode_b206"] = "Childrens";
+                            }
+                            else if (b206 == "03")
+                            {
+                                dr["AudienceCode_b206"] = "Young Adult";
                             }
                             else
                             {
-                                Audience = "";
+                                dr["AudienceCode_b206"] = b206;
                             }
 
-                            if (Audience.Length > 0)
-                            {
-                                DataRow dr = dt_Audience.NewRow();
 
-                                dr["MetaDataID"] = MetaDataID;
-                                dr["ProductID"] = productCount;
-                                dr["RowCnt"] = (a + 1);
-                                dr["Audience"] = Audience;
+                            audiencecode = "value";
 
-                                dt_Audience.Rows.Add(dr);
-                            }
+
+                            dt_AudienceCode_b206.Rows.Add(dr);
+
+                            a = product.obj_productaudience_List.Count;
+
+                            break;
 
                         }
+
                     }
                 }
             }
 
-
-
             #endregion
 
-
-
-            return dt_Audience;
+            return dt_AudienceCode_b206;
 
 
         }
-        public DataTable MinAge(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_MinAge, int MetaDataID, int productCount)
-        {
-            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-            #region 'MinAge'
+        //public DataTable MinAge(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_MinAge, int MetaDataID, int productCount)
+        //{
+        //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+        //    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+        //    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-            string MinAge = "";
-            for (int a = 0; a < product.obj_productaudiencerange_List.Count; a++)
-            {
-                if (!string.IsNullOrEmpty(product.obj_productaudiencerange_List[a].b074_product.ToString()))
-                {
-                    if (product.obj_productaudiencerange_List[a].b074_product.ToString() == "17")
-                    {
-                        // if b075 = 3 then get b076 value. if b075 = 3 not available then find b075 = 4 . if neither then no value.
-                        for (int i = 0; i < product.obj_productaudiencerange_List[a].b075_product.Count; i++)
-                        {
-                            if (!string.IsNullOrEmpty(product.obj_productaudiencerange_List[a].b075_product[i].ToString()))
-                            {
-                                if (Convert.ToInt32(product.obj_productaudiencerange_List[a].b075_product[i].ToString()) == 3)
-                                {
-                                    DataRow dr = dt_MinAge.NewRow();
+        //    #region 'MinAge'
 
-                                    dr["MetaDataID"] = MetaDataID;
-                                    dr["ProductID"] = productCount;
-                                    dr["RowCnt"] = (a + 1);
-                                    // dr["b074"] = Audience;
-                                    dr["b075"] = product.obj_productaudiencerange_List[a].b075_product[i].ToString();
-                                    dr["b076"] = product.obj_productaudiencerange_List[a].b076_product[i].ToString();
+        //    string MinAge = "";
+        //    for (int a = 0; a < product.obj_productaudiencerange_List.Count; a++)
+        //    {
+        //        if (!string.IsNullOrEmpty(product.obj_productaudiencerange_List[a].b074_product.ToString()))
+        //        {
+        //            if (product.obj_productaudiencerange_List[a].b074_product.ToString() == "17")
+        //            {
+        //                // if b075 = 3 then get b076 value. if b075 = 3 not available then find b075 = 4 . if neither then no value.
+        //                for (int i = 0; i < product.obj_productaudiencerange_List[a].b075_product.Count; i++)
+        //                {
+        //                    if (Convert.ToInt32(product.obj_productaudiencerange_List[a].b075_product[i].ToString()) == 3)
+        //                    {
+        //                        DataRow dr = dt_MinAge.NewRow();
 
-                                    dt_MinAge.Rows.Add(dr);
+        //                        dr["MetaDataID"] = MetaDataID;
+        //                        dr["ProductID"] = productCount;
+        //                        dr["RowCnt"] = (a + 1);
+        //                       // dr["b074"] = Audience;
+        //                        dr["b075"] = product.obj_productaudiencerange_List[a].b075_product[i].ToString();
+        //                        dr["b076"] = product.obj_productaudiencerange_List[a].b076_product[i].ToString();
 
-                                    // exit out of loop.
-                                    break;
-                                }
-                                else if (Convert.ToInt32(product.obj_productaudiencerange_List[a].b075_product[i].ToString()) == 4)
-                                {
-                                    DataRow dr = dt_MinAge.NewRow();
+        //                        dt_MinAge.Rows.Add(dr);
 
-                                    dr["ProductID"] = productCount;
-                                    dr["RowCnt"] = (a + 1);
-                                    // dr["b074"] = Audience;
-                                    dr["b075"] = product.obj_productaudiencerange_List[a].b075_product[i].ToString();
-                                    dr["b076"] = product.obj_productaudiencerange_List[a].b076_product[i].ToString(); ;
+        //                        // exit out of loop.
+        //                        break;
+        //                    }
+        //                    //else if (Convert.ToInt32(product.obj_productaudiencerange_List[a].b075_product[i].ToString()) == 4)
+        //                    //{
+        //                    //    DataRow dr = dt_MinAge.NewRow();
 
-                                    dt_MinAge.Rows.Add(dr);
-                                }
-                            }
+        //                    //    dr["ProductID"] = productCount;
+        //                    //    dr["RowCnt"] = (a + 1);
+        //                    //    // dr["b074"] = Audience;
+        //                    //    dr["b075"] = product.obj_productaudiencerange_List[a].b075_product[i].ToString();
+        //                    //    dr["b076"] = product.obj_productaudiencerange_List[a].b076_product[i].ToString();
 
-                        }
-                    }
-                }
-            }
-            #endregion
+        //                    //    dt_MinAge.Rows.Add(dr);
+        //                    //}
 
-            return dt_MinAge;
-        }
-        public DataTable Series(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Series, int MetaDataID, int productCount)
+
+        //                }
+        //            }
+        //        }
+        //    }
+        //    #endregion
+
+        //    return dt_MinAge;
+        //}
+        public DataTable Series(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Series, int MetaDataID, int productCount)
         {
 
             //check if your using b203 or not
@@ -1798,32 +1983,34 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                 //dr["SeriesNumber_b019"] = product.obj_product_series_List[a].b019_product_series;
 
 
-                for (int b = 0; b < product.obj_product_series_List[a].obj_product_series_title_List.Count; b++)
+                //for (int b = 0; b < product.obj_product_series_List[a].obj_product_series_title_List.Count; b++)
+                //{
+
+
+                if ((!string.IsNullOrEmpty(product.obj_product_series_List[a].b018_product_series))
+                       // || (!string.IsNullOrEmpty(product.obj_product_series_List[a].obj_product_series_title_List[b].b203_product_series_title))
+                       || (!string.IsNullOrEmpty(product.obj_product_series_List[a].b019_product_series))
+                       )
                 {
-                    if (
-                      (!string.IsNullOrEmpty(product.obj_product_series_List[a].b018_product_series)) ||
-                      (!string.IsNullOrEmpty(product.obj_product_series_List[a].b019_product_series))
-                      )
-                    {
 
-                        //if ((product.obj_product_series_List[a].b018_product_series.Length > 0) || 
-                        //    (product.obj_product_series_List[a].b019_product_series.Length > 0) )
-                        //    //||
-                        //    //(product.obj_product_series_List[a].obj_product_series_title_List[b].b203_product_series_title.Length > 0))
-                        //{
-                        DataRow dr = dt_Series.NewRow();
 
-                        dr["MetaDataID"] = MetaDataID;
-                        dr["ProductID"] = productCount;
-                        dr["RowCnt"] = (a + 1);
-                        dr["SeriesName_b018"] = product.obj_product_series_List[a].b018_product_series;
-                        dr["SeriesNumber_b019"] = StringReplace(product.obj_product_series_List[a].b019_product_series, "No.", "");
-                        dr["SeriesName_b203"] = ""; // product.obj_product_series_List[a].obj_product_series_title_List[b].b203_product_series_title;
+                    //if (product.obj_product_series_List[a].b018_product_series.Length > 0 ||
+                    // //   product.obj_product_series_List[a].obj_product_series_title_List[b].b203_product_series_title.Length > 0 || 
+                    //    (product.obj_product_series_List[a].b019_product_series.Length > 0))
+                    //{
+                    DataRow dr = dt_Series.NewRow();
 
-                        dt_Series.Rows.Add(dr);
+                    dr["MetaDataID"] = MetaDataID;
+                    dr["ProductID"] = productCount;
+                    dr["RowCnt"] = (a + 1);
+                    dr["SeriesName_b018"] = product.obj_product_series_List[a].b018_product_series;
+                    dr["SeriesNumber_b019"] = StringReplace(product.obj_product_series_List[a].b019_product_series, "No.", "");
+                    dr["SeriesName_b203"] = ""; //product.obj_product_series_List[a].obj_product_series_title_List[b].b203_product_series_title;
 
-                    }
+                    dt_Series.Rows.Add(dr);
+
                 }
+                //}
 
 
 
@@ -1838,7 +2025,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable Status_b394(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Status_b394, int MetaDataID, int productCount)
+        public DataTable Status_b394(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Status_b394, int MetaDataID, int productCount)
         {
 
 
@@ -1871,7 +2058,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable Status_j141(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_Status_j141, int MetaDataID, int productCount)
+        public DataTable Status_j141(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_Status_j141, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1902,7 +2089,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable SalesRights(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_SalesRights, int MetaDataID, int productCount)
+        public DataTable SalesRights(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_SalesRights, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -1933,7 +2120,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable SalesRights_NotForSale(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_SalesRights_NotForSale, int MetaDataID, int productCount)
+        public DataTable SalesRights_NotForSale(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_SalesRights_NotForSale, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1963,7 +2150,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable PageCount(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_SalesRights, int MetaDataID, int productCount)
+        public DataTable PageCount(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_SalesRights, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -1991,36 +2178,36 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable SalesRestriction(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_SalesRestriction, int MetaDataID, int productCount)
-        {
+        //public DataTable SalesRestriction(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_SalesRestriction, int MetaDataID, int productCount)
+        //{
 
 
-            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
+        //    //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
+        //    //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
+        //    //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
 
-            #region 'SalesRestriction'
+        //    #region 'SalesRestriction'
 
-            for (int a = 0; a < product.obj_product_salesrestriction_List.Count; a++)
-            {
-                DataRow dr = dt_SalesRestriction.NewRow();
+        //    for (int a = 0; a < product.obj_product_salesrestriction_List.Count; a++)
+        //    {
+        //        DataRow dr = dt_SalesRestriction.NewRow();
 
-                dr["MetaDataID"] = MetaDataID;
-                dr["ProductID"] = productCount;
-                dr["RowCnt"] = (a + 1);
-                dr["SalesRestriction_b383"] = product.obj_product_salesrestriction_List[a].b383_product_salesrestriction;
+        //        dr["MetaDataID"] = MetaDataID;
+        //        dr["ProductID"] = productCount;
+        //        dr["RowCnt"] = (a + 1);
+        //        dr["SalesRestriction_b383"] = product.obj_product_salesrestriction_List[a].b383_product_salesrestriction;
 
-                dt_SalesRestriction.Rows.Add(dr);
-            }
+        //        dt_SalesRestriction.Rows.Add(dr);
+        //    }
 
-            #endregion
-
-
-            return dt_SalesRestriction;
+        //    #endregion
 
 
-        }
-        public DataTable ReleaseDate_b003(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_ReleaseDate_b003, int MetaDataID, int productCount)
+        //    return dt_SalesRestriction;
+
+
+        //}
+        public DataTable ReleaseDate_b003(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_ReleaseDate_b003, int MetaDataID, int productCount)
         {
 
 
@@ -2050,7 +2237,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable ReleaseDate_j143(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_ReleaseDate_j143, int MetaDataID, int productCount)
+        public DataTable ReleaseDate_j143(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_ReleaseDate_j143, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -2078,7 +2265,8 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable EditionNumber_b057(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_EditionNumber_b057, int MetaDataID, int productCount)
+
+        public DataTable EditionNumber_b057(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_EditionNumber_b057, int MetaDataID, int productCount)
         {
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
             //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
@@ -2106,7 +2294,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
         }
-        public DataTable ProductFormCode_b012(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_ProductFormCode_b012, int MetaDataID, int productCount)
+        public DataTable ProductFormCode_b012(TitleInjestion.Company.RecordedBooks.Onix_2_Short_Definition.product product, DataTable dt_ProductFormCode_b012, int MetaDataID, int productCount)
         {
 
             //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
@@ -2117,17 +2305,19 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
             for (int a = 0; a < product.obj_b012_List.Count; a++)
             {
-
-                if (product.obj_b012_List[a].ToLower().ToString() == "dg")
+                if (!string.IsNullOrEmpty(product.obj_b012_List[a]))
                 {
-                    DataRow dr = dt_ProductFormCode_b012.NewRow();
+                    if (product.obj_b012_List[a].Trim().ToLower().ToString() == "dg")
+                    {
+                        DataRow dr = dt_ProductFormCode_b012.NewRow();
 
-                    dr["MetaDataID"] = MetaDataID;
-                    dr["ProductID"] = productCount;
-                    dr["RowCnt"] = (a + 1);
-                    dr["ProductFormCode_b012"] = product.obj_b012_List[a];
+                        dr["MetaDataID"] = MetaDataID;
+                        dr["ProductID"] = productCount;
+                        dr["RowCnt"] = (a + 1);
+                        dr["ProductFormCode_b012"] = product.obj_b012_List[a];
 
-                    dt_ProductFormCode_b012.Rows.Add(dr);
+                        dt_ProductFormCode_b012.Rows.Add(dr);
+                    }
                 }
             }
 
@@ -2138,48 +2328,6 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
         }
 
-        public DataTable DiscountPercent_j267(TitleInjestion.Company.WFHowes.Onix_2_Short_Definition.product product, DataTable dt_DiscountPercent_j267, int MetaDataID, int productCount)
-        {
-
-            //dr["FileName"] = fileinfo_1.obj_FileInfo_List[0].FileName_FileInfo;
-            //dr["pubId"] = fileinfo_1.obj_FileInfo_List[0].PubID_FileInfo;
-            //dr["FileType"] = fileinfo_1.obj_FileInfo_List[0].FileType_FileInfo;
-
-            #region 'DiscountPercent_j267'
-
-            for (int a = 0; a < product.obj_product_supplydetail_List.Count; a++)
-            {
-                for (int b = 0; b < product.obj_product_supplydetail_List[a].obj_supplydetail_price_List.Count; b++)
-                {
-
-
-                    if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price))
-                    {
-                        if (product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price =="06")
-                        {
-                            if (!string.IsNullOrEmpty(product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j267_product_supplydetail_price))
-                            {
-                                DataRow dr = dt_DiscountPercent_j267.NewRow();
-
-                                dr["MetaDataID"] = MetaDataID;
-                                dr["ProductID"] = productCount;
-                                dr["RowCnt"] = (a + 1);
-                                dr["DiscountPercent_j267"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j267_product_supplydetail_price;
-
-                                dt_DiscountPercent_j267.Rows.Add(dr);
-                            }
-                        }
-                    }
-                }
-            }
-
-            #endregion
-
-            return dt_DiscountPercent_j267;
-
-
-        }
- 
 
         #endregion
 
@@ -2195,7 +2343,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
         //    #region 'Publisher'
         //    for (int a = 0; a < product.obj_b081_List.Count; a++)
         //    {
-        //        DataRow dr = dt_RH_Publisher2.NewRow();
+        //        DataRow dr = dt_Publisher2.NewRow();
 
         //        dr["ProductID"] = productCount;
         //        dr["RowCnt"] = (a + 1);
@@ -2293,7 +2441,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
 
 
 
-        //        public DataTable b211(TitleInjestion.Onix_Definition.product product, DataTable dt_211, int productCount)
+        //        public DataTable b211(TitleInjestion.Onix_Definition.product product, DataTable dt_b211, int productCount)
         //        {
 
 

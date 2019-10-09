@@ -3288,12 +3288,24 @@ namespace TitleInjestion.CommonFunctions
 
                     if (System.Configuration.ConfigurationManager.AppSettings["Platform"].ToString().ToLower() != "dev")
                     {
-                        cmd.CommandText = "select count(*) From trilogy.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "' and publisher_name = '" + imprintName + "' and Parent_PublisherName = '" + parentaccountname + "'";
+                        //cmd.CommandText = "select count(*) From trilogy.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "' and publisher_name = '" + imprintName + "' and Parent_PublisherName = '" + parentaccountname + "'";
+                        cmd.CommandText = "select count(*) From trilogy.dbo.RoyaltyRateDiscount where d_agent_code = @AgentCode and publisher_name = @imprintName and Parent_PublisherName = @parentaccountname";
                     }
                     else
                     {
-                        cmd.CommandText = "select count(*) From trilogy_replica.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "' and publisher_name = '" + imprintName + "' and Parent_PublisherName = '" + parentaccountname + "'";
+                        //cmd.CommandText = "select count(*) From trilogy_replica.dbo.RoyaltyRateDiscount where d_agent_code = '" + AgentCode + "' and publisher_name = '" + imprintName + "' and Parent_PublisherName = '" + parentaccountname + "'";
+                        cmd.CommandText = "select count(*) From trilogy_replica.dbo.RoyaltyRateDiscount where d_agent_code = @AgentCode and publisher_name = @imprintName and Parent_PublisherName = @parentaccountname";
                     }
+
+
+
+                    cmd.CommandType = System.Data.CommandType.Text;
+
+
+                    cmd.Parameters.AddWithValue("@AgentCode", AgentCode);
+                    cmd.Parameters.AddWithValue("@imprintName", imprintName);
+                    cmd.Parameters.AddWithValue("@parentaccountname", parentaccountname);
+
                     count = (Int32)cmd.ExecuteScalar();
 
 
@@ -3400,5 +3412,56 @@ namespace TitleInjestion.CommonFunctions
             return result;
 
         }
+
+        public DataTable IdentifyTitlesWithContribErrors(string Company, System.Windows.Forms.Label lbl_Message, System.Windows.Forms.DataGridView GridView)
+        {
+            bool result = true;
+
+            DataTable dt = new DataTable();
+
+            // Copy the DataTable to SQL Server
+            using (SqlConnection dbConnection = new SqlConnection(GetConnectionString(Company)))
+            {
+                SqlCommand cmd = null;
+                try
+                {
+                    dbConnection.Open();
+
+                    cmd = dbConnection.CreateCommand();
+                    cmd.CommandTimeout = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.CommandText = "CheckContributorRankingErrors";
+
+                    SqlDataAdapter da = null;
+
+                    using (da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                        GridView.DataSource = dt;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lbl_Message.Text = "There has been a problem with the request. Please check the Error Logs.";
+                    lbl_Message.Refresh();
+                    System.Windows.Forms.Application.DoEvents();
+
+                    result = false;
+                    Insert_ErrorLog(GetConnectionString(Company), "Error at IdentifyTitlesWithContribErrors:" + ex.ToString());
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                    dbConnection.Close();
+                }
+
+            }
+
+            return dt;
+
+        }
+
     }
 }
