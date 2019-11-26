@@ -1719,15 +1719,15 @@ namespace TitleInjestion
                         #endregion
                     }
 
-                    if (str_Company == "RB" && PubID == 42 && MediaType.ToLower() == "ebook" && OnixVersion == "3.0" && TagType == "short")
+                    if (str_Company == "RB" && PubID == 42 && MediaType.ToLower() == "ebook" && OnixVersion == "3.0" && TagType == "reference")
                     {
                         #region 'Tyndale'
-                        //TitleInjestion.Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_Extraction Tyndale = new Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_Extraction();
-                        //result = Tyndale.RB_Tyndale_Extraction(fileinfo_3reference, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+                        TitleInjestion.Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_Extraction Tyndale = new Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_Extraction();
+                        result = Tyndale.RB_Tyndale_Extraction(fileinfo_3reference, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
 
-                        TitleInjestion.Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_shorttag_Extraction Tyndale = new Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_shorttag_Extraction();
-                        result = Tyndale.RB_Tyndaleshorttag_Extraction(fileinfo_3short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
-                       
+                        //TitleInjestion.Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_shorttag_Extraction Tyndale = new Company.RecordedBooks.Publisher.EBook.Tyndale.Tyndale_shorttag_Extraction();
+                        //result = Tyndale.RB_Tyndaleshorttag_Extraction(fileinfo_3short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
                         if (result)
                         {
                             #region'Stage 4: Processing'
@@ -3644,11 +3644,118 @@ namespace TitleInjestion
                         #endregion
                     }
 
+                    if (str_Company == "WFH" && PubID == 62 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'InsatiablePress_RB'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.InsatiablePress_RB.InsatiablePressRB_Extraction InsatiablePressRB = new Company.WFHowes.Publisher.EAudio.InsatiablePress_RB.InsatiablePressRB_Extraction();
+                        result = InsatiablePressRB.InsatiablePress_RB_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
 
-                    
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_InsatiablePress_RB
+                            result = InsatiablePressRB.Process_InsatiablePressRB(str_Company, lbl_Processing);
 
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
 
+                            #endregion
+                        }
 
+                        #endregion
+                    }
+
+                    if (str_Company == "WFH" && PubID == 30 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Simon&Schuster_UK'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.SimonSchuster.SimonSchuster_Extraction SimonSchuster = new Company.WFHowes.Publisher.EAudio.SimonSchuster.SimonSchuster_Extraction();
+                        result = SimonSchuster.SimonSchuster_WFH_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_InsatiablePress_RB
+                            result = SimonSchuster.Process_SimonSchuster_WFH(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+                    if (str_Company == "WFH" && PubID == 63 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'FullCast_RB'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.FullCast_RB.FullCastRB_Extraction FullCastRB = new Company.WFHowes.Publisher.EAudio.FullCast_RB.FullCastRB_Extraction();
+                        result = FullCastRB.FullCast_RB_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_FullCastRB
+                            result = FullCastRB.Process_FullCastRB(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+
+                    if (str_Company == "WFH" && PubID == 64 && MediaType.ToLower() == "ebook" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'Melbourne University Press'
+                        TitleInjestion.Company.WFHowes.Publisher.Ebook.MelbourneUnivPress.MelbourneUnivPress_Extraction MelbourneUnivPress = new Company.WFHowes.Publisher.Ebook.MelbourneUnivPress.MelbourneUnivPress_Extraction();
+                        result = MelbourneUnivPress.MelbourneUnivPress_UK_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_MelbourneUnivPress
+                            result = MelbourneUnivPress.Process_MelbourneUnivPress(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+
+                            #endregion
+                        }
+
+                        #endregion
+                    }
+                    if (str_Company == "WFH" && PubID == 65 && MediaType.ToLower() == "eaudio" && OnixVersion == "2.1" && TagType == "short")
+                    {
+                        #region 'GalaxyPress_RB'
+                        TitleInjestion.Company.WFHowes.Publisher.EAudio.GalaxyPress_RB.GalaxyPressRB_Extraction GalaxyPressRB = new Company.WFHowes.Publisher.EAudio.GalaxyPress_RB.GalaxyPressRB_Extraction();
+                        result = GalaxyPressRB.GalaxyPress_RB_Extraction(fileinfo_2short, PubID, FileName, MediaType, lbl_Extraction, lbl_Insertion, lbl_Message);
+
+                        if (result)
+                        {
+                            #region'Stage 4: Processing'
+                            //Process_GalaxyPressRB
+                            result = GalaxyPressRB.Process_GalaxyPressRB(str_Company, lbl_Processing);
+
+                            if (result)
+                            {
+                                MoveFileToProcessedFolder(FileLocation, FileName);
+                            }
+
+                            #endregion
+                        }
+
+                        #endregion
+                    }
 
 
                 }

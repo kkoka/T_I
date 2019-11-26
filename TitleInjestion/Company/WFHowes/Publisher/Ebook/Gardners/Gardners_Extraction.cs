@@ -833,7 +833,7 @@ namespace TitleInjestion.Company.WFHowes.Publisher.Ebook.Gardners
                         result = InsertRecords(dt_ProductFormCode_b012, "WFH");
                         Insertion_Label(lbl_Insert, count);
                     }
-
+                    count--;
 
                     if (result)
                     {

@@ -429,11 +429,14 @@
     <Compile Include="Company\WFHowes\Publisher\EAudio\DorlingKindersley\DorlingKindersley_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Dreamscape_RB\DreamscapeRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\eChristian_WFH\eChristianWFH_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\FullCast_RB\FullCastRB_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\GalaxyPress_RB\GalaxyPressRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Gardners\Gardners_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Gildan_WFH\GildanWFH_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\HarperCollins_UK\HarperUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\HarperCollinsUS_RB\HarperCollinsUS_RB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Highbridge_WFH\HighbridgeWFH_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\InsatiablePress_RB\InsatiablePressRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\LATheatreWorks_RB\LATheatreWorksRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Lerner_RB\LernerRB_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\ListenLive_RB\ListenLiveRB_Extraction.cs" />
@@ -449,6 +452,7 @@
     <Compile Include="Company\WFHowes\Publisher\EAudio\RandomHouse_UK\RandomHouseUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\RecordedBooks_UK\RecordedBooksUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\SimonSchuster_Pimsleur\SimonSchusterPimsleur_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\EAudio\SimonSchuster\SimonSchuster_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Sodalite_UK\Sodalite_UK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\Tantor_WFH\TantorWFH_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\EAudio\ThomasNelson_RB\ThomasNelsonRB_Extraction.cs" />
@@ -475,6 +479,7 @@
     <Compile Include="Company\WFHowes\Publisher\Ebook\Macleod_Trotter\Macleod_Trotter_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Macmillan_AU\MacmillanAU_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Macmillan_UK\MacmillanUK_Extraction.cs" />
+    <Compile Include="Company\WFHowes\Publisher\Ebook\MelbourneUnivPress\MelbourneUnivPress_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Michael_OMara\Michael_OMara_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\MyBooks\MyBooksUK_Extraction.cs" />
     <Compile Include="Company\WFHowes\Publisher\Ebook\Penguin_AU\Penguin_AU_Extraction.cs" />

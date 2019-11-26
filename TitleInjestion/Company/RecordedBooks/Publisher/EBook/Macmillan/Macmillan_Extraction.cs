@@ -144,6 +144,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Macmillan
                 dt_RH_Price.Columns.Add("LibraryPrice_j151", typeof(string));
                 dt_RH_Price.Columns.Add("CurrencyCode_j152", typeof(string));
                 dt_RH_Price.Columns.Add("j261", typeof(string));
+                dt_RH_Price.Columns.Add("PriceEffectivefrom_j161", typeof(string));
 
                 #endregion
 
@@ -1246,6 +1247,7 @@ namespace TitleInjestion.Company.RecordedBooks.Publisher.EBook.Macmillan
                                         dr["LibraryPrice_j151"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j151_product_supplydetail_price;
                                         dr["CurrencyCode_j152"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j152_product_supplydetail_price;
                                         dr["j261"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j261_product_supplydetail_price;
+                                        dr["PriceEffectivefrom_j161"] = product.obj_product_supplydetail_List[a].obj_supplydetail_price_List[b].j161_product_supplydetail_price;
 
                                         dt_RH_Price.Rows.Add(dr);
 
